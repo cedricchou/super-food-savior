@@ -8,6 +8,7 @@ const knex = require('knex')({
     charset  : 'utf8'
   }
 });
-var bookshelf = require('bookshelf')(knex);
+const bookshelf = require('bookshelf')(knex);
 bookshelf.plugin('registry');
+
 export default bookshelf;
