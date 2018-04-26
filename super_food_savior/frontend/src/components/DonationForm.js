@@ -4,32 +4,33 @@ import axios from 'axios';
 export default class DonationForm extends Component {
 
   state = {
-    title: '1',
-    description: '2'
+    title: '',
+    description: '',
+    pictureUrl: '',
+    weight: ''
   }
 
   handleChange = (event) => {
-    // console.log("which field", event.target.name);
     const newData = {};
     newData[event.target.name] = event.target.value;
-    console.log("newData >>>>", newData);
     this.setState(newData)
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
     const toSend = this.state;
-  axios
-   .post('/donations', toSend)
-   .then(function (response) {
+
+    axios
+    .post('/donations', toSend)
+    .then(function (response) {
      console.log(response);
-     if (response && response.data && response.data.success){
-       alert("nice work man")
-     }
-   })
-   .catch(function (error) {
-     console.log(error);
-   });
+      if (response && response.data && response.data.success){
+        alert("nice work man")
+      }
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   render() {
@@ -45,7 +46,18 @@ export default class DonationForm extends Component {
           <input type="text" name="description" value={this.state.description}
             onChange={this.handleChange}
            />
-           <input type="submit" />
+           <br />
+           Add a Picture:
+           <input type="text" name="pictureUrl" value={this.state.pictureUrl}
+             onChange={this.handleChange}
+            />
+            <br/>
+            Produce weight:
+            <input type="text" name="weight" value={this.state.weight}
+              onChange={this.handleChange}
+             />
+             <br/>
+            <input type="submit" />
         </form>
       </div>
     )

@@ -1,6 +1,4 @@
-// import bookshelf from '../bookshelf';
 const bookshelf = require('../bookshelf');
-// import Donation from './donation';
 const Donation = require('./donation')
 
 const User = bookshelf.Model.extend ({
@@ -10,5 +8,4 @@ const User = bookshelf.Model.extend ({
   }
 })
 
-// export default User;
 exports.User = User;

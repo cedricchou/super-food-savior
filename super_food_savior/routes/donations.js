@@ -1,7 +1,6 @@
-// import Donation from '../models/donation';
 const express = require('express');
 const router = express.Router();
-const Donation = require('../models/donation')
+const Donation = require('../models/donation');
 const knex = require("../db/index");
 
 
@@ -12,7 +11,6 @@ router.get('/', function(req, res, next) {
 // Create new donation
 
 router.post('/', (req, res, next) => {
-  console.log("++++++++++++++++++++ here");
   const toInsert = {
     title: req.body.title,
     description: req.body.description,
@@ -20,21 +18,14 @@ router.post('/', (req, res, next) => {
     pictureUrl: req.body.pictureUrl
   };
 
-  console.log("toInsert >>> ", toInsert);
-
   knex.insert(toInsert)
   .into("donations")
-  // .then(() => {
-  //   res.redirect('/')
-  // })
   .then(() => {
-    res.json({success: true, message: "it works"})
+    res.json({success: true, message: "Thanks for posting!"})
   })
   .catch(() => {
-    res.json({success: false, message: "it did NOT work"})
+    res.json({success: false, message: "Error: Missing parameters"})
   })
 })
 
 module.exports = router;
-
-// AXIOS - library for React
