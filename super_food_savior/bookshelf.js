@@ -4,11 +4,9 @@ const knex = require('knex')({
     host     : 'localhost',
     user     : 'root',
     password : '',
-    database : 'mybooks',
+    database : 'super_food_savior_dev',
     charset  : 'utf8'
   }
 });
-const bookshelf = require('bookshelf')(knex);
-bookshelf.plugin('registry');
 
-export default bookshelf;
+module.exports = require('bookshelf')(knex);

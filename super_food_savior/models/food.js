@@ -1,7 +1,9 @@
-import bookshelf from '../bookshelf';
+// import bookshelf from '../bookshelf';
+const bookshelf = require('../bookshelf');
 
-const Food = bookshelf.Model.extends ({
+const Food = bookshelf.Model.extend ({
   tableName: 'foods',
 })
 
-export default Food;
+// export default Food;
+exports.Food = Food;
