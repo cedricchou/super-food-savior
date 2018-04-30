@@ -30,11 +30,19 @@ router.post('/', (req, res, next) => {
   knex.insert(toInsert)
   .into("donations")
   .then(() => {
+    res.redirect('donations')
+  })
+
+  /*
+  knex.insert(toInsert)
+  .into("donations")
+  .then(() => {
     res.json({success: true, message: "Thanks for posting!"})
   })
   .catch(() => {
     res.json({success: false, message: "Error: Missing parameters"})
   })
+  */
 })
 
 // Route to create

@@ -18,6 +18,14 @@ router.post('/', function(req, res, next) {
     password: req.body.password,
     address: req.body.address
   };
+
+  knex.insert(toInsert)
+  .into("users")
+  .then(() => {
+    res.redirect('/')
+  })
+
+  /*
   knex
   .insert(toInsert)
   .into("users")
@@ -29,6 +37,7 @@ router.post('/', function(req, res, next) {
     res.json({success: false,
               message: 'Missing parameters or already existing email'})
   })
+  */
 })
 
 // Route to user creation page

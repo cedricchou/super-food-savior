@@ -1,6 +1,13 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.background-image {
+  background-image: url("../images/super_food_pictures.jpg");
+}
+
+img {
+  filter: blur(5px);
 }
 
 a {
