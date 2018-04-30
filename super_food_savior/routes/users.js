@@ -3,6 +3,9 @@ const router = express.Router();
 const User = require('../models/user');
 const knex = require("../db/index");
 
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
@@ -11,19 +14,23 @@ router.get('/', function(req, res, next) {
 // Create a new User
 
 router.post('/', function(req, res, next) {
-  const toInsert = {
-    first_name: req.body.first_name,
-    last_name: req.body.last_name,
-    email: req.body.email,
-    password: req.body.password,
-    address: req.body.address
-  };
 
-  knex.insert(toInsert)
-  .into("users")
-  .then(() => {
-    res.redirect('/')
-  })
+  const password = req.body.password
+
+  bcrypt.hash(password, saltRounds, function(err, hash) {
+    knex
+    .insert({
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      address: req.body.address,
+      password: hash
+    })
+    .into("users")
+    .then(() => {
+      res.redirect('/')
+    })
+  });
 
   /*
   knex
