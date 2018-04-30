@@ -1,0 +1,10 @@
+<%- include('../partials/header') %>
+
+<% for (let i = 0; i < donation.length; i++ ) { %>
+  <ul>
+  <li><%= donation[i].title %></li>
+  <li><%= donation[i].description %></li>
+  </ul>
+<% } %>
+
+<%- include('../partials/footer') %>

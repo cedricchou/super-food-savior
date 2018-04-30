@@ -3,9 +3,19 @@ const router = express.Router();
 const Donation = require('../models/donation');
 const knex = require("../db/index");
 
+// Get donations information from database
+
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+  knex
+  .select()
+  .from('donations')
+  .then(donation => {
+    res.render('donations',
+    {
+      donation: donation
+    });
+  });
+})
 
 // Create new donation
 
@@ -26,5 +36,12 @@ router.post('/', (req, res, next) => {
     res.json({success: false, message: "Error: Missing parameters"})
   })
 })
+
+// Route to create
+
+router.get('/new', function(req, res, next) {
+  res.render('donations/new');
+});
+
 
 module.exports = router;

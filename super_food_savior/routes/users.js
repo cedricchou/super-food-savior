@@ -31,4 +31,10 @@ router.post('/', function(req, res, next) {
   })
 })
 
+// Route to user creation page
+
+router.get('/new', function(req, res, next) {
+  res.render('users/new');
+});
+
 module.exports = router;
