@@ -3,7 +3,6 @@ const router = express.Router();
 const Donation = require('../models/donation');
 const knex = require("../db/index");
 
-
 router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
