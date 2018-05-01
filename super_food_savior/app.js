@@ -3,10 +3,12 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const knex = require("./db/index");
 
 // authentication package
 const passport = require("passport");
 const session = require("express-session");
+const KnexSessionStore = require('connect-session-knex')(session);
 
 // Routes
 const index = require('./routes/index');
@@ -27,10 +29,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // session
 
+const store = new KnexSessionStore({
+  knex: knex,
+  tablename: "sessions"
+});
+
 app.use(session({
   secret: 'whatever4#%*$?/da',
-  store: new (require('connect-pg-simple')(session))(),
   resave: false,
+  store: store,
   saveUninitialized: false
   // cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
 }));
