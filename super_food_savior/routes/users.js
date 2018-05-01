@@ -30,7 +30,6 @@ router.post('/', function(req, res, next) {
     })
     .into("users")
     .then((user_id) => {
-      console.log(typeof user_id)
       req.login(user_id, (err) => {
         console.log(err)
         res.redirect('/')
@@ -60,8 +59,10 @@ router.get('/new', function(req, res, next) {
   res.render('users/new');
 });
 
-passport.serializeUser(function(user, done) {
-  done(null, user);
+// passport serializer
+
+passport.serializeUser(function(user_id, done) {
+  done(null, user_id);
 });
 
 passport.deserializeUser(function(user_id, done) {

@@ -25,14 +25,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
 // session
 
 app.use(session({
   secret: 'whatever4#%*$?/da',
+  store: new (require('connect-pg-simple')(session))(),
   resave: false,
   saveUninitialized: false
+  // cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
 }));
 
 app.use(passport.initialize());

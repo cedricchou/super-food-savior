@@ -9,6 +9,7 @@
     "bcrypt": "^2.0.1",
     "body-parser": "~1.18.2",
     "bookshelf": "^0.13.3",
+    "connect-pg-simple": "^4.2.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "ejs": "~2.5.7",
