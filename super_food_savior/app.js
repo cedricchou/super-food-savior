@@ -4,13 +4,9 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
-// JWT authentication middleware
+// authentication package
 const passport = require("passport");
-const passportJWT = require("passport-jwt");
-const ExtractJwt = passportJWT.ExtractJwt;
-const jwtStrategy = passportJWT.Strategy;
-const _ = require('lodash');
-const jwt = require('jsonwebtoken');
+const session = require("express-session");
 
 // Routes
 const index = require('./routes/index');
@@ -28,15 +24,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(passport.initialize());
 
+
+
+// session
+
+app.use(session({
+  secret: 'whatever4#%*$?/da',
+  resave: false,
+  saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', index);
 app.use('/users', users);
 app.use('/donations', donations);
-
-// Token authentication request
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

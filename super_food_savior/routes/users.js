@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const knex = require("../db/index");
+const passport = require('passport');
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -19,6 +20,7 @@ router.post('/', function(req, res, next) {
 
   bcrypt.hash(password, saltRounds, function(err, hash) {
     knex
+    .returning('id')
     .insert({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -27,10 +29,15 @@ router.post('/', function(req, res, next) {
       password: hash
     })
     .into("users")
-    .then(() => {
-      res.redirect('/')
+    .then((user_id) => {
+      console.log(typeof user_id)
+      req.login(user_id, (err) => {
+        console.log(err)
+        res.redirect('/')
+      })
     })
   });
+
 
   /*
   knex
@@ -51,6 +58,20 @@ router.post('/', function(req, res, next) {
 
 router.get('/new', function(req, res, next) {
   res.render('users/new');
+});
+
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(user_id, done) {
+  // knex
+  // .select()
+  // .from("users")
+  // .where({id: user_id[0]})
+  // .then((user) => {
+     done(null, user_id)
+  // })
 });
 
 module.exports = router;
