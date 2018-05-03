@@ -13,7 +13,7 @@ const LocalStrategy = require('passport-local').Strategy;
 
 const KnexSessionStore = require('connect-session-knex')(session);
 
-// Routes
+//
 const index = require('./routes/index');
 const users = require('./routes/users');
 const donations = require('./routes/donations');
@@ -49,6 +49,14 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(function(req, res, next) {
+  res.locals.isAuthenticated = req.isAuthenticated();
+  res.locals.user = req.user;
+  next();
+})
+
+// Routes
 
 app.use('/', index);
 app.use('/users', users);
