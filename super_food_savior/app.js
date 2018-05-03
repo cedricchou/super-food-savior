@@ -18,6 +18,7 @@ const index = require('./routes/index');
 const users = require('./routes/users');
 const donations = require('./routes/donations');
 const login = require('./routes/login');
+const logout = require('./routes/logout');
 
 const app = express();
 
@@ -53,6 +54,9 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/donations', donations);
 app.use('/login', login);
+app.use('/logout', logout);
+
+// passport local strategy
 
 passport.use(new LocalStrategy({
   usernameField: 'email',
