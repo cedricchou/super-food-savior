@@ -76,12 +76,15 @@ passport.use(new LocalStrategy({
     .where({ email: username })
     .first()
     .then((user) => {
-      console.log(user);
-      if(!user) {
-        return done(null, false);
-      } else {
-        return done(null, user);
-      }
+      if(!user) return done(null, false)
+      const hash = user.password;
+      bcrypt.compare(password, hash, function(err, res) {
+        if (res === true) {
+          return done(null, user);
+        } else {
+          return done(null, false);
+        }
+      })
     }).catch((error) => {return done(error)})
   }
 ));
