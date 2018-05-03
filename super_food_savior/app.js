@@ -4,16 +4,20 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const knex = require("./db/index");
+const bcrypt = require('bcrypt');
 
 // authentication package
 const passport = require("passport");
 const session = require("express-session");
+const LocalStrategy = require('passport-local').Strategy;
+
 const KnexSessionStore = require('connect-session-knex')(session);
 
 // Routes
 const index = require('./routes/index');
 const users = require('./routes/users');
 const donations = require('./routes/donations');
+const login = require('./routes/login');
 
 const app = express();
 
@@ -48,6 +52,27 @@ app.use(passport.session());
 app.use('/', index);
 app.use('/users', users);
 app.use('/donations', donations);
+app.use('/login', login);
+
+passport.use(new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password'
+}, function(username, password, done) {
+    knex
+    .select('*')
+    .from('users')
+    .where({ email: username })
+    .first()
+    .then((user) => {
+      console.log(user);
+      if(!user) {
+        return done(null, false);
+      } else {
+        return done(null, user);
+      }
+    }).catch((error) => {return done(error)})
+  }
+));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
