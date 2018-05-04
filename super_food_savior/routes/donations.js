@@ -20,11 +20,13 @@ router.get('/', function(req, res, next) {
 // Create new donation
 
 router.post('/', (req, res, next) => {
+  console.log(res.locals.user.id)
   const toInsert = {
     title: req.body.title,
     description: req.body.description,
-    weight: req.body.weight,
-    pictureUrl: req.body.pictureUrl
+    weight: req.body.weight ? req.body.weight : 0,
+    pictureUrl: req.body.pictureUrl,
+    user_id: res.locals.user.id
   };
 
   knex.insert(toInsert)
@@ -48,7 +50,11 @@ router.post('/', (req, res, next) => {
 // Route to create
 
 router.get('/new', function(req, res, next) {
-  res.render('donations/new');
+  if(req.isAuthenticated() === true) {
+    res.render('donations/new');
+  } else {
+    res.redirect('/login');
+  }
 });
 
 

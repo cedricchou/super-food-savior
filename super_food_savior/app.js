@@ -4,16 +4,16 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const knex = require("./db/index");
-const bcrypt = require('bcrypt');
 
 // authentication package
+const bcrypt = require('bcrypt');
 const passport = require("passport");
 const session = require("express-session");
 const LocalStrategy = require('passport-local').Strategy;
 
 const KnexSessionStore = require('connect-session-knex')(session);
 
-//
+// controllers
 const index = require('./routes/index');
 const users = require('./routes/users');
 const donations = require('./routes/donations');
@@ -69,11 +69,11 @@ app.use('/logout', logout);
 passport.use(new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password'
-}, function(username, password, done) {
+}, function(email, password, done) {
     knex
     .select('*')
     .from('users')
-    .where({ email: username })
+    .where({ email })
     .first()
     .then((user) => {
       if(!user) return done(null, false)
@@ -85,7 +85,7 @@ passport.use(new LocalStrategy({
           return done(null, false);
         }
       })
-    }).catch((error) => {return done(error)})
+    }).catch((err) => {return done(err)})
   }
 ));
 

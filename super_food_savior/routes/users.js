@@ -29,8 +29,8 @@ router.post('/', function(req, res, next) {
       password: hash
     })
     .into("users")
-    .then((user_id) => {
-      req.login(user_id, (err) => {
+    .then((user) => {
+      req.login(user, (err) => {
         console.log(err)
         res.redirect('/')
       })
@@ -53,6 +53,10 @@ router.post('/', function(req, res, next) {
   */
 })
 
+// Edit user
+
+
+
 // Route to user creation page
 
 router.get('/new', function(req, res, next) {
@@ -61,18 +65,19 @@ router.get('/new', function(req, res, next) {
 
 // passport serializer
 
-passport.serializeUser(function(user_id, done) {
-  done(null, user_id);
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
 });
 
-passport.deserializeUser(function(user_id, done) {
-  // knex
-  // .select()
-  // .from("users")
-  // .where({id: user_id[0]})
-  // .then((user) => {
-     done(null, user_id)
-  // })
+passport.deserializeUser(function(id, done) {
+  knex
+  .select()
+  .from("users")
+  .where({ id })
+  .first()
+  .then((user) => {
+     done(null, user)
+  })
 });
 
 module.exports = router;
