@@ -5,21 +5,36 @@ const knex = require("../db/index");
 
 // Get donations information from database
 
-router.get('/', function(req, res, next) {
-  knex
-  .select()
-  .from('donations')
-  .then(donation => {
-    res.render('donations',
-    {
-      donation: donation
+router.get('/', function(req, res) {
+  const research = req.query.research;
+  console.log(research);
+  if(research === undefined) {
+    knex
+    .select()
+    .from('donations')
+    .then(donation => {
+      res.render('donations',
+      {
+        donation: donation
+      });
     });
-  });
+  } else if(research) {
+    knex
+    .select()
+    .from('donations')
+    .where("title", "ILIKE", `%${research}%`)
+    .then(donation => {
+      res.render('donations',
+      {
+        donation: donation
+      });
+    });
+  }
 })
 
 // Create new donation
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
   console.log(res.locals.user.id)
   const toInsert = {
     title: req.body.title,
@@ -49,13 +64,23 @@ router.post('/', (req, res, next) => {
 
 // Route to create
 
-router.get('/new', function(req, res, next) {
+router.get('/new', function(req, res) {
   if(req.isAuthenticated() === true) {
     res.render('donations/new');
   } else {
     res.redirect('/login');
   }
 });
+
+// Route to Edit donation
+
+router.get('/edit', function(req, res) {
+  res.render('donations/edit')
+})
+
+// Route to donation show page
+
+
 
 
 module.exports = router;

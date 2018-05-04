@@ -3,6 +3,8 @@
 # dependencies
 /node_modules
 
+# api_keys
+../app_keys
 
 # testing
 /coverage
