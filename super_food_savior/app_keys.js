@@ -1,1 +1,1 @@
-export const gmap_key = 'test'
+export const gmap_key = 'testing'
