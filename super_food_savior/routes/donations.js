@@ -13,10 +13,7 @@ router.get('/', function(req, res) {
     .select()
     .from('donations')
     .then(donation => {
-      res.render('donations',
-      {
-        donation: donation
-      });
+      res.render('donations', { donation });
     });
   } else if(research) {
     knex
@@ -24,10 +21,7 @@ router.get('/', function(req, res) {
     .from('donations')
     .where("title", "ILIKE", `%${research}%`)
     .then(donation => {
-      res.render('donations',
-      {
-        donation: donation
-      });
+      res.render('donations', { donation });
     });
   }
 })
@@ -80,7 +74,16 @@ router.get('/edit', function(req, res) {
 
 // Route to donation show page
 
-
+router.get('/:id', function(req, res) {
+  const donationId = req.params.id;
+  knex
+  .select()
+  .from('donations')
+  .where({id: donationId})
+  .then(([donationShow]) => {
+    res.render('donations/show', { donationShow })
+  })
+})
 
 
 module.exports = router;
