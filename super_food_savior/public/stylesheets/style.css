@@ -8,8 +8,8 @@ body > * {
 }
 
 .back-color {
-  background-color: cyan;
-  border-radius: 5px;
+  background-color: grey;
+  border-radius: 7px;
 }
 
 .card.main-card {
@@ -21,6 +21,14 @@ body > * {
   background-image: url("../images/super_food_pictures.jpg");
   z-index: -1;
   font-family: white
+}
+
+.slideshow {
+  min-width: 500px;
+}
+
+img {
+  width: 100%;
 }
 
 a {
