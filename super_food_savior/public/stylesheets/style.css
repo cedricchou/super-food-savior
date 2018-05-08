@@ -8,8 +8,7 @@ body > * {
 }
 
 .back-color {
-  background-color: grey;
-  border-radius: 7px;
+  background-color: thistle;
 }
 
 .card.main-card {
@@ -26,6 +25,7 @@ body > * {
 .jumbotron.jumbotron-fluid {
   padding-top: 0px;
   padding-bottom: 0px;
+  margin: 0px;
 }
 
 .slideshow {
