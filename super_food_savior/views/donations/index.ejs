@@ -3,7 +3,8 @@
 
 <div class="row">
     <% for (let i = donation.length-1; i >= 0; i-- ) { %>
-      <div class="card col-lg-3 m-2">
+
+      <div class="card col-lg-5 m-3 main-card">
 
       <form
         class=<%= donation[i].id %>
@@ -11,7 +12,7 @@
         method="get"
         >
 
-        <div class="card-body">
+        <div class="card-body back-color">
         <div class="card-title"><%= donation[i].title %></div>
         <p class="card-text"><%= donation[i].description %></p>
         <input class="btn btn-primary" type="submit" value="See donation" />
