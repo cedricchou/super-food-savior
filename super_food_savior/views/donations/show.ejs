@@ -1,22 +1,36 @@
 <%- include('../partials/header') %>
 
-<%= donationShow.title %>
+<div class="container">
 
+  <form
+    class="form-control"
+    action="/donations/<%= donationShow.id %>/messages"
+    method="post"
+  >
+  <div>
+    <h3><%= donationShow.title %></h3>
+    <p><%= donationShow.description %></p>
+    <textarea type="text" name="content" class="form-control" rows="6"></textarea>
+    <input type="submit" class="btn-outline-primary" value="Send Message"/>
+  </div>
+  </form>
 
-<div id="map"></div>
-<script>
-  function initMap() {
-    const uluru = {lat: -25.363, lng: 131.044};
-    const map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 4,
-      center: uluru
-    });
-    const marker = new google.maps.Marker({
-      position: uluru,
-      map: map
-    });
-  }
-</script>
+  <div id="map"></div>
+  <script>
+    function initMap() {
+      const uluru = {lat: -25.363, lng: 131.044};
+      const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 4,
+        center: uluru
+      });
+      const marker = new google.maps.Marker({
+        position: uluru,
+        map: map
+      });
+    }
+  </script>
+  </div>
+
 </div>
 
 

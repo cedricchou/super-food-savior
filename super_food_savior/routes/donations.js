@@ -85,5 +85,34 @@ router.get('/:id', function(req, res) {
   })
 })
 
+// Messages routes and controllers
+
+router.get('/:id/messages', function(req, res) {
+  const donationId = req.params.id;
+  knex
+  .select()
+  .from('donations')
+  .where({id: donationId})
+  .then(() => {
+    res.send("welcome to message page")
+  })
+})
+
+router.post('/:id/messages', function(req, res) {
+  const toInsert = {
+    content: req.body.content,
+    donation_id: req.params.id,
+    user_id: res.locals.user.id
+  };
+
+  knex
+  .insert(toInsert)
+  .into('messages')
+  .then(() => {
+    res.redirect('/donations')
+  })
+})
+
+
 
 module.exports = router;
