@@ -12,13 +12,14 @@
     <label>Item weight</label>
     <input type="number" name="weight" class="form-control"/>
 
-    <label>Post your picture</label>
-    <input type="text" name="pictureUrl" class="form-control" placeholder="e.g. https://www.example.com/some.png"/>
+    <form action="/upload" method="post">
+    <button type="submit" class="btn btn-outline-primary mr">Post Picture</button>
+  </form>
 
     <div class="btn-group float-right mt-2">
       <button type="submit" class="btn btn-outline-primary mr">Submit</button>
     </div>
-    
+
   </form>
 </div>
 

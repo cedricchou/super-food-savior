@@ -1,18 +1,24 @@
 <%- include('../partials/header') %>
 
 
-<% for (let i = donation.length-1; i >= 0; i-- ) { %>
-  <ul>
-  <form
-    class=<%= donation[i].id %>
-    action="/donations/<%= donation[i].id %>"
-    method="get"
-    >
-  <li><%= donation[i].title %></li>
-  <li><%= donation[i].description %></li>
-  <input type="submit" value="See donation" />
-  </form>
-  </ul>
-<% } %>
+<div class="row">
+    <% for (let i = donation.length-1; i >= 0; i-- ) { %>
+      <div class="card col-lg-3 m-2" style="width: 18rem;">
+
+      <form
+        class=<%= donation[i].id %>
+        action="/donations/<%= donation[i].id %>"
+        method="get"
+        >
+
+        <div class="card-body">
+        <div class="card-title"><%= donation[i].title %></div>
+        <p class="card-text"><%= donation[i].description %></p>
+        <input class="btn btn-primary" type="submit" value="See donation" />
+        </div>
+      </form>
+      </div>
+    <% } %>
+</div>
 
 <%- include('../partials/footer') %>
