@@ -1,13 +1,16 @@
-body {
+body > * {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: white
+}
+
+.card {
+  color: black;
 }
 
 .background-image {
   background-image: url("../images/super_food_pictures.jpg");
-}
-
-img {
-  filter: blur(5px);
+  z-index: -1;
+  font-family: white
 }
 
 a {
