@@ -3,6 +3,15 @@ body > * {
   color: white
 }
 
+img.mySlides {
+  width: 100%;
+  max-height: 700px;
+}
+
+a {
+  color: #00B7FF;
+}
+
 .card {
   color: black;
 }
@@ -29,14 +38,5 @@ body > * {
 }
 
 .slideshow {
-  min-width: 500px;
-}
-
-img.mySlides {
-  width: 100%;
-  max-height: 500px;
-}
-
-a {
-  color: #00B7FF;
+  min-width: 600px;
 }

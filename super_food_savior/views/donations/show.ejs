@@ -1,36 +1,39 @@
 <%- include('../partials/header') %>
 
-<div class="container">
 
-  <form
-    class="form-control"
-    action="/donations/<%= donationShow.id %>/messages"
-    method="post"
-  >
-  <div>
-    <h3><%= donationShow.title %></h3>
-    <p><%= donationShow.description %></p>
-    <textarea type="text" name="content" class="form-control" rows="6"></textarea>
-    <input type="submit" class="btn-outline-primary" value="Send Message"/>
-  </div>
-  </form>
+<div class="row">
+  <div class="container col-lg-6 md-4">
+    <form
+      class="form-control"
+      action="/donations/<%= donationShow.id %>/messages"
+      method="post"
+    >
 
-  <div id="map"></div>
-  <script>
-    function initMap() {
-      const uluru = {lat: -25.363, lng: 131.044};
-      const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        center: uluru
-      });
-      const marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-      });
-    }
-  </script>
+      <h3><%= donationShow.title %></h3>
+      <p><%= donationShow.description %></p>
+      <textarea type="text" name="content" class="form-control" rows="6"></textarea>
+      <br />
+      <input type="submit" class="btn-outline-primary" value="Send Message"/>
+
+    </form>
   </div>
 
+  <div class="container col-lg-6 md-3">
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        const uluru = {lat: -25.363, lng: 131.044};
+        const map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: uluru
+        });
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map
+        });
+      }
+    </script>
+  </div>
 </div>
 
 <%- include('../partials/footer') %>
