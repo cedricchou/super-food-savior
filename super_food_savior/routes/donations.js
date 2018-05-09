@@ -81,7 +81,16 @@ router.get('/:id', function(req, res) {
   .from('donations')
   .where({id: donationId})
   .then(([donationShow]) => {
-    res.render('donations/show', { donationShow })
+    knex
+    .select()
+    .from('users')
+    .where({id: donationShow.user_id})
+    .then(([data]) => {
+      const user_data = data;
+      res.render('donations/show', { user_data, donationShow })
+    })
+  }).catch(() => {
+    res.send('error')
   })
 })
 
