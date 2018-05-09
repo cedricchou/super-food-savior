@@ -13,20 +13,4 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.post('/upload', function(req, res) {
-  if (!req.files) {
-    return res.send('No files were uploaded');
-  }
-  let donationPic = req.files.donationPic;
-  let donationPicName = donationPic.name;
-  console.log(donationPicName);
-  donationPic.mv('./public/upload/'+donationPicName, function(err) {
-    if (err) {
-      return res.send(err);
-    } else {
-      res.redirect('/donations');
-    }
-  })
-})
-
 module.exports = router;

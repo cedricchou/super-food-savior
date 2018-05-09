@@ -1,7 +1,7 @@
 <%- include('../partials/header') %>
 
 <div class="container">
-  <form action="/donations" method="post">
+  <form action="/donations" method="post" encType="multipart/form-data">
 
     <label>Title</label>
     <input type="text" name="title" class="form-control" placeholder="e.g. Carrots, cauliflower, etc..."/>
@@ -11,21 +11,14 @@
 
     <label>Item weight</label>
     <input type="number" name="weight" class="form-control"/>
+    <br />
+
+    <label>Attach picture</label>
+    <input type="file" name="donationPic" />
 
     <div class="btn-group float-right mt-2">
-      <button type="submit" class="btn btn-outline-primary mr">Submit</button>
+      <button type="submit" class="btn btn-primary mr">Submit</button>
     </div>
-  </form>
-</div>
-
-<div>
-  <form
-    action="/upload"
-    method="post"
-    encType="multipart/form-data"
-  >
-    <input type="file" name="donationPic" />
-    <input type="submit" value="Upload" />
   </form>
 </div>
 

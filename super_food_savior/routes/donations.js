@@ -37,6 +37,10 @@ router.post('/', (req, res) => {
     pictureUrl: req.body.pictureUrl,
     user_id: res.locals.user.id
   };
+  let donationPic = req.files.donationPic;
+  let donationPicName = donationPic.name;
+  console.log(donationPicName);
+  donationPic.mv('./public/upload/'+donationPicName)
 
   knex.insert(toInsert)
   .into("donations")
