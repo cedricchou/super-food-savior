@@ -84,7 +84,7 @@ router.get('/:id', function(req, res) {
       res.render('donations/show', { user_data, donationShow })
     })
   }).catch(() => {
-    res.send('error')
+    res.redirect('/')
   })
 })
 

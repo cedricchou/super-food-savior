@@ -37,21 +37,6 @@ router.post('/', function(req, res) {
       })
     })
   });
-
-
-  /*
-  knex
-  .insert(toInsert)
-  .into("users")
-  .then(() => {
-    res.json({success: true,
-              message: 'User created!'})
-  })
-  .catch(() => {
-    res.json({success: false,
-              message: 'Missing parameters or already existing email'})
-  })
-  */
 })
 
 // Edit user
@@ -63,6 +48,33 @@ router.post('/', function(req, res) {
 router.get('/new', function(req, res) {
   res.render('users/new');
 });
+
+// My messages panel
+
+router.get('/:id/messages', function(req, res) {
+  const userId = req.params.id
+
+  knex
+  .select()
+  .from('users')
+  .where({id: userId})
+  .then(([data]) => {
+    knex
+    .select()
+    .from('messages')
+    .where({user_id: data.id})
+    .then((allMessages) => {
+      console.log(allMessages);
+      res.render('users/messages', {allMessages})
+    })
+  })
+})
+
+// My donations panel
+
+
+
+
 
 // passport serializer
 
@@ -80,5 +92,6 @@ passport.deserializeUser(function(id, done) {
      done(null, user)
   })
 });
+
 
 module.exports = router;
