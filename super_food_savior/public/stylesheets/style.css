@@ -1,3 +1,9 @@
+#map {
+  width: 80%;
+  height: 400px;
+  color: black;
+}
+
 body > * {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   color: white

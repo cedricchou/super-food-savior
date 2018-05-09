@@ -29,7 +29,12 @@ router.get('/', function(req, res) {
 // Create new donation
 
 router.post('/', (req, res) => {
-  console.log(res.locals.user.id)
+  // console.log(res.locals.user.id)
+
+  let donationPic = req.files.donationPic;
+  let donationPicName = donationPic.name;
+  donationPic.mv('./public/upload/'+donationPicName)
+
   const toInsert = {
     title: req.body.title,
     description: req.body.description,
@@ -37,27 +42,12 @@ router.post('/', (req, res) => {
     pictureUrl: req.body.pictureUrl,
     user_id: res.locals.user.id
   };
-  let donationPic = req.files.donationPic;
-  let donationPicName = donationPic.name;
-  console.log(donationPicName);
-  donationPic.mv('./public/upload/'+donationPicName)
 
   knex.insert(toInsert)
   .into("donations")
   .then(() => {
     res.redirect('donations')
   })
-
-  /*
-  knex.insert(toInsert)
-  .into("donations")
-  .then(() => {
-    res.json({success: true, message: "Thanks for posting!"})
-  })
-  .catch(() => {
-    res.json({success: false, message: "Error: Missing parameters"})
-  })
-  */
 })
 
 // Route to create
@@ -114,7 +104,5 @@ router.post('/:id/messages', function(req, res) {
     res.redirect('/donations')
   })
 })
-
-
 
 module.exports = router;

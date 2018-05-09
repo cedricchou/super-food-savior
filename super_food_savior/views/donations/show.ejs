@@ -22,16 +22,31 @@
     <div id="map"></div>
     <script>
       function initMap() {
-        const uluru = {lat: -25.363, lng: 131.044};
-        const map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: uluru
+        let position = {lat: -25.363, lng: 131.044};
+        let map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5,
+          center: position
         });
-        const marker = new google.maps.Marker({
-          position: uluru,
+
+        let marker = new google.maps.Marker({
+          position: position,
           map: map
         });
+
+        let infoWindow = new google.maps.InfoWindow({
+          content: '<%= user_data.address %>'
+        });
+
+        marker.addListener('click', function () {
+          infoWindow.open(map, marker);
+        });
+
       }
+    </script>
+    <script
+      async defer src="https://maps.googleapis.com/maps/api/js?key=APIKEY&callback=initMap"
+      type="text/javascript"
+    >
     </script>
   </div>
 </div>
