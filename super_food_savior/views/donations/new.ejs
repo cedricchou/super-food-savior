@@ -12,14 +12,20 @@
     <label>Item weight</label>
     <input type="number" name="weight" class="form-control"/>
 
-    <form action="/upload" method="post">
-    <button type="submit" class="btn btn-outline-primary mr">Post Picture</button>
-  </form>
-
     <div class="btn-group float-right mt-2">
       <button type="submit" class="btn btn-outline-primary mr">Submit</button>
     </div>
+  </form>
+</div>
 
+<div>
+  <form
+    action="/upload"
+    method="post"
+    encType="multipart/form-data"
+  >
+    <input type="file" name="donationPic" />
+    <input type="submit" value="Upload" />
   </form>
 </div>
 
