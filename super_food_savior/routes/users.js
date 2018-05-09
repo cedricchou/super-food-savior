@@ -63,9 +63,8 @@ router.get('/:id/messages', function(req, res) {
     .select()
     .from('messages')
     .where({user_id: data.id})
-    .then((allMessages) => {
-      console.log(allMessages);
-      res.render('users/messages', {allMessages})
+    .then((myMessages) => {
+      res.render('users/messages', {myMessages, data})
     })
   })
 })
@@ -83,14 +82,11 @@ router.get('/:id/donations', function(req, res) {
     .select()
     .from('donations')
     .where({user_id: data.id})
-    .then((allDonations) => {
-      res.render('users/donations', {allDonations})
+    .then((myDonations) => {
+      res.render('users/donations', { myDonations, data })
     })
   })
 })
-
-
-
 
 // passport serializer
 
