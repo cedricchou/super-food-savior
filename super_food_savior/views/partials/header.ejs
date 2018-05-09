@@ -54,6 +54,7 @@
             </li>
           <% } %>
         </ul>
+        <% if (isAuthenticated) { %>
         <form
           class="form-inline my-2 my-lg-0 ml-auto"
           action="/donations %>"
@@ -73,6 +74,7 @@
             Search
           </button>
         </form>
+        <% } %>
       </div>
     </nav>
 
