@@ -12,6 +12,8 @@ a {
   color: #00B7FF;
 }
 
+/* donation pages (index, show page)  */
+
 .card {
   color: black;
 }
@@ -31,6 +33,8 @@ a {
   font-family: white
 }
 
+/* homepage */
+
 .jumbotron.jumbotron-fluid {
   padding-top: 0px;
   padding-bottom: 0px;
@@ -39,4 +43,45 @@ a {
 
 .slideshow {
   min-width: 600px;
+}
+
+/* Dynamic Side Navigation bar */
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 54px;
+    left: 0;
+    background-color: #333333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 10px;
+    text-decoration: none;
+    font-size: 15px;
+    color: white;
+    display: block;
+    transition: 0.5s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    font-size: 26px;
+    margin-left: 20px;
+}
+
+@media screen and (max-height: 250px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }

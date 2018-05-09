@@ -22,7 +22,10 @@
   </head>
   <body class="background-image">
     <nav class="navbar navbar-expand navbar-white bg-dark mb-4">
-      <a class="navbar-brand">Super Food Savior</a>
+
+      <% if (isAuthenticated) { %>
+      <a class="navbar-brand" onclick="openNav()"><%= user.first_name %>'s Space</a>
+      <% } %>
 
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
@@ -73,4 +76,27 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
+    <div id="mySidenav" class="sidenav">
+      <a
+        href="javascript:void(0)"
+        class="closebtn"
+        onclick="closeNav()"
+      >
+        &times;
+      </a>
+      <a href="#">My donations</a>
+      <a href="#">My messages</a>
+      <a href="#">Settings</a>
+    </div>
+
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "150px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+    </script>
+
+  <div class="container-fluid">

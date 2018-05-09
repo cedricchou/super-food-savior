@@ -8,8 +8,9 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 /* GET users listing. */
+
 router.get('/', function(req, res) {
-  res.send('respond with a resource');
+  res.send('I am the user page');
 });
 
 // Create a new User
