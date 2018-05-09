@@ -1,5 +1,8 @@
 <%- include('../partials/header') %>
 
 <h1>Welcome to the donation board</h1>
+<% for (let i = 0; i < myDonations.length; i++) { %>
+  <a><%= myDonations[i].description %></a>
+<% } %>
 
 <%- include('../partials/footer') %>

@@ -44,6 +44,7 @@
             </li>
           <% } %>
         </ul>
+
         <% if (isAuthenticated) { %>
         <form
           class="form-inline my-2 my-lg-0 ml-auto"
@@ -65,6 +66,7 @@
           </button>
         </form>
         <% } %>
+
       </div>
     </nav>
 
@@ -76,9 +78,8 @@
       >
         &times;
       </a>
-      <a href="#">My donations</a>
-      <a href="#">My messages</a>
-      <a href="#">Settings</a>
+      <a href="/users/<%= user.id %>/donations">My donations</a>
+      <a href="/users/<%= user.id %>/messages">My messages</a>
     </div>
 
     <script>
