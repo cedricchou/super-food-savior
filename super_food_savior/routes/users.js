@@ -72,6 +72,22 @@ router.get('/:id/messages', function(req, res) {
 
 // My donations panel
 
+router.get('/:id/donations', function(req, res) {
+  const userId = res.locals.user.id;
+  knex
+  .select()
+  .from('users')
+  .where({id: userId})
+  .then(([data]) => {
+    knex
+    .select()
+    .from('donations')
+    .where({user_id: data.id})
+    .then((allDonations) => {
+      res.render('users/donations', {allDonations})
+    })
+  })
+})
 
 
 
