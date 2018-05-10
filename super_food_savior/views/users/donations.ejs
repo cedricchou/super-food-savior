@@ -1,8 +1,16 @@
 <%- include('../partials/header') %>
 
 <h1>Welcome to the donation board</h1>
-<% for (let i = 0; i < myDonations.length; i++) { %>
-  <a><%= myDonations[i].description %></a>
-<% } %>
+
+<div class="row">
+  <% for (let i = myDonations.length-1; i >= 0; i-- ) { %>
+    <div class="card col-lg-6">
+      <div class="card-body">
+      <div class="card-title"><%= myDonations[i].title %></div>
+      <p class="card-text"><%= myDonations[i].description %></p>
+      </div>
+    </div>
+  <% } %>
+</div>
 
 <%- include('../partials/footer') %>

@@ -70,18 +70,19 @@
       </div>
     </nav>
 
-    <div id="mySidenav" class="sidenav">
-      <a
-        href="javascript:void(0)"
-        class="closebtn"
-        onclick="closeNav()"
-      >
-        &times;
-      </a>
-      <a href="/users/<%= user.id %>/donations">My donations</a>
-      <a href="/users/<%= user.id %>/messages">My messages</a>
-    </div>
-
+    <% if (isAuthenticated) { %>
+      <div id="mySidenav" class="sidenav">
+        <a
+          href="javascript:void(0)"
+          class="closebtn"
+          onclick="closeNav()"
+        >
+          &times;
+        </a>
+        <a href="/users/<%= user.id %>/donations">My donations</a>
+        <a href="/users/<%= user.id %>/messages">My messages</a>
+      </div>
+    <% } %>
     <script>
       function openNav() {
         document.getElementById("mySidenav").style.width = "150px";

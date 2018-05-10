@@ -5,7 +5,6 @@ const fileUpload = require('express-fileupload');
 
 router.use(fileUpload());
 
-
 /* GET home page. */
 
 router.get('/', function(req, res, next) {

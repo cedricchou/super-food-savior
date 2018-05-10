@@ -15,7 +15,11 @@ router.get('/', function(req, res) {
 
 // Create a new User
 
-router.post('/', function(req, res) {
+router.post('/', passport.authenticate(
+  'local', {
+    successRedirect: '/donations',
+    failureRedirect: '/users/new'
+  }), function(req, res) {
 
   const password = req.body.password
 
@@ -83,7 +87,14 @@ router.get('/:id/donations', function(req, res) {
     .from('donations')
     .where({user_id: data.id})
     .then((myDonations) => {
-      res.render('users/donations', { myDonations, data })
+      console.log(myDonations);
+      knex
+      .select()
+      .from('messages')
+      .where({ donation_id: myDonations[0].id })
+      .then((allMessages) => {
+        res.render('users/donations', { allMessages, myDonations, data })
+      })
     })
   })
 })
@@ -104,6 +115,5 @@ passport.deserializeUser(function(id, done) {
      done(null, user)
   })
 });
-
 
 module.exports = router;
