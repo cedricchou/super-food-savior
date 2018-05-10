@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require('../models/user');
 const knex = require("../db/index");
 const passport = require('passport');
+const myfuncs = require ("./helpers");
 
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -15,11 +16,7 @@ router.get('/', function(req, res) {
 
 // Create a new User
 
-router.post('/', passport.authenticate(
-  'local', {
-    successRedirect: '/donations',
-    failureRedirect: '/users/new'
-  }), function(req, res) {
+router.post('/', function(req, res) {
 
   const password = req.body.password
 
@@ -34,14 +31,22 @@ router.post('/', passport.authenticate(
       password: hash
     })
     .into("users")
-    .then((user) => {
+    .then(([data]) => {
+      const user = {
+        id: data
+      };
       req.login(user, (err) => {
         console.log(err)
         res.redirect('/')
       })
     })
   });
-})
+}, passport.authenticate(
+  'local', {
+    successRedirect: '/donations',
+    failureRedirect: '/users/new'
+  })
+)
 
 // Edit user
 
@@ -75,28 +80,24 @@ router.get('/:id/messages', function(req, res) {
 
 // My donations panel
 
-router.get('/:id/donations', function(req, res) {
+router.get('/:id/donations', myfuncs.checkAuth, function(req, res) {
+
   const userId = res.locals.user.id;
+
   knex
   .select()
-  .from('users')
-  .where({id: userId})
-  .then(([data]) => {
+  .from('donations')
+  .where({user_id: userId})
+  .then((myDonations) => {
     knex
     .select()
-    .from('donations')
-    .where({user_id: data.id})
-    .then((myDonations) => {
-      console.log(myDonations);
-      knex
-      .select()
-      .from('messages')
-      .where({ donation_id: myDonations[0].id })
-      .then((allMessages) => {
-        res.render('users/donations', { allMessages, myDonations, data })
-      })
+    .from('messages')
+    .where({ donation_id: myDonations[0].id })
+    .then((allMessages) => {
+      res.render('users/donations', { allMessages, myDonations })
     })
   })
+
 })
 
 // passport serializer

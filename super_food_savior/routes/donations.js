@@ -33,14 +33,15 @@ router.post('/', (req, res) => {
 
   let donationPic = req.files.donationPic;
   let donationPicName = donationPic.name;
-  const cleanName = donationPicName.replace(/\s/g, "_")
-  donationPic.mv('./public/upload/' + donationPicName)
+  let createdAt = Date.now().toLocaleString();
+  const cleanName = donationPicName.replace(/\s/g, "_");
+  donationPic.mv('./public/upload/' + donationPicName + createdAt)
 
   const toInsert = {
     title: req.body.title,
     description: req.body.description,
     weight: req.body.weight ? req.body.weight : 0,
-    pictureUrl: "/upload/" + donationPicName,
+    pictureUrl: "/upload/" + donationPicName + createdAt,
     user_id: res.locals.user.id
   };
 
