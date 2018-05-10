@@ -9,6 +9,11 @@
       <div class="card-title"><%= myDonations[i].title %></div>
       <p class="card-text"><%= myDonations[i].description %></p>
       </div>
+      <form
+        action="/users/<%= myDonations[i].user_id %>/donations/<%= myDonations[i].id %>/messages"
+        method="get">
+        <input type="submit" value="see messages" />
+      </form>
     </div>
   <% } %>
 </div>

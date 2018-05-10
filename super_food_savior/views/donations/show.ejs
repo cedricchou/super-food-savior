@@ -20,6 +20,7 @@
   <div class="container col-lg-6 md-3">
     <div id="map"></div>
     <script>
+    const gmap_key = process.env.GMAP_KEY
       function initMap() {
         let position = {lat: -25.363, lng: 131.044};
         let map = new google.maps.Map(document.getElementById('map'), {
@@ -43,7 +44,7 @@
       }
     </script>
     <script
-      async defer src="https://maps.googleapis.com/maps/api/js?key=APIKEY&callback=initMap"
+      async defer src="https://maps.googleapis.com/maps/api/js?key=gmap_key&callback=initMap"
       type="text/javascript"
     >
     </script>

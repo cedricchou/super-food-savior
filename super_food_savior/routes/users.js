@@ -60,44 +60,44 @@ router.get('/new', function(req, res) {
 
 // My messages panel
 
-router.get('/:id/messages', function(req, res) {
-  const userId = req.params.id
+router.get('/:id/messages', myfuncs.checkAuth, function(req, res) {
+  const user_id = res.locals.user.id;
 
   knex
   .select()
-  .from('users')
-  .where({id: userId})
-  .then(([data]) => {
-    knex
-    .select()
-    .from('messages')
-    .where({user_id: data.id})
-    .then((myMessages) => {
-      res.render('users/messages', {myMessages, data})
-    })
+  .from('messages')
+  .where({ user_id })
+  .then(( myMessages ) => {
+    res.render('users/messages', { myMessages })
   })
 })
 
 // My donations panel
 
 router.get('/:id/donations', myfuncs.checkAuth, function(req, res) {
-
-  const userId = res.locals.user.id;
+  const user_id = res.locals.user.id;
 
   knex
   .select()
   .from('donations')
-  .where({user_id: userId})
+  .where({ user_id })
   .then((myDonations) => {
-    knex
-    .select()
-    .from('messages')
-    .where({ donation_id: myDonations[0].id })
-    .then((allMessages) => {
-      res.render('users/donations', { allMessages, myDonations })
-    })
+    res.render('users/donations', {  myDonations })
   })
+})
 
+// messages of donations panel
+
+router.get('/:id/donations/:id/messages', myfuncs.checkAuth, function(req, res) {
+  const donation_id = req.params.id;
+
+  knex
+  .select()
+  .from('messages')
+  .where({ donation_id })
+  .then((allMessages) => {
+    res.render('donations/messages', { allMessages })
+  })
 })
 
 // passport serializer
