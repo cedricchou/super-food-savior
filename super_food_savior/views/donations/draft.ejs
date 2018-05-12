@@ -1,0 +1,25 @@
+
+<script>
+let marker_lat_lng = new google.maps.LatLng(47.608013, -122.335167);
+let distance_from_location = google.maps.geometry.spherical.computeDistanceBetween(address_lat_lng, marker_lat_lng);
+if (distance_from_location <= radius_km * 1000) {
+  let new_marker = new google.maps.Marker({
+    position: marker_lat_lng,
+    map: map
+  });
+}
+
+</script>
+
+<script src="http://maps.google.com/maps/api/js?sensor=false&libraries=geometry" type="text/javascript"></script>
+
+<script type="text/javascript">
+function calcDistance (fromLat, fromLng, toLat, toLng) {
+      return google.maps.geometry.spherical.computeDistanceBetween(
+        new google.maps.LatLng(fromLat, fromLng), new google.maps.LatLng(toLat, toLng));
+   }
+</script>
+
+<script>
+axios.get()
+</script>

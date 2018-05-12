@@ -1,19 +1,19 @@
 <%- include('../partials/header') %>
 
 <div class="row">
-    <% for (let i = donation.length-1; i >= 0; i-- ) { %>
+    <% for (let i = donations.length-1; i >= 0; i--) { %>
 
       <div class="card col-lg-5 m-3 main-card">
 
       <form
-        class=<%= donation[i].id %>
-        action="/donations/<%= donation[i].id %>"
+        class=<%= donations[i].id %>
+        action="/donations/<%= donations[i].id %>"
         method="get"
         >
 
         <div class="card-body back-color">
-        <div class="card-title"><%= donation[i].title %></div>
-        <p class="card-text"><%= donation[i].description %></p>
+        <div class="card-title"><%= donations[i].title %></div>
+        <p class="card-text"><%= donations[i].description %></p>
         <input class="btn btn-primary" type="submit" value="See donation" />
         </div>
       </form>
