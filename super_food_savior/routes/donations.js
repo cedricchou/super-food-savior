@@ -21,14 +21,13 @@ router.get("/", function(req, res) {
       Promise.all(
         users.map(user =>
           geoCode({ address: user.address }).then(
-            res => res.json.results.shift().geometry
+            res => res.json.results.shift().geometry.location
           )
         )
       )
     );
 
   const donationQuery = research ? ["title", "ILIKE", `%${research}%`] : [{}];
-  console.log(research);
 
   const donationPromise = knex
     .select()
@@ -37,7 +36,6 @@ router.get("/", function(req, res) {
 
   Promise.all([donationPromise, usersGeocodePromise]).then(
     ([donations, usersGeocode]) => {
-      console.log(usersGeocode);
       res.render("donations", {
         donations,
         usersGeocode,
