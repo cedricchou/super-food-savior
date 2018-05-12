@@ -112,16 +112,6 @@ router.get("/edit", function(req, res) {
 
   Promise.all([donationPromise, usersGeocodePromise]).then(
     ([donations, usersGeocode]) => {
-      function createMarker(usersGeocode) {
-        let marker = new google.maps.Marker({
-          position: {
-            lat: usersGeocode.latitude,
-            lng: usersGeocode.longitude
-          },
-          map: map
-        });
-      }
-
       res.render("donations/edit", {
         donations,
         usersGeocode,

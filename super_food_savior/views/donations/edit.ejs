@@ -4,6 +4,20 @@
 <input type="submit" />
 </form>
 <div id="map"></div>
+<script>
 
+function initMap() {
+
+  let map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    lat: "<%= usersGeocode[0].latitude %>" ,
+    lng: "<%= usersGeocode[0].longitude %>"
+
+  });
+
+}
+
+
+</script>
 
 <%- include('../partials/footer') %>

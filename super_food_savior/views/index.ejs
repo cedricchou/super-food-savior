@@ -1,29 +1,28 @@
 <%- include('./partials/header') %>
 
-<div class="jumbotron jumbotron-fluid">
-  <div class="container slideshow">
-    <img class="mySlides" src="../images/slide1.png">
-    <img class="mySlides" src="../images/slide4.png">
-    <img class="mySlides" src="../images/slide2.jpg">
-    <img class="mySlides" src="../images/slide5.jpg">
-  </div>
+
+<div class="container slideshow">
+  <img class="mySlides fade" src="../images/slide1.png">
+  <img class="mySlides fade" src="../images/slide2.jpg">
+  <img class="mySlides fade" src="../images/slide5.jpg">
 </div>
+
 
 <script>
 let myIndex = 0;
 carousel();
-
 function carousel() {
-    let x = document.getElementsByClassName("mySlides");
-    for (let i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
-    }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 3000);
+  let x = document.getElementsByClassName("mySlides");
+  for (let i = 0; i < x.length; i++) {
+     x[i].style.display = "none";
+  }
+  myIndex++;
+  if (myIndex > x.length) {myIndex = 1}
+  x[myIndex-1].style.display = "block";
+  setTimeout(carousel, 3000);
 }
 </script>
+
 
 
 <%- include('./partials/footer') %>
