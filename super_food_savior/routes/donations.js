@@ -48,8 +48,6 @@ router.get("/", function(req, res) {
 // Create new donation
 
 router.post("/", (req, res) => {
-  // console.log(res.locals.user.id)
-
   let donationPic = req.files.donationPic;
   let donationPicName = donationPic.name;
   let createdAt = Date.now().toLocaleString();
@@ -85,32 +83,59 @@ router.get("/new", function(req, res) {
 // Route to Edit donation
 
 router.get("/edit", function(req, res) {
-  knex
+  const research = req.query.research;
+  const radius = req.query.radius || "100";
+
+  const user = res.locals.user;
+  const userQuery = user ? {} : {};
+
+  const usersGeocodePromise = knex
     .select()
     .from("users")
-    .then(users => {
-      knex
-        .select()
-        .from("users")
-        .where({ id: res.locals.user.id })
-        .then(([current_user]) => {
-          console.log(current_user.address);
-          res.render("donations/edit", {
-            users,
-            current_user,
-            GMAP_KEY: GMAP.GMAP_KEY
-          });
+    .where(userQuery)
+    .then(users =>
+      Promise.all(
+        users.map(user =>
+          geoCode({ address: user.address }).then(
+            res => res.json.results.shift().geometry.location
+          )
+        )
+      )
+    );
+
+  const donationQuery = research ? ["title", "ILIKE", `%${research}%`] : [{}];
+
+  const donationPromise = knex
+    .select()
+    .from("donations")
+    .where(...donationQuery);
+
+  Promise.all([donationPromise, usersGeocodePromise]).then(
+    ([donations, usersGeocode]) => {
+      function createMarker(usersGeocode) {
+        let marker = new google.maps.Marker({
+          position: {
+            lat: usersGeocode.latitude,
+            lng: usersGeocode.longitude
+          },
+          map: map
         });
-    })
-    .catch(() => {
-      res.redirect("/");
-    });
+      }
+
+      res.render("donations/edit", {
+        donations,
+        usersGeocode,
+        GMAP_KEY: GMAP.GMAP_KEY
+      });
+    }
+  );
 });
 
 // Route to donation show page
 
 router.get("/:id", function(req, res) {
   const donationId = req.params.id;
+  const current_user = res.locals.user.id;
   knex
     .select()
     .from("donations")
@@ -122,7 +147,9 @@ router.get("/:id", function(req, res) {
         .where({ id: donationShow.user_id })
         .then(([data]) => {
           const user_data = data;
+          console.log(user_data);
           res.render("donations/show", {
+            current_user,
             user_data,
             donationShow,
             GMAP_KEY: GMAP.GMAP_KEY

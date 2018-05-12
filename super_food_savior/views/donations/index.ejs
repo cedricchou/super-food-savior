@@ -3,7 +3,7 @@
 <div class="row">
     <% for (let i = donations.length-1; i >= 0; i--) { %>
 
-      <div class="card col-lg-5 m-3 main-card">
+      <div class="card col-lg-3 m-3 main-card">
 
       <form
         class=<%= donations[i].id %>
@@ -12,6 +12,12 @@
         >
 
         <div class="card-body back-color">
+        <img
+        class="card-img-right"
+        src="<%=donations[i].pictureUrl%>"
+        height="100px"
+        width="120px"
+        >
         <div class="card-title"><%= donations[i].title %></div>
         <p class="card-text"><%= donations[i].description %></p>
         <input class="btn btn-primary" type="submit" value="See donation" />

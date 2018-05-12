@@ -2,19 +2,21 @@
 
 <div class="row">
   <div class="container col-lg-6 md-4">
-    <form
-      class="form-control"
-      action="/donations/<%= donationShow.id %>/messages"
-      method="post"
-    >
 
       <h3><%= donationShow.title %></h3>
       <p><%= donationShow.description %></p>
       <p><%= user_data.address %></p>
+    <% if (current_user !== user_data.id) { %>
+      <form
+      class="form-control"
+      action="/donations/<%= donationShow.id %>/messages"
+      method="post"
+      >
       <textarea type="text" name="content" class="form-control" rows="6"></textarea>
       <br />
       <input type="submit" class="btn-outline-primary" value="Send Message"/>
-    </form>
+      </form>
+    <% } %>
   </div>
 
   <div class="container col-lg-6 md-3">
