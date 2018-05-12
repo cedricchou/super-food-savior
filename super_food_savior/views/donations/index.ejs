@@ -1,30 +1,28 @@
 <%- include('../partials/header') %>
 
 <div class="row">
-    <% for (let i = donations.length-1; i >= 0; i--) { %>
+  <% for (let i = donations.length-1; i >= 0; i--) { %>
 
-      <div class="card col-lg-3 m-2 main-card">
+    <div class="card col-lg-3 col-md-3 col-sm-4 m-2 main-card">
 
-      <form
-        class=<%= donations[i].id %>
-        action="/donations/<%= donations[i].id %>"
-        method="get"
-        >
+      <div class="card-body back-color">
 
-        <div class="card-body back-color">
-        <img
-        class="card-img-top"
-        src="<%=donations[i].pictureUrl%>"
-        height="100px"
-        width="120px"
-        >
-        <div class="card-title"><%= donations[i].title %></div>
-        <p class="card-text"><%= donations[i].description %></p>
-        <input class="btn btn-primary" type="submit" value="See donation" />
-        </div>
-      </form>
+      <img
+      class="card-img-top"
+      src="<%=donations[i].pictureUrl%>"
+      height="100px"
+      width="120px"
+      >
+
+      <div class="card-title">
+      <a href="/donations/<%= donations[i].id %>">
+      <h2><%= donations[i].title %></h2>
+      </a>
       </div>
-    <% } %>
+      <p class="card-text"><%= donations[i].description %></p>
+      </div>
+    </div>
+  <% } %>
 </div>
 
 <%- include('../partials/footer') %>

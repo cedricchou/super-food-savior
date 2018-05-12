@@ -11,8 +11,7 @@
 }
 
 body > * {
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  color: white;
+  font: 14px, sans-serif;
 }
 
 a {
@@ -24,13 +23,25 @@ a {
 #navigation {
   border: 2px solid white;
   padding-bottom: 8px;
+  background-color: #191970;
+}
+
+#user-space {
+  border: 1px solid cyan;
+  border-radius: 5px;
+  color: cyan;
+}
+
+#user-space:hover {
+  opacity: 0.5;
+  cursor: context-menu;
 }
 
 /* donation pages (index, show page)  */
-
 img.card-img-top {
   height: 100px;
   width: 120px;
+  border: 2px solid salmon;
 }
 
 .card {
@@ -43,13 +54,13 @@ img.card-img-top {
 
 .card.main-card {
   padding: 0 0;
-  border: none;
+  border: 2px solid black;
 }
 
 .background-image {
   background-image: url("../images/super_food_pictures.jpg");
   z-index: -1;
-  font-family: white;
+  color: white;
 }
 
 /* homepage */
@@ -69,7 +80,7 @@ img {
   max-width: 1000px;
   position: relative;
   margin: auto;
-  border: 2px solid blue;
+  border: 3px solid #00fa9a;
   padding: 0;
 }
 
@@ -104,7 +115,7 @@ img {
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #333333;
+  background-color: #191970;
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
@@ -114,7 +125,7 @@ img {
   padding: 8px 8px 8px 10px;
   text-decoration: none;
   font-size: 15px;
-  color: white;
+  color: grey;
   display: block;
   transition: 0.5s;
 }
