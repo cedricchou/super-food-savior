@@ -80,3 +80,57 @@ function addressCode(geocoder, map) {
 }
 
 </script>
+<%# // messages of donations panel
+
+router.get("/:id/donations/:id/messages", myfuncs.checkAuth, function(
+  req,
+  res
+) {
+  const donation_id = req.params.id;
+
+  knex
+    .select()
+    .from("donations")
+    .where({ id: donation_id })
+    .then(([donation]) => {
+      knex
+        .select()
+        .from("messages")
+        .where({ donation_id })
+        .then(allMessages => {
+          knex
+            .select()
+            .from("answers")
+            .where({ message_id: allMessages[0].id })
+            .then(allAnswers => {
+              res.render("donations/messages", { allMessages, donation });
+            });
+        });
+    });
+});
+
+// To message-answer panel
+
+// To message-answer panel
+
+router.get("/:id/donations/:id/messages/:id", myfuncs.checkAuth, function(
+  req,
+  res
+) {
+  const message_id = req.params.id;
+
+  knex
+    .select()
+    .from("messages")
+    .where({ id: message_id })
+    .then(([allMessages]) => {
+      knex
+        .select()
+        .from("answers")
+        .where({ message_id })
+        .then(allAnswers => {
+          res.render("donations/messages", { allMessages });
+        });
+    });
+});
+ %>

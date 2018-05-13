@@ -2,25 +2,19 @@
 
 <div class="row">
     <% for (let i = allMessages.length-1; i >= 0; i-- ) { %>
-      <% if(donation.user_id !== allMessages[i].user_id) { %>
+
         <div class="card col-lg-5 m-3 main-card">
           <div class="card-body back-color">
           <p class="card-text"><%= allMessages[i].content %></p>
             <form
-              action="/donations/<%= allMessages[i].donation_id %>/messages/<%= allMessages[i].id %>"
-              method="post"
+              action="/users/<%= userId %>/donations/<%= allMessages[i].donation_id %>/messages/<%= allMessages[i].id %>"
+              method="get"
               >
-              <textarea
-                type="text"
-                name="answer"
-                class="form-control answer-form"
-                rows="3">
-              </textarea>
-              <input type="submit" class="button-click" value="reply" />
+              <input type="submit" class="button-click" value="click to see history" />
             </form>
           </div>
         </div>
-      <% } %>
+
     <% } %>
 </div>
 

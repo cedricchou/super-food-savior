@@ -81,29 +81,40 @@ router.get("/:id/donations", myfuncs.checkAuth, function(req, res) {
     .from("donations")
     .where({ user_id })
     .then(myDonations => {
+      console.log(myDonations);
       res.render("users/donations", { myDonations });
     });
 });
 
 // messages of donations panel
 
-router.get("/:id/donations/:id/messages", myfuncs.checkAuth, function(
-  req,
-  res
-) {
+router.get("/:id/donations/:id/", myfuncs.checkAuth, function(req, res) {
   const donation_id = req.params.id;
-
+  const userId = res.locals.user.id;
   knex
     .select()
-    .from("donations")
-    .where({ id: donation_id })
-    .then(([donation]) => {
+    .from("messages")
+    .where({ donation_id })
+    .then(allMessages => {
+      res.render("donations/messages", { allMessages, userId });
+    });
+});
+
+// answers to messages
+
+router.get("/:id/donations/:id/messages/:id", function(req, res) {
+  const message_id = req.params.id;
+  knex
+    .select()
+    .from("messages")
+    .where({ id: message_id })
+    .then(([message]) => {
       knex
         .select()
-        .from("messages")
-        .where({ donation_id })
-        .then(allMessages => {
-          res.render("donations/messages", { allMessages, donation });
+        .from("answers")
+        .where({ message_id })
+        .then(answers => {
+          res.render("donations/answers", { answers, message });
         });
     });
 });
