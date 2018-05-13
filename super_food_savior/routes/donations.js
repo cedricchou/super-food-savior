@@ -177,11 +177,13 @@ router.post("/:id/messages/:id", function(req, res) {
     message_id: req.params.id
   };
 
+  const userId = res.locals.user.id;
+
   knex
     .insert(toInsert)
     .into("answers")
     .then(() => {
-      res.redirect("/donations");
+      res.redirect("/users/${userId}/donations");
     });
 });
 

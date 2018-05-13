@@ -75,7 +75,7 @@ router.get("/:id/messages", myfuncs.checkAuth, function(req, res) {
 
 router.get("/:id/messages/:id", myfuncs.checkAuth, function(req, res) {
   const message_id = req.params.id;
-
+  const userId = res.locals.user.id;
   knex
     .select()
     .from("messages")
@@ -86,8 +86,7 @@ router.get("/:id/messages/:id", myfuncs.checkAuth, function(req, res) {
         .from("answers")
         .where({ message_id })
         .then(answers => {
-          console.log(answers[0]);
-          res.render("messages/answers", { answers, message });
+          res.render("messages/answers", { answers, message, userId });
         });
     });
 });

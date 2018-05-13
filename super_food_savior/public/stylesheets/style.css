@@ -80,10 +80,28 @@ a {
 .card.dashboard-message {
   background-color: darkslategrey;
   border: 2px maroon solid;
+  padding-bottom: 7px;
 }
 
 .answer-form {
   margin-bottom: 15px;
+}
+
+/* answer page */
+
+.container.answer-message {
+  padding-bottom: 7px;
+  background-color: black;
+  border: 4px solid white;
+}
+
+#answer-message {
+  color: firebrick;
+}
+
+.card-text.my-answers {
+  color: firebrick;
+  margin-left: 50px;
 }
 
 /* Create new (donation/user) */

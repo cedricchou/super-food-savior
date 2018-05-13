@@ -1,10 +1,14 @@
 <%- include('../partials/header') %>
 
 <div class="container-fluid">
-  <div class="container">
+  <div class="container answer-message">
   <h3><%= message.content %></h3>
   <% for (let i = 0; i < answers.length; i++ ) { %>
-    <p class="card-text"><%= answers[i].content %></p>
+    <% if (answers[i].user_id !== message.user_id) { %>
+      <h4 class="card-text my-answers"><%= answers[i].content %></h4>
+    <% } else { %>
+      <h4 class="card-text"><%= answers[i].content %></h4>
+    <% } %>
   <% } %>
   <form
     action="/donations/<%= message.donation_id %>/messages/<%= message.id %>"
