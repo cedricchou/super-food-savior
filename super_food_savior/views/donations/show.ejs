@@ -21,13 +21,28 @@
     </div>
       <% if (current_user !== user_data.id) { %>
         <form
-        class="form-control main-message"
-        action="/donations/<%= donationShow.id %>/messages"
-        method="post"
+          class="form-control main-message"
+          action="/donations/<%= donationShow.id %>/messages"
+          method="post"
         >
         <textarea type="text" name="content" class="form-control message-form" rows="4"></textarea>
         <input type="submit" class="btn-outline-primary" value="Send Message"/>
         </form>
+      <% } else { %>
+        <div class="row button-modification">
+        <form
+          class="form-control button-modification"
+          action="/donations/<%= donationShow.id %>/messages"
+          method="patch"
+        >
+          <input type="submit" class="btn-primary" value="Edit" />
+          <form
+            class="form-control button-modification"
+            action="/donations/<%= donationShow.id %>/messages"
+            method="delete"
+          >
+            <input type="submit" class="btn-primary" value="Delete" />
+        </div>
       <% } %>
     </div>
   </div>

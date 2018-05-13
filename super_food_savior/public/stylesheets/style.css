@@ -162,6 +162,14 @@ img.card-img-top {
   border: 3px solid black;
 }
 
+.row.button-modification {
+  background-color: darkslategrey;
+}
+
+.form-control.button-modification {
+  background-color: darkslategrey;
+}
+
 .message-form {
   margin-bottom: 5px;
 }
