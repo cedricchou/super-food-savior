@@ -42,8 +42,13 @@ a {
 
 #navigation {
   border: 2px solid white;
-  padding-bottom: 8px;
   background-color: #191970;
+}
+
+#navigation-index {
+  border: 2px solid white;
+  background-color: #191970;
+  margin-bottom: 0px !important;
 }
 
 #user-space {

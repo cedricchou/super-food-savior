@@ -1,6 +1,5 @@
 <%- include('../partials/header') %>
 
-<h1>Welcome to the message board</h1>
 <div class="row">
     <% for (let i = allMessages.length-1; i >= 0; i-- ) { %>
       <% if(donation.user_id !== allMessages[i].user_id) { %>
