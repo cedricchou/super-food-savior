@@ -168,4 +168,21 @@ router.post("/:id/messages", function(req, res) {
     });
 });
 
+// post for answers
+
+router.post("/:id/messages/:id", function(req, res) {
+  const toInsert = {
+    content: req.body.answer,
+    user_id: res.locals.user.id,
+    message_id: req.params.id
+  };
+
+  knex
+    .insert(toInsert)
+    .into("answers")
+    .then(() => {
+      res.redirect("/donations");
+    });
+});
+
 module.exports = router;

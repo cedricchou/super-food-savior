@@ -7,12 +7,12 @@
           <div class="card-body back-color">
           <p class="card-text"><%= allMessages[i].content %></p>
             <form
-              action="/donations/<%= allMessages[i].donation_id %>/messages"
+              action="/donations/<%= allMessages[i].donation_id %>/messages/<%= allMessages[i].id %>"
               method="post"
               >
               <textarea
                 type="text"
-                name="content"
+                name="answer"
                 class="form-control answer-form"
                 rows="3">
               </textarea>
