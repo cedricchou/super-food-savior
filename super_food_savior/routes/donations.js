@@ -50,7 +50,8 @@ router.get("/", function(req, res) {
 router.post("/", (req, res) => {
   let donationPic = req.files.donationPic;
   let donationPicName = donationPic.name;
-  let createdAt = Date.now().toLocaleString();
+  let creationDate = Date.now().toLocaleString();
+  let createdAt = creationDate.replace(/\s*,/g, "_");
   const cleanName = donationPicName.replace(/\s/g, "_");
   donationPic.mv("./public/upload/" + donationPicName + createdAt);
 
