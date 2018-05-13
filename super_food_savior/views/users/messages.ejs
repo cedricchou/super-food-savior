@@ -1,11 +1,13 @@
 <%- include('../partials/header') %>
 
-<h1>Welcome to the message board</h1>
-
 <div class="row">
   <% for (let i = myMessages.length-1; i >= 0; i-- ) { %>
-    <div class="card col-lg-6">
+    <div class="card col-lg-5 col-md-3 m-2 dashboard-message">
       <div class="card-body">
+      <div class="card-title">
+      <a href="/donations/<%=myMessages[i].donation_id%>">Click here to see donation
+      </a>
+      </div>
       <p class="card-text"><%= myMessages[i].content %></p>
       </div>
     </div>

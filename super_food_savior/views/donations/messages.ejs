@@ -9,9 +9,15 @@
           <p class="card-text"><%= allMessages[i].content %></p>
             <form
               action="/donations/<%= allMessages[i].donation_id %>/messages"
-              method="post">
-              <textarea type="text" name="content" class="form-control" rows="3"></textarea>
-              <input type="submit" value="reply" />
+              method="post"
+              >
+              <textarea
+                type="text"
+                name="content"
+                class="form-control answer-form"
+                rows="3">
+              </textarea>
+              <input type="submit" class="button-click" value="reply" />
             </form>
           </div>
         </div>

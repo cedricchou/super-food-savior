@@ -67,6 +67,20 @@ a {
   padding-bottom: 7px;
 }
 
+.card.dashboard-donation {
+  background-color: lightslategrey;
+  border: 2px firebrick solid;
+}
+
+.card.dashboard-message {
+  background-color: darkslategrey;
+  border: 2px maroon solid;
+}
+
+.answer-form {
+  margin-bottom: 15px;
+}
+
 /* Create new (donation/user) */
 
 .new-donation {
