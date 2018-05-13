@@ -6,18 +6,20 @@
   <% for (let i = 0; i < answers.length; i++ ) { %>
     <p class="card-text"><%= answers[i].content %></p>
   <% } %>
-  <form
+  <% if (answers[0]) { %>
+    <form
     action="/donations/<%= message.donation_id %>/messages/<%= message.id %>"
     method="post"
     >
     <textarea
-      type="text"
-      name="answer"
-      class="form-control answer-form"
-      rows="3">
+    type="text"
+    name="answer"
+    class="form-control answer-form"
+    rows="3">
     </textarea>
     <input type="submit" class="button-click" value="reply" />
-  </form>
+    </form>
+  <% } %>
 </div>
 </div>
 

@@ -71,6 +71,27 @@ router.get("/:id/messages", myfuncs.checkAuth, function(req, res) {
     });
 });
 
+// Answers to my messages panel
+
+router.get("/:id/messages/:id", myfuncs.checkAuth, function(req, res) {
+  const message_id = req.params.id;
+
+  knex
+    .select()
+    .from("messages")
+    .where({ id: message_id })
+    .then(([message]) => {
+      knex
+        .select()
+        .from("answers")
+        .where({ message_id })
+        .then(answers => {
+          console.log(answers[0]);
+          res.render("messages/answers", { answers, message });
+        });
+    });
+});
+
 // My donations panel
 
 router.get("/:id/donations", myfuncs.checkAuth, function(req, res) {

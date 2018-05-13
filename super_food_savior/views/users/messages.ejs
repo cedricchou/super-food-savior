@@ -10,6 +10,13 @@
       </div>
       <p class="card-text"><%= myMessages[i].content %></p>
       </div>
+      <div class="container-fluid">
+        <form
+          action="/users/<%= myMessages[i].user_id %>/messages/<%= myMessages[i].id %>"
+          method="get">
+          <input type="submit" class="button-click" value="see answers" />
+        </form>
+      </div>
     </div>
   <% } %>
 </div>
