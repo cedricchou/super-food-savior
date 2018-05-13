@@ -6,7 +6,7 @@
 
 #main {
   transition: margin-left 0.6s;
-  padding: 10px;
+  padding: 0px;
   padding-top: 0px;
 }
 
@@ -17,6 +17,25 @@ body > * {
 
 a {
   color: #00b7ff;
+}
+
+.button-click:hover {
+  opacity: 0.4;
+  cursor: pointer;
+  -webkit-animation: mymove 5s infinite;
+  animation: mymove 5s infinite;
+}
+
+@-webkit-keyframes mymove {
+  50% {
+    box-shadow: 10px 20px 30px white;
+  }
+}
+
+@keyframes mymove {
+  50% {
+    box-shadow: 10px 20px 30px white;
+  }
 }
 
 /* NavBar */
@@ -36,6 +55,16 @@ a {
 #user-space:hover {
   opacity: 0.5;
   cursor: context-menu;
+  -webkit-animation: mymove 5s infinite;
+  animation: mymove 5s infinite;
+}
+
+/* dashbord (messages/donations) styling */
+
+.dashboard-donation {
+  background-color: black;
+  padding-top: 7px;
+  padding-bottom: 7px;
 }
 
 /* Create new (donation/user) */
@@ -62,6 +91,10 @@ img.card-img-top {
   height: 100px;
   width: 120px;
   border: 2px solid salmon;
+}
+
+.row {
+  padding-left: 20px;
 }
 
 .card {
@@ -101,20 +134,13 @@ form.main-message {
 
 .mySlides {
   display: none;
-}
-
-img {
   vertical-align: middle;
-  height: 100%;
-  width: 100%;
 }
 
 /* Slideshow container */
 .container.slideshow {
-  max-width: 1000px;
-  position: relative;
-  margin: auto;
-  border: 3px solid #00fa9a;
+  position: absolute;
+  margin: 0px;
   padding: 0;
 }
 
