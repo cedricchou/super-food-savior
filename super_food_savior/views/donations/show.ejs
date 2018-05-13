@@ -1,25 +1,38 @@
 <%- include('../partials/header') %>
 
 <div class="row">
-  <div class="container col-lg-6 md-4">
-
+  <div class="container col-lg-6 col-md-4">
+    <div class="card-body show-donation">
+      <div class="row">
+      <div class="container col-lg-8 col-md-6">
       <h3><%= donationShow.title %></h3>
       <p><%= donationShow.description %></p>
-      <p><%= user_data.address %></p>
-    <% if (current_user !== user_data.id) { %>
-      <form
-      class="form-control"
-      action="/donations/<%= donationShow.id %>/messages"
-      method="post"
-      >
-      <textarea type="text" name="content" class="form-control" rows="6"></textarea>
-      <br />
-      <input type="submit" class="btn-outline-primary" value="Send Message"/>
-      </form>
-    <% } %>
+      <p>Adress: <%= user_data.address %></p>
+
+      </div>
+      <div class="container col-lg-4 col-md-3">
+        <img
+        class="card-img-top float-right"
+        src="<%=donationShow.pictureUrl%>"
+        height="100px"
+        width="120px"
+        >
+      </div>
+    </div>
+      <% if (current_user !== user_data.id) { %>
+        <form
+        class="form-control main-message"
+        action="/donations/<%= donationShow.id %>/messages"
+        method="post"
+        >
+        <textarea type="text" name="content" class="form-control message-form" rows="4"></textarea>
+        <input type="submit" class="btn-outline-primary" value="Send Message"/>
+        </form>
+      <% } %>
+    </div>
   </div>
 
-  <div class="container col-lg-6 md-3">
+  <div class="container col-lg-6 col-md-4">
     <div id="map"></div>
     <script>
 
