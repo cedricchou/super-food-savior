@@ -1,5 +1,24 @@
 <%- include('../partials/header') %>
 
-<h1>Welcome to answer page</h1>
+<div class="container-fluid">
+  <div class="container">
+  <h3><%= message.content %></h3>
+  <form
+    action="/donations/<%= message.donation_id %>/messages/<%= message.id %>"
+    method="post"
+    >
+    <textarea
+      type="text"
+      name="answer"
+      class="form-control answer-form"
+      rows="3">
+    </textarea>
+    <input type="submit" class="button-click" value="reply" />
+  </form>
+</div>
+  <% for (let i = 0; i < answers.length; i++ ) { %>
+    <p class="card-text"><%= answers[i].content %></p>
+  <% } %>
+</div>
 
 <%- include('../partials/footer') %>
