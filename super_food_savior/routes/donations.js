@@ -4,6 +4,7 @@ const Donation = require("../models/donation");
 const knex = require("../db/index");
 const GMAP = require("../frontend/app_keys/app_keys");
 const { geoCode } = require("../api/googleAPI");
+const methodOverride = require("method-override");
 
 // Get donations information from database
 
@@ -53,13 +54,12 @@ router.post("/", (req, res) => {
   let creationDate = Date.now().toLocaleString();
   let createdAt = creationDate.replace(/\s*,/g, "_");
   const cleanName = donationPicName.replace(/\s/g, "_");
-  donationPic.mv("./public/upload/" + donationPicName + createdAt);
+  donationPic.mv("./public/upload/" + createdAt + cleanName);
 
   const toInsert = {
     title: req.body.title,
     description: req.body.description,
-    weight: req.body.weight ? req.body.weight : 0,
-    pictureUrl: "/upload/" + donationPicName + createdAt,
+    pictureUrl: "/upload/" + createdAt + cleanName,
     user_id: res.locals.user.id
   };
 
@@ -81,45 +81,17 @@ router.get("/new", function(req, res) {
   }
 });
 
-// Route to Edit donation
+// Route to delete donation
+router.use(methodOverride("_method"));
 
-router.get("/edit", function(req, res) {
-  const research = req.query.research;
-  const radius = req.query.radius || "100";
-
-  const user = res.locals.user;
-  const userQuery = user ? {} : {};
-
-  const usersGeocodePromise = knex
-    .select()
-    .from("users")
-    .where(userQuery)
-    .then(users =>
-      Promise.all(
-        users.map(user =>
-          geoCode({ address: user.address }).then(
-            res => res.json.results.shift().geometry.location
-          )
-        )
-      )
-    );
-
-  const donationQuery = research ? ["title", "ILIKE", `%${research}%`] : [{}];
-
-  const donationPromise = knex
-    .select()
-    .from("donations")
-    .where(...donationQuery);
-
-  Promise.all([donationPromise, usersGeocodePromise]).then(
-    ([donations, usersGeocode]) => {
-      res.render("donations/edit", {
-        donations,
-        usersGeocode,
-        GMAP_KEY: GMAP.GMAP_KEY
-      });
-    }
-  );
+router.post("/:id", function(req, res) {
+  const donationId = req.params.id;
+  knex("donations")
+    .where({ id: donationId })
+    .del()
+    .then(() => {
+      res.redirect("/donations");
+    });
 });
 
 // Route to donation show page
@@ -138,7 +110,6 @@ router.get("/:id", function(req, res) {
         .where({ id: donationShow.user_id })
         .then(([data]) => {
           const user_data = data;
-          console.log(user_data);
           res.render("donations/show", {
             current_user,
             user_data,
