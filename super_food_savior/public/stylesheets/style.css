@@ -73,7 +73,7 @@ a {
 }
 
 .card.dashboard-donation {
-  background-color: lightslategrey;
+  background-color: darkslategrey;
   border: 2px firebrick solid;
 }
 
@@ -168,6 +168,7 @@ img.card-img-top {
 
 .form-control.button-modification {
   background-color: darkslategrey;
+  border: solid darkslategrey;
 }
 
 .message-form {

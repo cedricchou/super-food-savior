@@ -10,7 +10,7 @@
         height="100px"
         width="120px"
         >
-        <div class="card-title"><h4><%= myDonations[i].title %></h4></div>
+        <div class="card-title"><h4><a href="/donations/<%=myDonations[i].id%>"><%= myDonations[i].title %></a></h4></div>
         <p class="card-text"><%= myDonations[i].description %></p>
       </div>
       <div class="container-fluid">
