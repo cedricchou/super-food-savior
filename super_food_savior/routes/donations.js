@@ -5,10 +5,11 @@ const knex = require("../db/index");
 const GMAP = require("../frontend/app_keys/app_keys");
 const { geoCode } = require("../api/googleAPI");
 const methodOverride = require("method-override");
+const myfuncs = require("./helpers");
 
 // Get donations information from database
 
-router.get("/", function(req, res) {
+router.get("/", myfuncs.checkAuth, function(req, res) {
   const research = req.query.research;
   const radius = req.query.radius || "100";
   const user = res.locals.user;

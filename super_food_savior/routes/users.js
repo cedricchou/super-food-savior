@@ -4,7 +4,9 @@ const User = require("../models/user");
 const knex = require("../db/index");
 const passport = require("passport");
 const myfuncs = require("./helpers");
-
+const googleMaps = require("@google/maps");
+const GMAP = require("../frontend/app_keys/app_keys");
+const { geoCode } = require("../api/googleAPI");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
@@ -20,27 +22,33 @@ router.post(
   "/",
   function(req, res) {
     const password = req.body.password;
+    const address = req.body.address;
 
-    bcrypt.hash(password, saltRounds, function(err, hash) {
-      knex
-        .returning("id")
-        .insert({
-          first_name: req.body.first_name,
-          last_name: req.body.last_name,
-          email: req.body.email,
-          address: req.body.address,
-          password: hash
-        })
-        .into("users")
-        .then(([data]) => {
-          const user = {
-            id: data
-          };
-          req.login(user, err => {
-            console.log(err);
-            res.redirect("/");
+    geoCode({ address }).then(addressRes => {
+      const coords = addressRes.json.results[0].geometry.location;
+      bcrypt.hash(password, saltRounds, function(err, hash) {
+        knex
+          .returning("id")
+          .insert({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            email: req.body.email,
+            address: req.body.address,
+            password: hash,
+            latitude: coords.lat,
+            longitude: coords.lng
+          })
+          .into("users")
+          .then(([data]) => {
+            const user = {
+              id: data
+            };
+            req.login(user, err => {
+              console.log(err);
+              res.redirect("/");
+            });
           });
-        });
+      });
     });
   },
   passport.authenticate("local", {
@@ -48,8 +56,6 @@ router.post(
     failureRedirect: "/users/new"
   })
 );
-
-// Edit user
 
 // Route to user creation page
 

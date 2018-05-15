@@ -58,6 +58,7 @@
       function codeAddress(geocoder, map) {
         geocoder.geocode({'address': address}, function(results, status) {
           if (status === 'OK') {
+            console.log(results);
             map.setCenter(results[0].geometry.location);
             let marker = new google.maps.Marker({
               map: map,
