@@ -41,12 +41,12 @@ a {
 /* NavBar */
 
 #navigation {
-  border: 2px solid white;
+  border-bottom: 4px solid white;
   background-color: #191970;
 }
 
 #navigation-index {
-  border: 2px solid white;
+  border-bottom: 4px solid white;
   background-color: #191970;
   margin-bottom: 0px !important;
 }

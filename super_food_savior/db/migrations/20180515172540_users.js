@@ -9,8 +9,8 @@ exports.up = function(knex, Promise) {
       .unique()
       .notNull();
     table.string("password").notNull();
-    table.string("latitude");
-    table.string("longitude");
+    table.float("latitude");
+    table.float("longitude");
   });
 };
 
