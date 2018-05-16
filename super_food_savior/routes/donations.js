@@ -15,8 +15,6 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
       .select()
       .from("donations")
       .then(donations => {
-        const test = creationTime(donations);
-
         res.render("donations", { donations });
       });
   } else if (research) {
@@ -153,7 +151,7 @@ router.post("/:id/messages/:id", function(req, res) {
 
 // function to display creation time
 
-function timeDifference(current, previous) {
+function timeDifference(current, previous, arr) {
   const msPerMinute = 60 * 1000;
   const msPerHour = msPerMinute * 60;
   const msPerDay = msPerHour * 24;
@@ -180,10 +178,11 @@ function timeDifference(current, previous) {
 // function to get the creation time of an array
 
 function creationTime(arr) {
-  let currentDate = Date.now();
+  let timeElapsed = [];
   for (let i = 0; i < arr.length; i++) {
-    console.log(currentDate - Date.parse(arr[i].createdAt));
+    timeElapsed.push(Date.parse(arr[i].createdAt));
   }
+  return timeElapsed;
 }
 
 module.exports = router;
