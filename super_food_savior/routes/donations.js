@@ -81,6 +81,7 @@ router.post("/:id", function(req, res) {
 router.get("/:id", function(req, res) {
   const donationId = req.params.id;
   const current_user = res.locals.user.id;
+  const current_user_data = res.locals.user;
   knex
     .select()
     .from("donations")
@@ -96,6 +97,7 @@ router.get("/:id", function(req, res) {
             current_user,
             user_data,
             donationShow,
+            current_user_data,
             GMAP_KEY: GMAP.GMAP_KEY
           });
         });

@@ -43,47 +43,43 @@
 
   <div class="container col-lg-6 col-md-4">
     <div id="map"></div>
-    <script>
-
-      let address = "<%= user_data.address %>";
-      function initMap() {
-        let map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 14
-        });
-
-        let geocoder = new google.maps.Geocoder();
-        codeAddress(geocoder, map);
-      }
-
-      function codeAddress(geocoder, map) {
-        geocoder.geocode({'address': address}, function(results, status) {
-          if (status === 'OK') {
-            console.log(results);
-            map.setCenter(results[0].geometry.location);
-            let marker = new google.maps.Marker({
-              map: map,
-              position: results[0].geometry.location
-            });
-
-            let infoWindow = new google.maps.InfoWindow({
-              content: '<%= user_data.address %>'
-            });
-
-            marker.addListener('click', function () {
-              infoWindow.open(map, marker);
-            });
-
-          } else {
-            alert('Geocode was not successful for the following reason: ' + status);
-          }
-        });
-      }
-    </script>
     <script
-      async defer src="https://maps.googleapis.com/maps/api/js?key=<%=GMAP_KEY%>&callback=initMap"
+      src="https://maps.googleapis.com/maps/api/js?key=<%=GMAP_KEY%>"
       type="text/javascript"
-    >
+      >
     </script>
+
+    <script>
+    let map;
+
+    let data = [
+      { lat: <%= user_data.latitude %>, lng: <%= user_data.longitude %> },
+      { lat: <%= current_user_data.latitude %>, lng: <%= current_user_data.longitude %> }
+    ]
+
+    function initialize() {
+
+      let mapOptions = {
+        zoom: 10,
+        center: new google.maps.LatLng(data[1].lat, data[1].lng)
+      };
+
+      // Creating the map
+      map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+      for(let i = 0; i < data.length; i++) {
+
+        let marker = new google.maps.Marker({
+          position: new google.maps.LatLng(data[i].lat,data[i].lng),
+          map: map
+        });
+      }
+    }
+
+      // Initialize the map
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
   </div>
 
 </div>
