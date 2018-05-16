@@ -8,8 +8,10 @@
       <h3><%= donationShow.title %></h3>
       <p><%= donationShow.description %></p>
       <p>Address: <%= user_data.address %></p>
+      <% if (current_user !== user_data.id) { %>
       <h6 id="distance">Distance: </h6>
       <h6 id="duration">Driving duration: </h6>
+      <% } %>
       </div>
       <div class="container col-lg-4 col-md-3">
         <img
@@ -56,10 +58,12 @@
     let data = [
       { lat: <%= user_data.latitude %>,
         lng: <%= user_data.longitude %>,
+        id: <%= user_data.id %>,
         address: "<%= user_data.address %>"
       },
       { lat: <%= current_user_data.latitude %>,
         lng: <%= current_user_data.longitude %>,
+        id: <%= current_user_data.id %>,
         address: "<%= current_user_data.address %>"
       }
     ]
@@ -67,17 +71,29 @@
     function initialize() {
 
       let mapOptions = {
-        zoom: 10,
+        zoom: 14,
         center: new google.maps.LatLng(data[1].lat, data[1].lng)
       };
       let directionsService = new google.maps.DirectionsService;
       let directionsDisplay = new google.maps.DirectionsRenderer;
-      // Creating the map
+      
       map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-      directionsDisplay.setMap(map);
-      calculateAndDisplayRoute(directionsService, directionsDisplay);
-
+      if (data[0].id === data[1].id) {
+        let marker = new google.maps.Marker({
+          position: new google.maps.LatLng(data[0].lat,data[0].lng),
+          map: map
+        });
+        let infoWindow = new google.maps.InfoWindow({
+            content: data[0].address
+        });
+        marker.addListener('click', function () {
+          infoWindow.open(map, marker);
+        });
+      } else {
+        directionsDisplay.setMap(map);
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+      }
     }
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
