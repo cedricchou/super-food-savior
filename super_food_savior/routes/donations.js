@@ -2,49 +2,30 @@ const express = require("express");
 const router = express.Router();
 const Donation = require("../models/donation");
 const knex = require("../db/index");
-const GMAP = require("../frontend/app_keys/app_keys");
-const { geoCode } = require("../api/googleAPI");
 const methodOverride = require("method-override");
 const myfuncs = require("./helpers");
+const GMAP = require("../frontend/app_keys/app_keys");
 
 // Get donations information from database
 
 router.get("/", myfuncs.checkAuth, function(req, res) {
   const research = req.query.research;
-  const radius = req.query.radius || "100";
-  const user = res.locals.user;
-  const userQuery = user ? {} : {};
-
-  const usersGeocodePromise = knex
-    .select()
-    .from("users")
-    .where(userQuery)
-    .then(users =>
-      Promise.all(
-        users.map(user =>
-          geoCode({ address: user.address }).then(
-            res => res.json.results.shift().geometry.location
-          )
-        )
-      )
-    );
-
-  const donationQuery = research ? ["title", "ILIKE", `%${research}%`] : [{}];
-
-  const donationPromise = knex
-    .select()
-    .from("donations")
-    .where(...donationQuery);
-
-  Promise.all([donationPromise, usersGeocodePromise]).then(
-    ([donations, usersGeocode]) => {
-      res.render("donations", {
-        donations,
-        usersGeocode,
-        GMAP_KEY: GMAP.GMAP_KEY
+  if (research === undefined) {
+    knex
+      .select()
+      .from("donations")
+      .then(donations => {
+        res.render("donations", { donations });
       });
-    }
-  );
+  } else if (research) {
+    knex
+      .select()
+      .from("donations")
+      .where("title", "ILIKE", `%${research}%`)
+      .then(donations => {
+        res.render("donations", { donations, GMAP_KEY: GMAP.GMAP_KEY });
+      });
+  }
 });
 
 // Create new donation
