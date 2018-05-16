@@ -43,6 +43,10 @@
 
   <div class="container col-lg-6 col-md-4">
     <div id="map"></div>
+    <div class="container col-lg-6 col-md-4" id="info">
+      <h4 id="distance">Distance: </h4>
+      <h4 id="duration">Driving duration: </h4>
+    </div>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=<%=GMAP_KEY%>"
       type="text/javascript"
@@ -53,8 +57,14 @@
     let map;
 
     let data = [
-      { lat: <%= user_data.latitude %>, lng: <%= user_data.longitude %> },
-      { lat: <%= current_user_data.latitude %>, lng: <%= current_user_data.longitude %> }
+      { lat: <%= user_data.latitude %>,
+        lng: <%= user_data.longitude %>,
+        address: "<%= user_data.address %>"
+      },
+      { lat: <%= current_user_data.latitude %>,
+        lng: <%= current_user_data.longitude %>,
+        address: "<%= current_user_data.address %>"
+      }
     ]
 
     function initialize() {
@@ -63,17 +73,34 @@
         zoom: 10,
         center: new google.maps.LatLng(data[1].lat, data[1].lng)
       };
-
+      let directionsService = new google.maps.DirectionsService;
+      let directionsDisplay = new google.maps.DirectionsRenderer;
       // Creating the map
       map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-      for(let i = 0; i < data.length; i++) {
+      directionsDisplay.setMap(map);
+      calculateAndDisplayRoute(directionsService, directionsDisplay);
 
-        let marker = new google.maps.Marker({
-          position: new google.maps.LatLng(data[i].lat,data[i].lng),
-          map: map
-        });
-      }
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+      directionsService.route({
+        origin: data[1].address,
+        destination: data[0].address,
+        travelMode: 'DRIVING'
+      }, function(res, status) {
+        if (status === 'OK') {
+          document.getElementById('duration').innerHTML +=
+          res.routes[0].legs[0].duration.text;
+
+          document.getElementById('distance').innerHTML +=
+          res.routes[0].legs[0].distance.text;
+
+          directionsDisplay.setDirections(res);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
     }
 
       // Initialize the map
