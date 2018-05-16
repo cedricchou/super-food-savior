@@ -15,6 +15,8 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
       .select()
       .from("donations")
       .then(donations => {
+        const test = creationTime(donations);
+
         res.render("donations", { donations });
       });
   } else if (research) {
@@ -87,6 +89,11 @@ router.get("/:id", function(req, res) {
     .from("donations")
     .where({ id: donationId })
     .then(([donationShow]) => {
+      const previous = Date.parse(donationShow.createdAt);
+      const current = Date.now();
+
+      const timeAgo = timeDifference(current, previous);
+
       knex
         .select()
         .from("users")
@@ -94,6 +101,7 @@ router.get("/:id", function(req, res) {
         .then(([data]) => {
           const user_data = data;
           res.render("donations/show", {
+            timeAgo,
             current_user,
             user_data,
             donationShow,
@@ -142,5 +150,40 @@ router.post("/:id/messages/:id", function(req, res) {
       res.redirect("/users/${userId}/donations");
     });
 });
+
+// function to display creation time
+
+function timeDifference(current, previous) {
+  const msPerMinute = 60 * 1000;
+  const msPerHour = msPerMinute * 60;
+  const msPerDay = msPerHour * 24;
+  const msPerMonth = msPerDay * 30;
+  const msPerYear = msPerDay * 365;
+
+  const elapsed = current - previous;
+
+  if (elapsed < msPerMinute) {
+    return Math.round(elapsed / 1000) + " seconds ago";
+  } else if (elapsed < msPerHour) {
+    return Math.round(elapsed / msPerMinute) + " minutes ago";
+  } else if (elapsed < msPerDay) {
+    return Math.round(elapsed / msPerHour) + " hours ago";
+  } else if (elapsed < msPerMonth) {
+    return Math.round(elapsed / msPerDay) + " days ago";
+  } else if (elapsed < msPerYear) {
+    return Math.round(elapsed / msPerMonth) + " months ago";
+  } else {
+    return Math.round(elapsed / msPerYear) + " years ago";
+  }
+}
+
+// function to get the creation time of an array
+
+function creationTime(arr) {
+  let currentDate = Date.now();
+  for (let i = 0; i < arr.length; i++) {
+    console.log(currentDate - Date.parse(arr[i].createdAt));
+  }
+}
 
 module.exports = router;
