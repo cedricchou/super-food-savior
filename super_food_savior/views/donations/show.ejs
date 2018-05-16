@@ -8,7 +8,8 @@
       <h3><%= donationShow.title %></h3>
       <p><%= donationShow.description %></p>
       <p>Address: <%= user_data.address %></p>
-
+      <h6 id="distance">Distance: </h6>
+      <h6 id="duration">Driving duration: </h6>
       </div>
       <div class="container col-lg-4 col-md-3">
         <img
@@ -43,10 +44,6 @@
 
   <div class="container col-lg-6 col-md-4">
     <div id="map"></div>
-    <div class="container col-lg-6 col-md-4" id="info">
-      <h4 id="distance">Distance: </h4>
-      <h4 id="duration">Driving duration: </h4>
-    </div>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=<%=GMAP_KEY%>"
       type="text/javascript"
