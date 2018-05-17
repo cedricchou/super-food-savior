@@ -1,11 +1,28 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include('./partials/headerIndex') %>
+
+<div class="container slideshow">
+  <img class="mySlides fade" src="../images/picture3.png" height="900px" width="1440px">
+  <img class="mySlides fade" src="../images/picture2.jpg" height="800px" width="1440px">
+  <img class="mySlides fade" src="../images/picture1.jpg" height="800px" width="1440px">
+</div>
+
+<script>
+let myIndex = 0;
+carousel();
+function carousel() {
+  let x = document.getElementsByClassName("mySlides");
+  for (let i = 0; i < x.length; i++) {
+    x[i].style.display = "none";
+  }
+  myIndex++;
+  if (myIndex > x.length) {
+    myIndex = 1;
+  }
+  x[myIndex - 1].style.display = "block";
+  setTimeout(carousel, 3000);
+}
+</script>
+
+
+
+<%- include('./partials/footer') %>

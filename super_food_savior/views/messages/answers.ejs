@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+
+<div class="container-fluid">
+  <div class="container answer-message">
+  <h3 id="answer-message"><%= message.content %></h3>
+  <% for (let i = 0; i < answers.length; i++ ) { %>
+    <% if (answers[i].user_id === userId) { %>
+      <h4 class="card-text my-answers"><%= answers[i].content %></h4>
+    <% } else { %>
+      <h4 class="card-text"><%= answers[i].content %></h4>
+    <% } %>
+  <% } %>
+  <% if (answers[0]) { %>
+    <form
+    action="/donations/<%= message.donation_id %>/messages/<%= message.id %>"
+    method="post"
+    >
+    <textarea
+    type="text"
+    name="answer"
+    class="form-control answer-form"
+    rows="3">
+    </textarea>
+    <input type="submit" class="button-click" value="reply" />
+    </form>
+  <% } %>
+</div>
+</div>
+
+<%- include('../partials/footer') %>

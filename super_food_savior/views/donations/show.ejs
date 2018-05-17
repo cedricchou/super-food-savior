@@ -1,0 +1,130 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+  <div class="container col-lg-6 col-md-4">
+    <div class="card-body show-donation">
+      <div class="row">
+      <div class="container col-lg-8 col-md-6">
+      <h3><%= donationShow.title %></h3>
+      <p><%= donationShow.description %></p>
+      <p>Address: <%= user_data.address %></p>
+      <% if (current_user !== user_data.id) { %>
+      <h6 id="distance">Distance: </h6>
+      <h6 id="duration">Driving duration: </h6>
+      <% } %>
+      </div>
+      <% if (donationShow.pictureUrl) { %>
+        <div class="container col-lg-4 col-md-3">
+        <img
+        class="card-img-top float-right"
+        src="<%=donationShow.pictureUrl%>"
+        height="100px"
+        width="120px"
+        >
+        </div>
+      <% } %>
+    </div>
+      <% if (current_user !== user_data.id) { %>
+        <form
+          class="form-control main-message"
+          action="/donations/<%= donationShow.id %>/messages"
+          method="post"
+        >
+        <textarea type="text" name="content" class="form-control message-form" rows="4"></textarea>
+        <input type="submit" class="btn-outline-primary" value="Send Message"/>
+        </form>
+      <% } else { %>
+        <div class="row button-modification">
+          <form
+            class="form-control button-modification"
+            action="/donations/<%= donationShow.id %>"
+            method="post"
+          >
+            <input type="submit" class="btn-primary" value="Delete" />
+        </div>
+      <% } %>
+      <h6 class="float-right ">Posted <%= timeAgo %></h6>
+    </div>
+  </div>
+
+  <div class="container col-lg-6 col-md-4">
+    <div id="map"></div>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=<%=GMAP_KEY%>"
+      type="text/javascript"
+      >
+    </script>
+
+    <script>
+    let map;
+
+    let data = [
+      { lat: <%= user_data.latitude %>,
+        lng: <%= user_data.longitude %>,
+        id: <%= user_data.id %>,
+        address: "<%= user_data.address %>"
+      },
+      { lat: <%= current_user_data.latitude %>,
+        lng: <%= current_user_data.longitude %>,
+        id: <%= current_user_data.id %>,
+        address: "<%= current_user_data.address %>"
+      }
+    ]
+
+    function initialize() {
+
+      let mapOptions = {
+        zoom: 14,
+        center: new google.maps.LatLng(data[1].lat, data[1].lng)
+      };
+      let directionsService = new google.maps.DirectionsService;
+      let directionsDisplay = new google.maps.DirectionsRenderer;
+
+      map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+      if (data[0].id === data[1].id) {
+        let marker = new google.maps.Marker({
+          position: new google.maps.LatLng(data[0].lat,data[0].lng),
+          map: map
+        });
+        let infoWindow = new google.maps.InfoWindow({
+            content: data[0].address
+        });
+        marker.addListener('click', function () {
+          infoWindow.open(map, marker);
+        });
+      } else {
+        directionsDisplay.setMap(map);
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+      }
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+      directionsService.route({
+        origin: data[1].address,
+        destination: data[0].address,
+        travelMode: 'DRIVING'
+      }, function(res, status) {
+        if (status === 'OK') {
+          document.getElementById('duration').innerHTML +=
+          res.routes[0].legs[0].duration.text;
+
+          document.getElementById('distance').innerHTML +=
+          res.routes[0].legs[0].distance.text;
+
+          directionsDisplay.setDirections(res);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+        }
+      });
+    }
+
+      // Initialize the map
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+  </div>
+
+</div>
+
+<%- include('../partials/footer') %>

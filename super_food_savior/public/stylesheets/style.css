@@ -1,8 +1,270 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+#map {
+  width: 95%;
+  height: 400px;
+  color: black;
+}
+
+#main {
+  transition: margin-left 0.6s;
+  padding: 0px;
+  padding-top: 0px;
+}
+
+#distance {
+  color: red;
+}
+
+#duration {
+  color: red;
+}
+
+body > * {
+  font-family: "Wendy One";
+  font-size: 20px;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+}
+
+.button-click:hover {
+  opacity: 0.4;
+  cursor: pointer;
+  -webkit-animation: mymove 3s infinite;
+  animation: mymove 3s infinite;
+}
+
+@-webkit-keyframes mymove {
+  50% {
+    box-shadow: 10px 20px 30px white;
+  }
+}
+
+@keyframes mymove {
+  50% {
+    box-shadow: 10px 20px 30px white;
+  }
+}
+
+/* NavBar */
+
+#navigation {
+  border-bottom: 4px solid white;
+  background-color: #191970;
+}
+
+#navigation-index {
+  border-bottom: 4px solid white;
+  background-color: #191970;
+  margin-bottom: 0px !important;
+}
+
+#user-space {
+  border: 1px solid cyan;
+  border-radius: 5px;
+  color: cyan;
+}
+
+#user-space:hover {
+  opacity: 0.5;
+  cursor: context-menu;
+  -webkit-animation: mymove 5s infinite;
+  animation: mymove 5s infinite;
+}
+
+/* dashbord (messages/donations) styling */
+
+.dashboard-donation {
+  background-color: black;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.card.dashboard-donation {
+  background-color: darkslategrey;
+  border: 2px firebrick solid;
+}
+
+.card.dashboard-message {
+  background-color: darkslategrey;
+  border: 2px maroon solid;
+  padding-bottom: 7px;
+}
+
+.answer-form {
+  margin-bottom: 15px;
+}
+
+/* answer page */
+
+.container.answer-message {
+  padding-bottom: 7px;
+  background-color: black;
+  border: 4px solid white;
+}
+
+#answer-message {
+  color: firebrick;
+}
+
+.card-text.my-answers {
+  color: firebrick;
+  margin-left: 50px;
+}
+
+/* Create new (donation/user) */
+
+.new-donation {
+  background-color: black;
+  padding-bottom: 10px;
+  border: 3px solid white;
+  border-radius: 5px;
+}
+
+.new-user {
+  background-color: black;
+  padding-bottom: 55px;
+  border: 3px solid white;
+}
+
+label {
+  padding-top: 7px;
+}
+
+/* donation pages (index, show page)  */
+img.card-img-top {
+  height: 100px;
+  width: 120px;
+  border: 2px solid salmon;
+}
+
+.row {
+  padding-left: 20px;
+}
+
+.card {
+  color: black;
+}
+
+.card:hover {
+  opacity: 0.9;
+}
+
+.back-color {
+  background-color: #2f4f4f;
+}
+
+.card.main-card {
+  padding: 0 0;
+  border: 2px solid black;
+}
+
+.background-image {
+  background-image: url("../images/super_food_pictures.jpg");
+  z-index: -1;
+  color: white;
+}
+
+.show-donation {
+  background-color: #2f4f4f;
+  border: 3px solid black;
+}
+
+.row.button-modification {
+  background-color: darkslategrey;
+}
+
+.form-control.button-modification {
+  background-color: darkslategrey;
+  border: solid darkslategrey;
+}
+
+.message-form {
+  margin-bottom: 15px;
+}
+
+form.main-message {
+  border: 3px solid black;
+  background-color: lightgrey;
+}
+
+/* homepage */
+
+.mySlides {
+  display: none;
+  vertical-align: middle;
+}
+
+/* Slideshow container */
+.container.slideshow {
+  position: absolute;
+  margin: 0px;
+  padding: 0;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 2.9s;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {
+    font-size: 11px;
+  }
+}
+
+/* Dynamic Side Navigation bar */
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #191970;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 10px;
+  text-decoration: none;
+  font-size: 15px;
+  color: grey;
+  display: block;
+  transition: 0.5s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 5px;
+  font-size: 26px;
+  margin-left: 20px;
+}
+
+@media screen and (max-height: 250px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+  .sidenav a {
+    font-size: 18px;
+  }
 }

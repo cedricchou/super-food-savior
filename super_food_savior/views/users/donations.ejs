@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+  <% for (let i = myDonations.length-1; i >= 0; i-- ) { %>
+    <div class="card col-lg-5 col-md-3 m-2 dashboard-donation">
+      <div class="card-body">
+        <img
+        class="card-img-top float-right"
+        src="<%=myDonations[i].pictureUrl%>"
+        height="100px"
+        width="120px"
+        >
+        <div class="card-title"><h4><a href="/donations/<%=myDonations[i].id%>"><%= myDonations[i].title %></a></h4></div>
+        <p class="card-text"><%= myDonations[i].description %></p>
+      </div>
+      <div class="container-fluid">
+        <form
+          action="/users/<%= myDonations[i].user_id %>/donations/<%= myDonations[i].id %>"
+          method="get">
+          <input type="submit" class="button-click" value="see messages" />
+        </form>
+      </div>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>

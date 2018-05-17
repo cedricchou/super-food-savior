@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<div class="row">
+    <% for (let i = allMessages.length-1; i >= 0; i-- ) { %>
+
+        <div class="card col-lg-5 m-3 main-card">
+          <div class="card-body back-color">
+          <p class="card-text"><%= allMessages[i].content %></p>
+            <form
+              action="/users/<%= userId %>/donations/<%= allMessages[i].donation_id %>/messages/<%= allMessages[i].id %>"
+              method="get"
+              >
+              <input type="submit" class="button-click" value="click to see history" />
+            </form>
+          </div>
+        </div>
+
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>
