@@ -12,11 +12,11 @@ Other users can directly interact with donors by sending a message and interact 
 
 This app was built using:
 
-∙ Node.js for the backend
-∙ Express as the framework
-∙ PostgresQL for the database
-∙ BootStrap 4, CSS and HTML
-∙ Locations and travel duration/distance calculated using Google Maps API
+- Node.js for the backend
+- Express as the framework
+- PostgresQL for the database
+- BootStrap 4, CSS and HTML
+- Locations and travel duration/distance calculated using Google Maps API
 
 The app is currently being updated to have ReactJS as frontend.
 
