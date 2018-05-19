@@ -30,7 +30,12 @@
           action="/donations/<%= donationShow.id %>/messages"
           method="post"
         >
-        <textarea type="text" name="content" class="form-control message-form" rows="4"></textarea>
+        <textarea
+          type="text"
+          name="content" 
+          class="form-control message-form"
+          rows="4">
+        </textarea>
         <input type="submit" class="btn-outline-primary" value="Send Message"/>
         </form>
       <% } else { %>
