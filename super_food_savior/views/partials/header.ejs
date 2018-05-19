@@ -60,7 +60,8 @@
             aria-label="Search"
           >
           <button
-            class="btn btn-outline-success my-2 my-sm-0 ml-auto"
+            id="search-button"
+            class="btn my-2 my-sm-0 ml-auto"
             type="submit"
           >
             Search
@@ -84,6 +85,7 @@
         <a href="/users/<%= user.id %>/messages">My messages</a>
       </div>
     <% } %>
+
   <script>
   function openNav() {
   document.getElementById("mySidenav").style.width = "150px";

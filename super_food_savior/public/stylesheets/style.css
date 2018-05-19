@@ -18,12 +18,30 @@
   color: red;
 }
 
+#search-button {
+  color: #007bff;
+  border: 1px solid white;
+  background-color: white;
+}
+
+#search-button:hover {
+  opacity: 0.8;
+}
+
+p {
+  color: white;
+}
+
 body > * {
   font-family: "Wendy One";
   font-size: 20px;
 }
 
 a {
+  color: #00b7ff;
+}
+
+.button-click {
   color: #00b7ff;
 }
 
@@ -60,9 +78,9 @@ a {
 }
 
 #user-space {
-  border: 1px solid cyan;
+  border: 1px solid white;
   border-radius: 5px;
-  color: cyan;
+  color: white;
 }
 
 #user-space:hover {
@@ -75,20 +93,21 @@ a {
 /* dashbord (messages/donations) styling */
 
 .dashboard-donation {
-  background-color: black;
+  background-color: #191970;
   padding-top: 7px;
   padding-bottom: 7px;
 }
 
 .card.dashboard-donation {
-  background-color: darkslategrey;
-  border: 2px firebrick solid;
+  background-color: #191970;
+  border: 2px white solid;
+  padding-bottom: 15px;
 }
 
 .card.dashboard-message {
-  background-color: darkslategrey;
-  border: 2px maroon solid;
-  padding-bottom: 7px;
+  background-color: #191970;
+  border: 2px white solid;
+  padding-bottom: 15px;
 }
 
 .answer-form {
@@ -98,31 +117,32 @@ a {
 /* answer page */
 
 .container.answer-message {
-  padding-bottom: 7px;
-  background-color: black;
+  padding-bottom: 15px;
+  background-color: #191970;
   border: 4px solid white;
 }
 
 #answer-message {
-  color: firebrick;
+  padding-top: 5px;
+  color: green;
 }
 
 .card-text.my-answers {
-  color: firebrick;
+  color: green;
   margin-left: 50px;
 }
 
 /* Create new (donation/user) */
 
 .new-donation {
-  background-color: black;
-  padding-bottom: 10px;
+  background-color: #191970;
+  padding-bottom: 15px;
   border: 3px solid white;
   border-radius: 5px;
 }
 
 .new-user {
-  background-color: black;
+  background-color: #191970;
   padding-bottom: 55px;
   border: 3px solid white;
 }
@@ -135,7 +155,6 @@ label {
 img.card-img-top {
   height: 100px;
   width: 120px;
-  border: 2px solid salmon;
 }
 
 .row {
@@ -151,12 +170,13 @@ img.card-img-top {
 }
 
 .back-color {
-  background-color: #2f4f4f;
+  background-color: #191970;
 }
 
 .card.main-card {
   padding: 0 0;
-  border: 2px solid black;
+  background-color: #191970;
+  border: 2px solid white;
 }
 
 .background-image {
@@ -166,17 +186,17 @@ img.card-img-top {
 }
 
 .show-donation {
-  background-color: #2f4f4f;
+  background-color: #191970;
   border: 3px solid black;
 }
 
 .row.button-modification {
-  background-color: darkslategrey;
+  background-color: #191970;
 }
 
 .form-control.button-modification {
-  background-color: darkslategrey;
-  border: solid darkslategrey;
+  background-color: #191970;
+  border: solid #191970;
 }
 
 .message-form {
