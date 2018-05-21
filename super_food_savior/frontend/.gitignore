@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 /app_keys
+../node_modules
+../package-lock.json
+
 
 # testing
 /coverage
