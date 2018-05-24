@@ -7,7 +7,8 @@ export default class UserForm extends Component {
     last_name: "",
     email: "",
     password: "",
-    address: ""
+    address: "",
+    picture: ""
   };
 
   handleChange = event => {
@@ -66,6 +67,13 @@ export default class UserForm extends Component {
             name="address"
             onChange={this.handleChange}
             value={this.state.address}
+          />
+          <label>Attach picture</label>
+          <input
+            type="text"
+            name="picture"
+            onChange={this.handleChange}
+            value={this.state.picture}
           />
           <input type="submit" />
         </form>

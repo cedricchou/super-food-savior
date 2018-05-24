@@ -29,7 +29,7 @@ export default class UserSignIn extends Component {
         return (
             <form onSubmit={this.signInSubmit}>
             <div>
-                <label htmlFor="email">Email</label><br/>
+                <label>Email</label><br/>
                 <input 
                     type="email"
                     id="email"
@@ -43,7 +43,7 @@ export default class UserSignIn extends Component {
                     id="password"
                     name="password"
                     value={this.state.password}
-                    onChange={signInChange("password")}
+                    onChange={this.signInChange}
                 />
             </div>
             </form>
