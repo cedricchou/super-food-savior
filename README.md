@@ -20,4 +20,12 @@ This app was built using:
 
 The app is currently being updated to have ReactJS as frontend.
 
+To run the app, type in the terminal:
+
+createdb super_food_savior_dev
+
+knex migrate:latest
+
+
+
 
