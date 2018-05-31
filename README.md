@@ -30,6 +30,15 @@ To run the app, type in the terminal:
 
 In your preferred browser, type: localhost:3333
 
+Alternatively, you can go to the following URL:
+
+https://super-food-savior.herokuapp.com/
+
+You can sign up or just login using the following email and password:
+
+email: guest@guest.com
+password: guest
+
 Enjoy!
 
 
