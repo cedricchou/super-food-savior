@@ -39,6 +39,8 @@ You can sign up or just login using the following email and password:
 - email: guest@guest.com
 - password: guest
 
+Make sure to post a picture of your donation :)
+
 Enjoy!
 
 
