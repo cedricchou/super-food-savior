@@ -36,8 +36,8 @@ https://super-food-savior.herokuapp.com/
 
 You can sign up or just login using the following email and password:
 
-email: guest@guest.com
-password: guest
+- email: guest@guest.com
+- password: guest
 
 Enjoy!
 
