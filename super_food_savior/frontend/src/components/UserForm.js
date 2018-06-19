@@ -7,8 +7,7 @@ export default class UserForm extends Component {
     last_name: "",
     email: "",
     password: "",
-    address: "",
-    picture: ""
+    address: ""
   };
 
   handleChange = event => {
@@ -23,6 +22,14 @@ export default class UserForm extends Component {
       .post("/users", this.state)
       .then(function(res) {
         console.log(res);
+        if (!res.data.errmsg) {
+          console.log("successful signup");
+          this.setState({
+            redirectTo: "/login"
+          });
+        } else {
+          console.log("username already taken");
+        }
       })
       .catch(function(error) {
         console.log(error);
@@ -67,13 +74,6 @@ export default class UserForm extends Component {
             name="address"
             onChange={this.handleChange}
             value={this.state.address}
-          />
-          <label>Attach picture</label>
-          <input
-            type="text"
-            name="picture"
-            onChange={this.handleChange}
-            value={this.state.picture}
           />
           <input type="submit" />
         </form>

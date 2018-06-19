@@ -1,52 +1,74 @@
-import React, {Component} from 'react';
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 export default class UserSignIn extends Component {
-    state = {
-        email: "",
-        password: ""
-    }
-    
-    signInChange = event => {
-        const userSession = {};
-        userSession[event.target.name] = event.target.value;
-        this.setState(userSession);
-    }
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      redirectTo: null
+    };
+  }
 
-    signInSubmit = event => {
-        event.preventDefault();
-        axios
-        .post("/login", this.state)
-        .then(function(res) {
-            console.log(res);
-        }).catch(function(err) {
-            console.log(err);
-        })
-    }
+  handleChange = event => {
+    const loginUser = {};
+    loginUser[event.target.name] = event.target.value;
+    this.setState(loginUser);
+  };
 
-    render() {
+  handleSubmit = event => {
+    event.preventDefault();
+    axios
+      .post("/login", this.state)
+      .then(res => {
+        console.log(res);
+        if (res.status === 200) {
+          // update App.js state
+          this.props.updateUser({
+            loggedIn: true,
+            email: res.data.email
+          });
+          // update the state to redirect to home
+          this.setState({
+            redirectTo: "/donations"
+          });
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 
-        return (
-            <form onSubmit={this.signInSubmit}>
-            <div>
-                <label>Email</label><br/>
-                <input 
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.signInChange}
-                />
-                <label>Password</label>
-                <input
-                    type="text"
-                    id="password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.signInChange}
-                />
-            </div>
-            </form>
-        )
+  render() {
+    if (this.state.redirectTo) {
+      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+    } else {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label>Email</label>
+            <br />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={this.state.email}
+              onChange={this.handleChange}
+            />
+            <label>Password</label>
+            <input
+              type="text"
+              id="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+          </div>
+          <input type="submit" />
+        </form>
+      );
     }
+  }
 }
