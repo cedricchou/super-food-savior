@@ -23,21 +23,18 @@ export default class UserSignIn extends Component {
     axios
       .post("/login", this.state)
       .then(res => {
-        console.log(res);
         if (res.status === 200) {
-          // update App.js state
           this.props.updateUser({
             loggedIn: true,
             email: res.data.email
           });
-          // update the state to redirect to home
           this.setState({
             redirectTo: "/donations"
           });
         }
       })
-      .catch(error => {
-        console.log(error);
+      .catch(err => {
+        console.log(err);
       });
   };
 
