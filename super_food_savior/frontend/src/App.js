@@ -1,21 +1,63 @@
-import React, { Component } from 'react';
-import DonationForm from './components/DonationForm';
-import UserForm from './components/UserForm';
-import NavBar from './components/NavBar';
+import React, { Component } from "react";
+import DonationForm from "./components/DonationForm";
+import UserForm from "./components/UserForm";
+import NavBar from "./components/NavBar";
+import UserSignIn from "./components/UserSignIn";
+import axios from "axios";
+import "./index.css";
 
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loggedIn: false,
+      email: null
+    };
+
+    this.getUser = this.getUser.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+  }
+
+  componentDidMount() {
+    this.getUser();
+  }
+
+  updateUser = userObject => {
+    this.setState(userObject);
+  };
+
+  getUser() {
+    axios.get("/").then(res => {
+      console.log(res.data);
+      if (res.data.user) {
+        console.log("Get User: There is a user saved in the server session: ");
+        this.setState({
+          loggedIn: true,
+          email: res.data.user.email
+        });
+      } else {
+        this.setState({
+          loggedIn: false,
+          email: null
+        });
+      }
+    });
+  }
+
   render() {
     return (
       <Router>
         <div className="App">
-          <NavBar />
+          <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
           <Route exact path="/donations" component={DonationForm} />
           <Route exact path="/users" component={UserForm} />
+          <Route
+            exact
+            path="/login"
+            render={() => <UserSignIn updateUser={this.updateUser} />}
+          />
         </div>
       </Router>
     );

@@ -31,7 +31,7 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
 // Create new donation
 
 router.post("/", (req, res) => {
-  let donationPic = req.files.donationPic;
+  let donationPic = req.files.picture;
   let donationPicName = donationPic.name;
   let creationDate = Date.now().toLocaleString();
   let createdAt = creationDate.replace(/\s*,/g, "_");
@@ -49,8 +49,16 @@ router.post("/", (req, res) => {
     .insert(toInsert)
     .into("donations")
     .then(() => {
-      res.redirect("donations");
-    });
+      res.json({
+        success: true, 
+        message: "Thank you for posting!"
+      });
+    }).catch(() => {
+      res.json({
+        success: false,
+        message: "Error: missing parameters"
+      });
+  });
 });
 
 // Route to create

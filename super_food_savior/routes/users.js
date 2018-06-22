@@ -45,9 +45,17 @@ router.post(
             };
             req.login(user, err => {
               console.log(err);
-              res.redirect("/");
+              res.json({
+                success: true,
+                message: "Thanks for signing up!"
+              });
             });
-          });
+          }).catch(() => {
+            res.json({
+              success: true,
+              message: "Thanks for signing up!"
+          })
+        });
       });
     });
   },
@@ -55,7 +63,7 @@ router.post(
     successRedirect: "/donations",
     failureRedirect: "/users/new"
   })
-);
+)
 
 // Route to user creation page
 

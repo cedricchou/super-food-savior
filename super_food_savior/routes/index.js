@@ -11,8 +11,6 @@ router.use(fileUpload());
 /* GET home page. */
 
 router.get("/", function(req, res, next) {
-  console.log(req.user);
-  console.log(req.isAuthenticated());
   res.render("index", { title: "Express" });
 });
 
