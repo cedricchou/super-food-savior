@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { Input, Label, NavBar, Button, Form } from "reactstrap";
 import DonationForm from "./components/DonationForm";
+import DonationIndex from "./components/DonationIndex";
 import UserForm from "./components/UserForm";
-import NavBar from "./components/NavBar";
+import NavigationBar from "./components/NavBar";
 import UserSignIn from "./components/UserSignIn";
 import axios from "axios";
 import "./index.css";
@@ -50,9 +52,13 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <NavBar updateUser={this.updateUser} loggedIn={this.state.loggedIn} />
-          <Route exact path="/donations" component={DonationForm} />
-          <Route exact path="/users" component={UserForm} />
+          <NavigationBar
+            updateUser={this.updateUser}
+            loggedIn={this.state.loggedIn}
+          />
+          <Route exact path="/donations" component={DonationIndex} />
+          <Route exact path="/donations/new" component={DonationForm} />
+          <Route exact path="/users/new" component={UserForm} />
           <Route
             exact
             path="/login"
