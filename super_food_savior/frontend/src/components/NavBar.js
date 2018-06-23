@@ -1,22 +1,32 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import "../index.css";
+import { Navbar, Nav, NavLink, NavItem } from "reactstrap";
+import DonationSearch from "./DonationSearch";
 
-export default function NavBar() {
+export default function NavigationBar() {
   return (
-    <nav className="NavBar">
-      <NavLink exact to="/">
-        Home
-      </NavLink>
-      <NavLink exact to="/donations">
-        Post a donation
-      </NavLink>
-      <NavLink exact to="/users">
-        Sign Up
-      </NavLink>
-      <NavLink exact to="/login">
-        Sign In
-      </NavLink>
-    </nav>
+    <div>
+      <Navbar className="NavBar" light expand="md">
+        <Nav className="m-auto">
+          <NavItem>
+            <NavLink href="/">Home</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/donations/">Donations</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/donations/new">Post a donation</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/login">Sign In</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/users/new">Sign Up</NavLink>
+          </NavItem>
+          <NavItem>
+            <DonationSearch />
+          </NavItem>
+        </Nav>
+      </Navbar>
+    </div>
   );
 }

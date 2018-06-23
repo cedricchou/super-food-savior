@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import { Form, Input, Label, Button } from "reactstrap";
 import axios from "axios";
 
 export default class UserSignIn extends Component {
@@ -43,28 +44,31 @@ export default class UserSignIn extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <form onSubmit={this.handleSubmit}>
+        <Form className="UserSignIn" onSubmit={this.handleSubmit}>
           <div>
-            <label>Email</label>
+            <Label>Email</Label>
             <br />
-            <input
+            <Input
               type="email"
               id="email"
               name="email"
               value={this.state.email}
               onChange={this.handleChange}
             />
-            <label>Password</label>
-            <input
-              type="text"
+            <Label>Password</Label>
+            <Input
+              type="password"
               id="password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
             />
           </div>
-          <input type="submit" />
-        </form>
+          <br />
+          <Button type="submit" className="btn btn-success">
+            Login
+          </Button>
+        </Form>
       );
     }
   }

@@ -2,15 +2,49 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  /* background-color: #303030 !important; */
+  background-color: grey !important;
+}
+
+.DonationForm {
+  margin: 30px;
 }
 
 .NavBar {
-  background-color: navy;
   color: white;
-  display: flex;
+  display: inline-flex;
+  background: linear-gradient(top, #3e236d 30%, #3f51b5 70%);
 }
 
 .NavBar * {
   color: white;
-  margin: 10px;
+  margin: 0px;
+}
+
+.NavBar * :hover {
+  color: green;
+}
+
+.DonationSearch {
+  display: inline-flex;
+  margin-left: 20px;
+}
+
+.SearchButton {
+  margin-left: 15px;
+}
+
+/* .DonationSubmit {
+  margin-top: 30px;
+  text-align: center;
+  color: white !important;
+  background-color: #303030 !important;
+} */
+
+.UserSignIn {
+  margin: 30px;
+}
+
+.UserForm {
+  margin: 30px;
 }

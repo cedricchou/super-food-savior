@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { Form, Input, Label, Button } from "reactstrap";
 
 export default class DonationForm extends Component {
   state = {
@@ -34,43 +35,31 @@ export default class DonationForm extends Component {
 
   render() {
     return (
-      <div className="DonationForm">
-        <form onSubmit={this.handleSubmit}>
-          Title:
-          <input
-            type="text"
-            name="title"
-            value={this.state.title}
-            onChange={this.handleChange}
-          />
-          <br />
-          Description:
-          <input
-            type="text"
-            name="description"
-            value={this.state.description}
-            onChange={this.handleChange}
-          />
-          <br />
-          Add a Picture:
-          <input
-            type="text"
-            name="pictureUrl"
-            value={this.state.pictureUrl}
-            onChange={this.handleChange}
-          />
-          <br />
-          Produce weight:
-          <input
-            type="text"
-            name="weight"
-            value={this.state.weight}
-            onChange={this.handleChange}
-          />
-          <br />
-          <input type="submit" />
-        </form>
-      </div>
+      <Form onSubmit={this.handleSubmit} className="DonationForm">
+        <Label>Title:</Label>
+        <Input
+          type="text"
+          name="title"
+          value={this.state.title}
+          onChange={this.handleChange}
+        />
+        <Label>Description:</Label>
+        <Input
+          type="text"
+          name="description"
+          value={this.state.description}
+          onChange={this.handleChange}
+        />
+        <Label>Add a Picture:</Label>
+        <Input
+          type="text"
+          name="pictureUrl"
+          value={this.state.pictureUrl}
+          onChange={this.handleChange}
+        />
+        <br />
+        <Button type="submit">Post Donation</Button>
+      </Form>
     );
   }
 }
