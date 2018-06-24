@@ -1,11 +1,28 @@
 import React, { Component } from "react";
+import { Carousel } from "react-responsive-carousel";
 
 export default class HomePage extends Component {
   render() {
     return (
-      <div>
-        <img src={require("./assets/picture1.jpg")} width="100%" />
-      </div>
+      <Carousel
+        autoPlay={true}
+        infiniteLoop={true}
+        showArrows={false}
+        showThumbs={false}
+        showIndicators={false}
+        showStatus={false}
+        stopOnHover={false}
+      >
+        <div>
+          <img src={require("./assets/picture1.jpg")} />
+        </div>
+        <div>
+          <img src={require("./assets/picture2.jpg")} />
+        </div>
+        <div>
+          <img src={require("./assets/picture3.png")} />
+        </div>
+      </Carousel>
     );
   }
 }
