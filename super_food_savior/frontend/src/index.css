@@ -30,6 +30,11 @@ body {
   color: green;
 }
 
+.DonationIndex {
+  margin-top: 20px;
+  padding: 10px;
+}
+
 .DonationSearch {
   display: inline-flex;
   margin-left: 20px;

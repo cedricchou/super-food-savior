@@ -15,7 +15,7 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
       .select()
       .from("donations")
       .then(donations => {
-        res.render("donations", { donations });
+        res.json({ donations });
       });
   } else if (research) {
     knex
@@ -23,7 +23,7 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
       .from("donations")
       .where("title", "ILIKE", `%${research}%`)
       .then(donations => {
-        res.render("donations", { donations, GMAP_KEY: GMAP.GMAP_KEY });
+        res.json({ donations, GMAP_KEY: GMAP.GMAP_KEY });
       });
   }
 });
@@ -50,15 +50,16 @@ router.post("/", (req, res) => {
     .into("donations")
     .then(() => {
       res.json({
-        success: true, 
+        success: true,
         message: "Thank you for posting!"
       });
-    }).catch(() => {
+    })
+    .catch(() => {
       res.json({
         success: false,
         message: "Error: missing parameters"
       });
-  });
+    });
 });
 
 // Route to create

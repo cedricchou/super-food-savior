@@ -2,7 +2,7 @@ import React from "react";
 import { Navbar, Nav, NavLink, NavItem } from "reactstrap";
 import DonationSearch from "./DonationSearch";
 
-export default function NavigationBar() {
+export default function NavigationBar(props) {
   return (
     <div>
       <Navbar className="NavBar" light expand="md">
