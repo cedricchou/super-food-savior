@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Input, Label, NavBar, Button, Form } from "reactstrap";
 import DonationForm from "./components/DonationForm";
 import DonationIndex from "./components/DonationIndex";
 import UserForm from "./components/UserForm";
 import NavigationBar from "./components/NavBar";
 import UserSignIn from "./components/UserSignIn";
+import HomePage from "./components/HomePage";
 import axios from "axios";
 import "./index.css";
 
@@ -56,6 +56,7 @@ class App extends Component {
             updateUser={this.updateUser}
             loggedIn={this.state.loggedIn}
           />
+          <Route exact path="/" component={HomePage} />
           <Route exact path="/donations" component={DonationIndex} />
           <Route exact path="/donations/new" component={DonationForm} />
           <Route exact path="/users/new" component={UserForm} />

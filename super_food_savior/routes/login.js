@@ -1,18 +1,21 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const passport = require('passport');
+const passport = require("passport");
 
 // login page
 
-router.get('/', function(req, res, next) {
-  res.render('login/new');
+router.get("/", function(req, res, next) {
+  res.json({
+    message: "success"
+  });
 });
 
-router.post('/', passport.authenticate(
-  'local', {
-    successRedirect: '/donations',
-    failureRedirect: '/login'
-  }
-));
+router.post(
+  "/",
+  passport.authenticate("local", {
+    successRedirect: "/donations",
+    failureRedirect: "/login"
+  })
+);
 
 module.exports = router;
