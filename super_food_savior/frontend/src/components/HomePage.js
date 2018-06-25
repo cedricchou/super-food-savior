@@ -14,13 +14,13 @@ export default class HomePage extends Component {
         stopOnHover={false}
       >
         <div>
-          <img src={require("./assets/picture1.jpg")} />
+          <img src={require("./assets/picture1.jpg")} alt="" />
         </div>
         <div>
-          <img src={require("./assets/picture2.jpg")} />
+          <img src={require("./assets/picture2.jpg")} alt="" />
         </div>
         <div>
-          <img src={require("./assets/picture3.png")} />
+          <img src={require("./assets/picture3.png")} alt="" />
         </div>
       </Carousel>
     );

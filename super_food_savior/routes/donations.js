@@ -107,7 +107,7 @@ router.get("/:id", function(req, res) {
         .where({ id: donationShow.user_id })
         .then(([data]) => {
           const user_data = data;
-          res.render("donations/show", {
+          res.json({
             timeAgo,
             current_user,
             user_data,

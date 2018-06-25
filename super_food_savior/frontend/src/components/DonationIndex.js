@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardImg,
@@ -28,6 +29,7 @@ export default class DonationIndex extends Component {
             <CardBody>
               <CardTitle>{donation.title}</CardTitle>
               <CardText>{donation.description}</CardText>
+              <Link to={`/donations/${donation.id}`}>See Donation</Link>
             </CardBody>
           </Card>
         </div>

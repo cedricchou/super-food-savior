@@ -1,6 +1,8 @@
 import React, { Component } from "react";
+import { Switch } from "react-router-dom";
 import DonationForm from "./components/DonationForm";
 import DonationIndex from "./components/DonationIndex";
+import DonationPage from "./components/DonationPage";
 import UserForm from "./components/UserForm";
 import NavigationBar from "./components/NavBar";
 import UserSignIn from "./components/UserSignIn";
@@ -56,15 +58,18 @@ class App extends Component {
             updateUser={this.updateUser}
             loggedIn={this.state.loggedIn}
           />
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/donations" component={DonationIndex} />
-          <Route exact path="/donations/new" component={DonationForm} />
-          <Route exact path="/users/new" component={UserForm} />
-          <Route
-            exact
-            path="/login"
-            render={() => <UserSignIn updateUser={this.updateUser} />}
-          />
+          <Switch>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/donations" component={DonationIndex} />
+            <Route exact path="/donations/new" component={DonationForm} />
+            <Route exact path="/donations/:id" component={DonationPage} />
+            <Route exact path="/users/new" component={UserForm} />
+            <Route
+              exact
+              path="/login"
+              render={() => <UserSignIn updateUser={this.updateUser} />}
+            />
+          </Switch>
         </div>
       </Router>
     );
