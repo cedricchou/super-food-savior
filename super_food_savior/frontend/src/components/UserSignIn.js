@@ -25,9 +25,11 @@ export default class UserSignIn extends Component {
       .post("/login", this.state)
       .then(res => {
         if (res.status === 200) {
+          const user = res.data.user[0];
           this.props.updateUser({
             loggedIn: true,
-            email: res.data.email
+            email: user.email,
+            user: user
           });
           this.setState({
             redirectTo: "/donations"

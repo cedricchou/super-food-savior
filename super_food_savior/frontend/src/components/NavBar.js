@@ -6,7 +6,6 @@ import SignUpOutStatus from "./SignUpOutStatus";
 
 export default function NavigationBar(props) {
   const { user, loggedIn, onSignOut = () => {} } = props;
-
   const handleSignout = event => {
     event.preventDefault();
     onSignOut();
@@ -26,11 +25,14 @@ export default function NavigationBar(props) {
             <NavItem>
               <NavLink href="/donations/new">Post a donation</NavLink>
             </NavItem>
-            <p>Welcome Cedric</p>
+            <NavLink>Welcome {user.first_name}</NavLink>
             <NavItem>
-              <a href="" onClick={handleSignout}>
+              <NavLink href="" onClick={handleSignout}>
                 Sign Out
-              </a>
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <DonationSearch />
             </NavItem>
           </Nav>
         </Navbar>

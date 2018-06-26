@@ -15,7 +15,13 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
       .select()
       .from("donations")
       .then(donations => {
-        res.json({ donations });
+        knex
+          .select()
+          .from("users")
+          .where({ id: res.locals.user.id })
+          .then(user => {
+            res.json({ donations, user });
+          });
       });
   } else if (research) {
     knex
@@ -23,7 +29,13 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
       .from("donations")
       .where("title", "ILIKE", `%${research}%`)
       .then(donations => {
-        res.json({ donations, GMAP_KEY: GMAP.GMAP_KEY });
+        knex
+          .select()
+          .from("users")
+          .where({ id: res.locals.user.id })
+          .then(user => {
+            res.json({ donations, user, GMAP_KEY: GMAP.GMAP_KEY });
+          });
       });
   }
 });

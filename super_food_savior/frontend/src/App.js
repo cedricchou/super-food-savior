@@ -17,7 +17,8 @@ class App extends Component {
     super();
     this.state = {
       loggedIn: false,
-      email: null
+      email: null,
+      user: null
     };
 
     this.getUser = this.getUser.bind(this);
@@ -28,32 +29,35 @@ class App extends Component {
     this.getUser();
   }
 
-  updateUser = userObject => {
-    this.setState(userObject);
-  };
-
   getUser() {
     axios.get("/").then(res => {
       if (res.data.user) {
-        console.log("Get User: There is a user saved in the server session: ");
+        const user = res.data.user[0];
         this.setState({
           loggedIn: true,
-          email: res.data.user.email
+          email: user.email,
+          user: user
         });
       } else {
         this.setState({
           loggedIn: false,
-          email: null
+          email: null,
+          user: null
         });
       }
     });
   }
 
-  clearUser() {
+  updateUser = user => {
+    this.setState(user);
+  };
+
+  clearUser(props) {
     localStorage.clear();
     this.setState({
       loggedIn: false,
-      email: null
+      email: null,
+      user: null
     });
   }
 
@@ -62,6 +66,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavigationBar
+            user={this.state.user}
             updateUser={this.updateUser}
             loggedIn={this.state.loggedIn}
             onSignOut={this.clearUser}
