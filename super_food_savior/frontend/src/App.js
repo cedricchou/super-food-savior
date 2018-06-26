@@ -34,7 +34,6 @@ class App extends Component {
 
   getUser() {
     axios.get("/").then(res => {
-      console.log(res.data);
       if (res.data.user) {
         console.log("Get User: There is a user saved in the server session: ");
         this.setState({
@@ -50,6 +49,14 @@ class App extends Component {
     });
   }
 
+  clearUser() {
+    localStorage.clear();
+    this.setState({
+      loggedIn: false,
+      email: null
+    });
+  }
+
   render() {
     return (
       <Router>
@@ -57,6 +64,7 @@ class App extends Component {
           <NavigationBar
             updateUser={this.updateUser}
             loggedIn={this.state.loggedIn}
+            onSignOut={this.clearUser}
           />
           <Switch>
             <Route exact path="/" component={HomePage} />
