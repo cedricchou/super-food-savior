@@ -23,6 +23,7 @@ export default class DonationIndex extends Component {
 
   renderDonations(donations) {
     if (donations) {
+      console.log(localStorage);
       return donations.map((donation, index) => (
         <div key={index} className="col-md-4 mb-4">
           <Card>

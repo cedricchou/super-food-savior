@@ -33,16 +33,11 @@ class App extends Component {
     axios.get("/").then(res => {
       if (res.data.user) {
         const user = res.data.user[0];
+        localStorage.getItem("session");
         this.setState({
           loggedIn: true,
           email: user.email,
           user: user
-        });
-      } else {
-        this.setState({
-          loggedIn: false,
-          email: null,
-          user: null
         });
       }
     });
@@ -52,8 +47,8 @@ class App extends Component {
     this.setState(user);
   };
 
-  clearUser(props) {
-    localStorage.clear();
+  clearUser() {
+    localStorage.removeItem("session");
     this.setState({
       loggedIn: false,
       email: null,

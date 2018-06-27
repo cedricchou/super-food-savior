@@ -31,6 +31,7 @@ export default class UserSignIn extends Component {
             email: user.email,
             user: user
           });
+          localStorage.setItem("session", user.email);
           this.setState({
             redirectTo: "/donations"
           });
