@@ -1,5 +1,5 @@
 import React from "react";
-
+/* global google */
 const { compose, withProps, lifecycle } = require("recompose");
 const {
   withScriptjs,
@@ -7,18 +7,13 @@ const {
   GoogleMap,
   DirectionsRenderer
 } = require("react-google-maps");
-const google = window.google;
 
 export default class GoogleMapDirections extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
   render() {
+    const { GMAP_KEY, current_user_data, user_data } = this.props;
     const MapWithADirectionsRenderer = compose(
       withProps({
-        googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${
-          this.props.GMAP_KEY
-        }`,
+        googleMapURL: `https://maps.googleapis.com/maps/api/js?key=${GMAP_KEY}`,
         loadingElement: <div style={{ height: `100%` }} />,
         containerElement: <div style={{ height: `400px` }} />,
         mapElement: <div style={{ height: `100%` }} />
@@ -32,12 +27,12 @@ export default class GoogleMapDirections extends React.PureComponent {
           DirectionsService.route(
             {
               origin: new google.maps.LatLng(
-                this.props.current_user_data.latitude,
-                this.props.current_user_data.longitude
+                current_user_data.latitude,
+                current_user_data.longitude
               ),
               destination: new google.maps.LatLng(
-                this.props.user_data.latitude,
-                this.props.user_data.longitude
+                user_data.latitude,
+                user_data.longitude
               ),
               travelMode: google.maps.TravelMode.DRIVING
             },
@@ -57,8 +52,8 @@ export default class GoogleMapDirections extends React.PureComponent {
       <GoogleMap
         defaultZoom={10}
         defaultCenter={{
-          lat: 49.2827,
-          lng: -123.1207
+          lat: current_user_data.latitude,
+          lng: current_user_data.longitude
         }}
       >
         {props.directions && (
