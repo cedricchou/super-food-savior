@@ -3,10 +3,6 @@ import axios from "axios";
 import { Form, Button } from "reactstrap";
 
 export default class DonationDelete extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   deleteDonation = event => {
     event.preventDefault();
     const donationId = this.props.donation.id;

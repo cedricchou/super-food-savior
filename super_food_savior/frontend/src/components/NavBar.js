@@ -5,13 +5,13 @@ import SignInOutStatus from "./SignInOutStatus";
 import SignUpOutStatus from "./SignUpOutStatus";
 
 export default function NavigationBar(props) {
-  const { user, loggedIn, onSignOut = () => {} } = props;
+  const { onSignOut = () => {} } = props;
   const handleSignout = event => {
     event.preventDefault();
     onSignOut();
   };
 
-  if (loggedIn === true) {
+  if (localStorage.length !== 0) {
     return (
       <div>
         <Navbar className="NavBar" light expand="md">
@@ -25,7 +25,7 @@ export default function NavigationBar(props) {
             <NavItem>
               <NavLink href="/donations/new">Post a donation</NavLink>
             </NavItem>
-            <NavLink>Welcome {user.first_name}</NavLink>
+            <NavLink>Welcome {localStorage.session}</NavLink>
             <NavItem>
               <NavLink href="" onClick={handleSignout}>
                 Sign Out

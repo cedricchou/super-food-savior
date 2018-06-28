@@ -49,11 +49,6 @@ class App extends Component {
 
   clearUser() {
     localStorage.removeItem("session");
-    this.setState({
-      loggedIn: false,
-      email: null,
-      user: null
-    });
   }
 
   render() {
