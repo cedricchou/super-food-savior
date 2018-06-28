@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import GoogleMapComponent from "./GoogleMapComponent";
 import GoogleMapDirections from "./GoogleMapDirections";
 import MessageForm from "./MessageForm";
+import DonationDelete from "./DonationDelete";
 import axios from "axios";
 
 export default class DonationPage extends Component {
@@ -54,11 +55,14 @@ export default class DonationPage extends Component {
     if (userA) {
       if (userA.id === userB.id) {
         return (
-          <GoogleMapComponent
-            GMAP_KEY={this.state.GMAP_KEY}
-            user_data={userB}
-            current_user_data={userA}
-          />
+          <div>
+            <DonationDelete donation={this.state.donation} />
+            <GoogleMapComponent
+              GMAP_KEY={this.state.GMAP_KEY}
+              user_data={userB}
+              current_user_data={userA}
+            />
+          </div>
         );
       } else {
         return (

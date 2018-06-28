@@ -93,7 +93,16 @@ router.post("/:id", function(req, res) {
     .where({ id: donationId })
     .del()
     .then(() => {
-      res.redirect("/donations");
+      res.json({
+        success: true,
+        message: "Thank you for posting!"
+      });
+    })
+    .catch(() => {
+      res.json({
+        success: false,
+        message: "Error: missing parameters"
+      });
     });
 });
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink, NavItem, Form } from "reactstrap";
+import { NavLink, Form } from "reactstrap";
 
 export default function SignUpOutStatus(props) {
   return (
