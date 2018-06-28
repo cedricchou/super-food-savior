@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapComponent from "./GoogleMapComponent";
 import GoogleMapDirections from "./GoogleMapDirections";
+import MessageForm from "./MessageForm";
 import axios from "axios";
 
 export default class DonationPage extends Component {
@@ -61,11 +62,17 @@ export default class DonationPage extends Component {
         );
       } else {
         return (
-          <GoogleMapDirections
-            GMAP_KEY={this.state.GMAP_KEY}
-            user_data={userB}
-            current_user_data={userA}
-          />
+          <div>
+            <MessageForm
+              donation={this.state.donation}
+              current_user_data={userA}
+            />
+            <GoogleMapDirections
+              GMAP_KEY={this.state.GMAP_KEY}
+              user_data={userB}
+              current_user_data={userA}
+            />
+          </div>
         );
       }
     }

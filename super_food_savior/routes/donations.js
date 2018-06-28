@@ -147,7 +147,16 @@ router.post("/:id/messages", function(req, res) {
     .insert(toInsert)
     .into("messages")
     .then(() => {
-      res.redirect("/donations");
+      res.json({
+        success: true,
+        message: "Thank you for posting!"
+      });
+    })
+    .catch(() => {
+      res.json({
+        success: false,
+        message: "Error: missing parameters"
+      });
     });
 });
 
