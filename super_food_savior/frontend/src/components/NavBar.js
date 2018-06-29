@@ -3,6 +3,7 @@ import { Navbar, Nav, NavLink, NavItem } from "reactstrap";
 import DonationSearch from "./DonationSearch";
 import SignInOutStatus from "./SignInOutStatus";
 import SignUpOutStatus from "./SignUpOutStatus";
+import ToggleDashboard from "./sidebar/ToggleDashboard";
 
 export default function NavigationBar(props) {
   const { onSignOut = () => {} } = props;
@@ -16,6 +17,9 @@ export default function NavigationBar(props) {
       <div>
         <Navbar className="NavBar" light expand="md">
           <Nav className="m-auto">
+            <NavItem>
+              <ToggleDashboard click={props.handleToggler} />
+            </NavItem>
             <NavItem>
               <NavLink href="/">Home</NavLink>
             </NavItem>

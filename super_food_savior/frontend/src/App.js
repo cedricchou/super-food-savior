@@ -5,6 +5,8 @@ import DonationIndex from "./components/DonationIndex";
 import DonationPage from "./components/DonationPage";
 import UserForm from "./components/UserForm";
 import NavigationBar from "./components/NavBar";
+import SideNavBar from "./components/sidebar/SideNavBar";
+import BackDrop from "./components/sidebar/BackDrop";
 import UserSignIn from "./components/UserSignIn";
 import HomePage from "./components/HomePage";
 import axios from "axios";
@@ -18,7 +20,8 @@ class App extends Component {
     this.state = {
       loggedIn: false,
       email: null,
-      user: null
+      user: null,
+      sideNavOpener: false
     };
 
     this.getUser = this.getUser.bind(this);
@@ -51,7 +54,23 @@ class App extends Component {
     localStorage.removeItem("session");
   }
 
+  handleToggler = () => {
+    this.setState(prevState => {
+      return { sideNavOpener: !prevState.sideNavOpener };
+    });
+  };
+
+  handleBackdrop = () => {
+    this.setState({ sideNavOpener: false });
+  };
+
   render() {
+    let sideNav = "";
+    let backdrop = "";
+    if (this.state.sideNavOpener) {
+      sideNav = <SideNavBar />;
+      backdrop = <BackDrop click={this.handleToggler} />;
+    }
     return (
       <Router>
         <div className="App">
@@ -60,7 +79,10 @@ class App extends Component {
             updateUser={this.updateUser}
             loggedIn={this.state.loggedIn}
             onSignOut={this.clearUser}
+            handleToggler={this.handleToggler}
           />
+          {backdrop}
+          {sideNav}
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/donations" component={DonationIndex} />
