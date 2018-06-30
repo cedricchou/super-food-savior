@@ -22,3 +22,7 @@
 .sidenav li:hover {
   color: green;
 }
+
+.NavLink {
+  margin-left: -15px;
+}

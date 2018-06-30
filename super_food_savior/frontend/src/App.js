@@ -3,6 +3,8 @@ import { Switch } from "react-router-dom";
 import DonationForm from "./components/DonationForm";
 import DonationIndex from "./components/DonationIndex";
 import DonationPage from "./components/DonationPage";
+import UserDonation from "./components/user/UserDonation";
+import UserMessage from "./components/user/UserMessage";
 import UserForm from "./components/UserForm";
 import NavigationBar from "./components/NavBar";
 import SideNavBar from "./components/sidebar/SideNavBar";
@@ -68,7 +70,7 @@ class App extends Component {
     let sideNav = "";
     let backdrop = "";
     if (this.state.sideNavOpener) {
-      sideNav = <SideNavBar user={this.state.getUser} />;
+      sideNav = <SideNavBar />;
       backdrop = <BackDrop click={this.handleToggler} />;
     }
     return (
@@ -89,6 +91,8 @@ class App extends Component {
             <Route exact path="/donations/new" component={DonationForm} />
             <Route exact path="/donations/:id" component={DonationPage} />
             <Route exact path="/users/new" component={UserForm} />
+            <Route exact path="/users/:id/donations" component={UserDonation} />
+            <Route exact path="/users/:id/messages" component={UserMessage} />
             <Route
               exact
               path="/login"

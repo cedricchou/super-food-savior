@@ -1,4 +1,6 @@
 import React from "react";
+import DonationMessage from "../user/DonationMessage";
+import { NavLink } from "reactstrap";
 import "./SideNavBar.css";
 
 function SideNavBar(props) {
@@ -6,12 +8,20 @@ function SideNavBar(props) {
     <nav className="sidenav">
       <ul>
         <li>
-          <a href={`/users/${localStorage.session_id}/donations`}>
+          <NavLink
+            className="NavLink"
+            href={`/users/${localStorage.session_id}/donations`}
+          >
             My Donations
-          </a>
+          </NavLink>
         </li>
         <li>
-          <a href={`/users/${localStorage.session_id}/messages`}>My Messages</a>
+          <NavLink
+            className="NavLink"
+            href={`/users/${localStorage.session_id}/messages`}
+          >
+            My Messages
+          </NavLink>
         </li>
       </ul>
     </nav>
