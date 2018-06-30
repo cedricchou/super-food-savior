@@ -21,17 +21,25 @@ export default class UserSignIn extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+
     axios
       .post("/login", this.state)
       .then(res => {
         if (res.status === 200) {
           const user = res.data.user[0];
+          const storeLocalStorage = user => {
+            if (user) {
+              localStorage.setItem("session", user.first_name);
+              localStorage.setItem("session_id", user.id);
+            }
+          };
           this.props.updateUser({
             loggedIn: true,
             email: user.email,
             user: user
           });
-          localStorage.setItem("session", user.first_name);
+          // localStorage.setItem("session", user.first_name);
+          storeLocalStorage(user);
           this.setState({
             redirectTo: "/donations"
           });

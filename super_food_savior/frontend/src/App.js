@@ -68,7 +68,7 @@ class App extends Component {
     let sideNav = "";
     let backdrop = "";
     if (this.state.sideNavOpener) {
-      sideNav = <SideNavBar />;
+      sideNav = <SideNavBar user={this.state.getUser} />;
       backdrop = <BackDrop click={this.handleToggler} />;
     }
     return (
