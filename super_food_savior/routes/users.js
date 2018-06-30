@@ -82,7 +82,12 @@ router.get("/:id/messages", myfuncs.checkAuth, function(req, res) {
     .from("messages")
     .where({ user_id })
     .then(myMessages => {
-      res.render("users/messages", { myMessages });
+      res.json({ myMessages });
+    })
+    .catch(res => {
+      res.json({
+        message: "Could not fetch data"
+      });
     });
 });
 
@@ -116,8 +121,12 @@ router.get("/:id/donations", myfuncs.checkAuth, function(req, res) {
     .from("donations")
     .where({ user_id })
     .then(myDonations => {
-      console.log(myDonations);
       res.json({ myDonations });
+    })
+    .catch(res => {
+      res.json({
+        message: "Could not fetch the data"
+      });
     });
 });
 
