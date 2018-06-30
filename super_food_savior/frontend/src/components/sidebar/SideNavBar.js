@@ -1,5 +1,4 @@
 import React from "react";
-import DonationMessage from "../user/DonationMessage";
 import { NavLink } from "reactstrap";
 import "./SideNavBar.css";
 

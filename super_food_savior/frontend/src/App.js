@@ -54,6 +54,7 @@ class App extends Component {
 
   clearUser() {
     localStorage.removeItem("session");
+    localStorage.removeItem("session_id");
   }
 
   handleToggler = () => {

@@ -52,6 +52,11 @@ body {
   margin: 30px;
 }
 
+.UserDonation {
+  margin-top: 20px;
+  padding: 10px;
+}
+
 .ToggleDashbord {
   position: fixed;
   left: 1%;

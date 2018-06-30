@@ -50,12 +50,13 @@ router.post(
                 message: "Thanks for signing up!"
               });
             });
-          }).catch(() => {
+          })
+          .catch(() => {
             res.json({
               success: true,
               message: "Thanks for signing up!"
-          })
-        });
+            });
+          });
       });
     });
   },
@@ -63,7 +64,7 @@ router.post(
     successRedirect: "/donations",
     failureRedirect: "/users/new"
   })
-)
+);
 
 // Route to user creation page
 
@@ -116,7 +117,7 @@ router.get("/:id/donations", myfuncs.checkAuth, function(req, res) {
     .where({ user_id })
     .then(myDonations => {
       console.log(myDonations);
-      res.render("users/donations", { myDonations });
+      res.json({ myDonations });
     });
 });
 
