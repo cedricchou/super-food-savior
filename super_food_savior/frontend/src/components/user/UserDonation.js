@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Card, CardBody, CardTitle, CardText } from "reactstrap";
+import { Link } from "react-router-dom";
+import { Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
 import axios from "axios";
 
 export default class UserDonation extends Component {
@@ -19,20 +20,31 @@ export default class UserDonation extends Component {
 
   renderUserDonation(donation) {
     if (donation) {
-      return donation.map((don, i) => (
-        <div key={i} className="col-md-4 mb-4">
-          <Card>
-            <CardBody>
-              <CardTitle>{don.title}</CardTitle>
-              <CardText>{don.description}</CardText>
-            </CardBody>
-          </Card>
-        </div>
-      ));
+      console.log(donation[0]);
+      return donation
+        .slice(0)
+        .reverse()
+        .map((don, i) => (
+          <div key={i} className="col-md-4 mb-4">
+            <Card>
+              <CardImg src={don.pictureUrl} />
+              <CardBody>
+                <CardTitle>{don.title}</CardTitle>
+                <CardText>{don.description}</CardText>
+              </CardBody>
+              <Link
+                to={`/users/${localStorage.session_id}/donations/${don.id}`}
+              >
+                See Messages{" "}
+              </Link>
+            </Card>
+          </div>
+        ));
     }
   }
 
   render() {
+    console.log(this.state);
     return (
       <div className="UserDonation row">
         {this.renderUserDonation(this.state.donation)}

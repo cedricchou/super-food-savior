@@ -106,7 +106,10 @@ router.get("/:id/messages/:id", myfuncs.checkAuth, function(req, res) {
         .from("answers")
         .where({ message_id })
         .then(answers => {
-          res.render("messages/answers", { answers, message, userId });
+          res.json({ answers, message, userId });
+        })
+        .catch(res => {
+          message: "Could not access data";
         });
     });
 });
@@ -140,7 +143,12 @@ router.get("/:id/donations/:id/", myfuncs.checkAuth, function(req, res) {
     .from("messages")
     .where({ donation_id })
     .then(allMessages => {
-      res.render("donations/messages", { allMessages, userId });
+      res.json({ allMessages, userId });
+    })
+    .catch(res => {
+      res.json({
+        message: "Could not access the data"
+      });
     });
 });
 

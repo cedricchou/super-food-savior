@@ -6,8 +6,7 @@ export default class DonationForm extends Component {
   state = {
     title: "",
     description: "",
-    pictureUrl: "",
-    weight: ""
+    donationPic: ""
   };
 
   handleChange = event => {
@@ -19,7 +18,7 @@ export default class DonationForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const toSend = this.state;
-
+    console.log(toSend);
     axios
       .post("/donations", toSend)
       .then(function(res) {
@@ -31,6 +30,12 @@ export default class DonationForm extends Component {
       .catch(function(error) {
         console.log(error);
       });
+  };
+
+  fileSelectedHandler = event => {
+    this.setState({
+      donationPic: event.target.files[0].name
+    });
   };
 
   render() {
@@ -52,10 +57,10 @@ export default class DonationForm extends Component {
         />
         <Label>Add a Picture:</Label>
         <Input
-          type="text"
-          name="pictureUrl"
-          value={this.state.pictureUrl}
-          onChange={this.handleChange}
+          type="file"
+          name="donationPic"
+          value={this.state.fileSelectedHandler}
+          onChange={this.fileSelectedHandler}
         />
         <br />
         <Button type="submit">Post Donation</Button>

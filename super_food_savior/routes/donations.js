@@ -43,17 +43,19 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
 // Create new donation
 
 router.post("/", (req, res) => {
-  let donationPic = req.files.picture;
-  let donationPicName = donationPic.name;
+  // let donationPic = req.files.picture;
+  // let donationPicName = donationPic.name;
+  console.log(req.body.donationPic);
+  let donationPicName = req.body.donationPic;
   let creationDate = Date.now().toLocaleString();
   let createdAt = creationDate.replace(/\s*,/g, "_");
   const cleanName = donationPicName.replace(/\s/g, "_");
-  donationPic.mv("./public/upload/" + createdAt + cleanName);
+  // donationPic.mv("./public/upload/" + createdAt + cleanName);
 
   const toInsert = {
     title: req.body.title,
     description: req.body.description,
-    pictureUrl: "/upload/" + createdAt + cleanName,
+    pictureUrl: "/upload/" + cleanName,
     user_id: res.locals.user.id
   };
 

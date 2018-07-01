@@ -17,22 +17,26 @@ export default class UserMessage extends Component {
     });
   }
 
-  renderUserMessage(messages) {
-    if (messages) {
-      return messages.map((message, index) => {
-        <div key={index} className="col-md-4 mb-4">
-          <Card>
-            <CardBody>
-              <CardText>{message.id}</CardText>
-            </CardBody>
-          </Card>
-        </div>;
-      });
+  renderUserMessage(message) {
+    if (message) {
+      console.log(message[0]);
+      return message
+        .slice(0)
+        .reverse()
+        .map((mes, i) => {
+          <div key={i} className="col-md-4 mb-4">
+            <Card>
+              <CardBody>
+                <CardText>{mes.content}</CardText>
+              </CardBody>
+            </Card>
+          </div>;
+        });
     }
   }
 
   render() {
-    console.log(this.state.message);
+    console.log(this.state);
 
     return (
       <div className="UserMessage row">
