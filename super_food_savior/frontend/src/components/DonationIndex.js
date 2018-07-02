@@ -9,8 +9,10 @@ export default class DonationIndex extends Component {
     this.state = {
       donations: null
     };
+
     axios.get("/donations").then(res => {
       this.setState({ donations: res.data.donations });
+      console.log(res.data);
     });
   }
 

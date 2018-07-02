@@ -24,7 +24,7 @@ export default class DonationForm extends Component {
       .then(function(res) {
         console.log(res);
         if (res && res.data && res.data.success) {
-          alert("nice work man");
+          alert("Thanks for posting your donation!");
         }
       })
       .catch(function(error) {

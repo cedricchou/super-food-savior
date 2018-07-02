@@ -10,6 +10,7 @@ const GMAP = require("../frontend/app_keys/app_keys");
 
 router.get("/", myfuncs.checkAuth, function(req, res) {
   const research = req.query.research;
+  console.log(req.query.research);
   if (research === undefined) {
     knex
       .select()

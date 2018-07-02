@@ -6,6 +6,7 @@ import DonationPage from "./components/DonationPage";
 import UserDonation from "./components/user/UserDonation";
 import UserMessage from "./components/user/UserMessage";
 import DonationMessage from "./components/user/DonationMessage";
+import DonationSearch from "./components/DonationSearch";
 import UserForm from "./components/UserForm";
 import NavigationBar from "./components/NavBar";
 import SideNavBar from "./components/sidebar/SideNavBar";
@@ -24,7 +25,8 @@ class App extends Component {
       loggedIn: false,
       email: null,
       user: null,
-      sideNavOpener: false
+      sideNavOpener: false,
+      results: null
     };
 
     this.getUser = this.getUser.bind(this);
@@ -34,6 +36,19 @@ class App extends Component {
   componentDidMount() {
     this.getUser();
   }
+
+  filteredDonations = (query = "car") => {
+    axios
+      .get("/donations")
+      .then(res => {
+        this.setState({
+          results: res.data.donations
+        });
+      })
+      .catch(error => {
+        console.log("Error fetching and parsing data", error);
+      });
+  };
 
   getUser() {
     axios.get("/").then(res => {
@@ -87,6 +102,7 @@ class App extends Component {
           />
           {backdrop}
           {sideNav}
+
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/donations" component={DonationIndex} />

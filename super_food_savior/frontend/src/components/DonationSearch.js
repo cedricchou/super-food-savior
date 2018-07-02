@@ -6,11 +6,11 @@ export default class DonationSearch extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: ""
+      research: null
     };
   }
 
-  handleChange = event => {
+  handleChange = name => event => {
     const searchFunction = {};
     searchFunction[event.target.name] = event.target.value;
     this.setState(searchFunction);
@@ -18,15 +18,17 @@ export default class DonationSearch extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    axios.get("/donations", this.state).then(res => {
-      console.log(res);
-    });
   };
 
   render() {
     return (
       <Form className="DonationSearch" onSubmit={this.handleSubmit}>
-        <Input type="search" placeholder="search donation" name="research" />
+        <Input
+          type="search"
+          placeholder="search donation"
+          name="research"
+          onChange={this.handleChange}
+        />
         <Button type="submit" className="SearchButton btn btn-success">
           Search{" "}
         </Button>

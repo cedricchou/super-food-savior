@@ -24,12 +24,12 @@ export default class UserForm extends Component {
       .then(function(res) {
         console.log(res);
         if (!res.data.errmsg) {
-          console.log("successful signup");
+          alert("Thanks for signing up!!");
           this.setState({
             redirectTo: "/login"
           });
         } else {
-          console.log("username already taken");
+          alert("email already used");
         }
       })
       .catch(function(error) {

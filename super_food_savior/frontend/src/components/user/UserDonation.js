@@ -20,7 +20,6 @@ export default class UserDonation extends Component {
 
   renderUserDonation(donation) {
     if (donation) {
-      console.log(donation[0]);
       return donation
         .slice(0)
         .reverse()
