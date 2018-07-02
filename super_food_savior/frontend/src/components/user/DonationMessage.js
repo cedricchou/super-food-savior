@@ -63,7 +63,7 @@ export default class DonationMessage extends Component {
     } else {
       console.log(this.state.allMessages);
       return (
-        <div className="DonationMessage">
+        <main className="DonationMessage">
           <ul>
             {this.state.allMessages.map((oneMessage, i) => {
               <li key={i}>
@@ -71,7 +71,7 @@ export default class DonationMessage extends Component {
               </li>;
             })}
           </ul>
-        </div>
+        </main>
       );
     }
   }

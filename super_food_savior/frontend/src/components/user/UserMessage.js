@@ -46,7 +46,7 @@ export default class UserMessage extends Component {
     } else {
       console.log(this.state.messages);
       return (
-        <div className="UserMessage row">
+        <main className="UserMessage row">
           {this.state.messages.map((message, index) => {
             <div key={index} className="col-md-4 mb-4">
               <Card>
@@ -56,7 +56,7 @@ export default class UserMessage extends Component {
               </Card>
             </div>;
           })};
-        </div>
+        </main>
       );
     }
   }

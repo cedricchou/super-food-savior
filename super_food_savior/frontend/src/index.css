@@ -31,8 +31,9 @@ body {
 }
 
 .DonationIndex {
-  margin-top: 20px;
+  padding-top: 30px;
   padding: 10px;
+  background: linear-gradient(to left top, DarkSlategrey, #303030);
 }
 
 .DonationSearch {
