@@ -10,11 +10,6 @@ export default class DonationIndex extends Component {
       donations: null,
       filtered: null
     };
-
-    // axios.get("/donations").then(res => {
-    //   this.setState({ donations: res.data.donations });
-    //   console.log(res.data);
-    // });
   }
 
   componentDidMount() {
@@ -47,7 +42,7 @@ export default class DonationIndex extends Component {
         .reverse()
         .map((donation, index) => (
           <div key={index} className="col-md-3 mb-4">
-            <Card>
+            <Card className="h-100">
               <img src={donation.pictureUrl} style={imageDetail} />
               <CardBody>
                 <CardTitle>{donation.title}</CardTitle>

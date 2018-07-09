@@ -14,7 +14,6 @@ export default class DonationMessage extends Component {
     axios
       .get(`/users/${localStorage.session_id}/donations/${donationId}/`)
       .then(res => {
-        console.log(res);
         if (res.status === 200)
           this.setState({
             allMessages: res.data.allMessages,
@@ -26,33 +25,6 @@ export default class DonationMessage extends Component {
       });
   }
 
-  // async componentDidMount() {
-  //   const donationId = this.props.match.params.id;
-  //   console.log(donationId);
-  //   const res = await axios.get(
-  //     `/users/${localStorage.session_id}/donations/${donationId}/`
-  //   );
-  //   console.log(res);
-  //   this.setMessageState({
-  //     allMessages: res.data.allMessages,
-  //     loading: false
-  //   });
-  // }
-
-  // renderDonationMessage(message) {
-  //   if (message) {
-  //     return message.map((mes, i) => {
-  //       <div key={i} className="col-md-4 mb-4">
-  //         <Card>
-  //           <CardBody>
-  //             <CardText>test</CardText>
-  //           </CardBody>
-  //         </Card>
-  //       </div>;
-  //     });
-  //   }
-  // }
-
   render() {
     if (this.state.loading) {
       return (
@@ -61,16 +33,19 @@ export default class DonationMessage extends Component {
         </div>
       );
     } else {
-      console.log(this.state.allMessages);
       return (
         <main className="DonationMessage">
-          <ul>
-            {this.state.allMessages.map((oneMessage, i) => {
-              <li key={i}>
-                <h1>{oneMessage.content}</h1>
-              </li>;
-            })}
-          </ul>
+          {this.state.allMessages.map((oneMessage, i) => {
+            return (
+              <div key={i}>
+                <Card className="h-100">
+                  <CardBody>
+                    <CardText>{oneMessage.content}</CardText>
+                  </CardBody>
+                </Card>
+              </div>
+            );
+          })}
         </main>
       );
     }

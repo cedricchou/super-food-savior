@@ -2,13 +2,22 @@ html {
   min-height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  background: linear-gradient(to left top, DarkSlategrey, #303030);
+  background-image: url("./marble.jpg");
 }
 
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+}
+
+.App {
+  color: white;
+  background-image: url("./marble.jpg");
+}
+
+.card-body {
+  background-color: navy;
 }
 
 .DonationForm {
@@ -32,8 +41,8 @@ body {
 
 .DonationIndex {
   padding-top: 30px;
-  padding: 10px;
-  background: linear-gradient(to left top, DarkSlategrey, #303030);
+  padding: 20px;
+  background-image: url("marble.jpg");
 }
 
 .DonationSearch {
@@ -54,6 +63,11 @@ body {
 }
 
 .UserDonation {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.UserMessage {
   margin-top: 20px;
   padding: 10px;
 }

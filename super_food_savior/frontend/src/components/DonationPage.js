@@ -14,6 +14,10 @@ export default class DonationPage extends Component {
       current_user_data: null,
       user_data: null
     };
+    this.mapDisplay = this.mapDisplay.bind(this);
+  }
+
+  componentDidMount() {
     const donationId = this.props.match.params.id;
     axios.get(`/donations/${donationId}`).then(res => {
       this.setState({
@@ -23,31 +27,44 @@ export default class DonationPage extends Component {
         user_data: res.data.user_data
       });
     });
-    this.mapDisplay = this.mapDisplay.bind(this);
   }
-
-  // componentDidMount() {
-  //   const donationId = this.props.match.params.id;
-  //   axios.get(`/donations/${donationId}`).then(res => {
-  //     this.setState({
-  //       GMAP_KEY: res.data.GMAP_KEY,
-  //       donation: res.data.donationShow,
-  //       current_user_data: res.data.current_user_data,
-  //       user_data: res.data.user_data
-  //     });
-  //   });
-  // }
 
   renderDonation(donation) {
     if (donation) {
       return (
         <div>
-          <ul>
-            <li>{donation.title}</li>
-            <li>{donation.description}</li>
-          </ul>
+          <div className="col-md-4">
+            <ul>
+              <li>{donation.title}</li>
+              <li>{donation.description}</li>
+            </ul>
+          </div>
+          <div className="col-md-4 float-right">
+            <img src={donation.pictureUrl} />
+          </div>
         </div>
       );
+    }
+  }
+
+  showFunction(userA, userB) {
+    if (userA) {
+      if (userA.id === userB.id) {
+        return (
+          <div>
+            <DonationDelete donation={this.state.donation} />
+          </div>
+        );
+      } else {
+        return (
+          <div>
+            <MessageForm
+              donation={this.state.donation}
+              current_user_data={userA}
+            />
+          </div>
+        );
+      }
     }
   }
 
@@ -56,7 +73,6 @@ export default class DonationPage extends Component {
       if (userA.id === userB.id) {
         return (
           <div>
-            <DonationDelete donation={this.state.donation} />
             <GoogleMapComponent
               GMAP_KEY={this.state.GMAP_KEY}
               user_data={userB}
@@ -67,10 +83,6 @@ export default class DonationPage extends Component {
       } else {
         return (
           <div>
-            <MessageForm
-              donation={this.state.donation}
-              current_user_data={userA}
-            />
             <GoogleMapDirections
               GMAP_KEY={this.state.GMAP_KEY}
               user_data={userB}
@@ -83,10 +95,22 @@ export default class DonationPage extends Component {
   }
 
   render() {
+    const cardStyle = {
+      background: "lightgrey"
+    };
+
     return (
-      <div className="DonationPage">
-        {this.renderDonation(this.state.donation)}
-        {this.mapDisplay(this.state.current_user_data, this.state.user_data)}
+      <div className="DonationPage row">
+        <div className="col-md-6" style={cardStyle}>
+          {this.renderDonation(this.state.donation)}
+          {this.showFunction(
+            this.state.current_user_data,
+            this.state.user_data
+          )}
+        </div>
+        <div className="col-md-6">
+          {this.mapDisplay(this.state.current_user_data, this.state.user_data)}
+        </div>
       </div>
     );
   }

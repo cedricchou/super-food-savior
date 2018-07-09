@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Card, CardBody, CardText } from "reactstrap";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default class UserMessage extends Component {
@@ -19,23 +20,6 @@ export default class UserMessage extends Component {
     });
   }
 
-  // renderUserMessage(messages) {
-  //   if (messages) {
-  //     return messages
-  //       .slice(0)
-  //       .reverse()
-  //       .map((message, i) => {
-  // <div key={i} className="col-md-4 mb-4">
-  //   <Card>
-  //     <CardBody>
-  //       <CardText>{message.content}</CardText>
-  //     </CardBody>
-  //   </Card>
-  // </div>;
-  //       });
-  //   }
-  // }
-
   render() {
     if (this.state.loading) {
       return (
@@ -44,18 +28,19 @@ export default class UserMessage extends Component {
         </div>
       );
     } else {
-      console.log(this.state.messages);
       return (
         <main className="UserMessage row">
           {this.state.messages.map((message, index) => {
-            <div key={index} className="col-md-4 mb-4">
-              <Card>
-                <CardBody>
-                  <CardText>{message.content}</CardText>
-                </CardBody>
-              </Card>
-            </div>;
-          })};
+            return (
+              <div key={index} className="col-md-4 mb-4">
+                <Card>
+                  <CardBody>
+                    <CardText>{message.content}</CardText>
+                  </CardBody>
+                </Card>
+              </div>
+            );
+          })}
         </main>
       );
     }
