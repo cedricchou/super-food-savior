@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class MessageAnswers extends React {
+export default class MessageAnswers extends Component {
   render() {
     return (
       <div className="MessageAnswers">
-        <p>I am the answers page</p>
+        <h1>I am the answers page</h1>
       </div>
     );
   }

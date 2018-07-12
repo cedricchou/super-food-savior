@@ -5,6 +5,7 @@ import DonationIndex from "./components/DonationIndex";
 import DonationPage from "./components/DonationPage";
 import UserDonation from "./components/user/UserDonation";
 import UserMessage from "./components/user/UserMessage";
+import MessageAnswers from "./components/user/MessageAnswers";
 import DonationMessage from "./components/user/DonationMessage";
 import DonationSearch from "./components/DonationSearch";
 import UserForm from "./components/UserForm";
@@ -84,6 +85,7 @@ class App extends Component {
   };
 
   render() {
+    console.log(localStorage);
     let sideNav = "";
     let backdrop = "";
     if (this.state.sideNavOpener) {
@@ -110,6 +112,11 @@ class App extends Component {
             <Route exact path="/donations/:id" component={DonationPage} />
             <Route exact path="/users/new" component={UserForm} />
             <Route exact path="/users/:id/messages" component={UserMessage} />
+            <Route
+              exact
+              path="/users/:id/nessages/:id"
+              component={MessageAnswers}
+            />
             <Route exact path="/users/:id/donations" component={UserDonation} />
             <Route
               exact

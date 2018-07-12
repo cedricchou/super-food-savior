@@ -11,6 +11,10 @@ body {
   font-family: sans-serif;
 }
 
+.MessageAnswers {
+  color: black;
+}
+
 .App {
   color: white;
   background-image: url("./marble.jpg");

@@ -10,9 +10,10 @@ export default function NavigationBar(props) {
   const handleSignout = event => {
     event.preventDefault();
     onSignOut();
+    window.location.reload(true);
   };
 
-  if (localStorage.length !== 0) {
+  if (localStorage.session) {
     return (
       <div>
         <Navbar className="NavBar" light expand="md">
