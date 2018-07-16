@@ -33,7 +33,7 @@ export default class MessageAnswers extends Component {
     if (this.state.loading) {
       return (
         <div className="MessageAnswers">
-          <h1>Loading...</h1>
+          <h4>Loading...</h4>
         </div>
       );
     } else {

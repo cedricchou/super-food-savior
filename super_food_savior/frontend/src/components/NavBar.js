@@ -1,6 +1,6 @@
 import React from "react";
 import { Navbar, Nav, NavLink, NavItem } from "reactstrap";
-import DonationSearch from "./donations/DonationSearch";
+// import DonationSearch from "./donations/DonationSearch";
 import SignInOutStatus from "./authentication/SignInOutStatus";
 import SignUpOutStatus from "./authentication/SignUpOutStatus";
 import ToggleDashboard from "./sidebar/ToggleDashboard";
@@ -36,9 +36,9 @@ export default function NavigationBar(props) {
                 Sign Out
               </NavLink>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <DonationSearch />
-            </NavItem>
+            </NavItem> */}
           </Nav>
         </Navbar>
       </div>
@@ -63,9 +63,9 @@ export default function NavigationBar(props) {
             <NavItem>
               <SignUpOutStatus />
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <DonationSearch />
-            </NavItem>
+            </NavItem> */}
           </Nav>
         </Navbar>
       </div>

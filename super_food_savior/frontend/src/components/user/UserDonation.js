@@ -19,6 +19,12 @@ export default class UserDonation extends Component {
   }
 
   renderUserDonation(donation) {
+    const imageDetail = {
+      minHeight: "400px",
+      maxHeight: "400px",
+      minWidth: "100%"
+    };
+
     if (donation) {
       return donation
         .slice(0)
@@ -26,16 +32,16 @@ export default class UserDonation extends Component {
         .map((don, i) => (
           <div key={i} className="col-md-4 mb-4">
             <Card>
-              <CardImg src={don.pictureUrl} />
+              <CardImg src={don.pictureUrl} style={imageDetail} />
               <CardBody>
                 <CardTitle>{don.title}</CardTitle>
                 <CardText>{don.description}</CardText>
+                <Link
+                  to={`/users/${localStorage.session_id}/donations/${don.id}`}
+                >
+                  See Messages{" "}
+                </Link>
               </CardBody>
-              <Link
-                to={`/users/${localStorage.session_id}/donations/${don.id}`}
-              >
-                See Messages{" "}
-              </Link>
             </Card>
           </div>
         ));
@@ -43,7 +49,6 @@ export default class UserDonation extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div className="UserDonation row">
         {this.renderUserDonation(this.state.donation)}

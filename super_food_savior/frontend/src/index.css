@@ -18,10 +18,12 @@ body {
 .App {
   color: white;
   background-image: url("./marble.jpg");
+  z-index: -1;
 }
 
 .card-body {
   background-color: navy;
+  box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.8);
 }
 
 .DonationForm {
@@ -31,7 +33,8 @@ body {
 .NavBar {
   color: white;
   display: inline-flex;
-  background: linear-gradient(to bottom, #3e236d 30%, #3f51b5 70%);
+  background: navy;
+  /* background: linear-gradient(to bottom, #3e236d 30%, #3f51b5 70%); */
 }
 
 .NavBar * {
@@ -45,8 +48,7 @@ body {
 
 .DonationIndex {
   padding-top: 30px;
-  padding: 20px;
-  background-image: url("marble.jpg");
+  padding: 30px;
 }
 
 .DonationSearch {
@@ -67,8 +69,8 @@ body {
 }
 
 .UserDonation {
-  margin-top: 20px;
-  padding: 10px;
+  padding-top: 30px;
+  padding: 30px;
 }
 
 .UserMessage {
@@ -77,8 +79,7 @@ body {
 }
 
 .ToggleDashbord {
-  position: fixed;
-  left: 1%;
-  background-color: #1b3858 !important;
-  box-shadow: 3px 2px rgba(255, 255, 255, 0.4);
+  position: absolute;
+  left: 20px;
+  top: 15px;
 }
