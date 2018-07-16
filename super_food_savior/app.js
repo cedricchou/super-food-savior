@@ -45,7 +45,6 @@ app.use(
     resave: false,
     store: store,
     saveUninitialized: false
-    // cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 }
   })
 );
 
@@ -85,6 +84,7 @@ passport.use(
           const hash = user.password;
           bcrypt.compare(password, hash, function(err, res) {
             if (res === true) {
+              console.log(user);
               return done(null, user);
             } else {
               return done(null, false);

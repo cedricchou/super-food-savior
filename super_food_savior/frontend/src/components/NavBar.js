@@ -1,8 +1,8 @@
 import React from "react";
 import { Navbar, Nav, NavLink, NavItem } from "reactstrap";
-import DonationSearch from "./DonationSearch";
-import SignInOutStatus from "./SignInOutStatus";
-import SignUpOutStatus from "./SignUpOutStatus";
+import DonationSearch from "./donations/DonationSearch";
+import SignInOutStatus from "./authentication/SignInOutStatus";
+import SignUpOutStatus from "./authentication/SignUpOutStatus";
 import ToggleDashboard from "./sidebar/ToggleDashboard";
 
 export default function NavigationBar(props) {

@@ -44,7 +44,6 @@ router.post(
               id: data
             };
             req.login(user, err => {
-              console.log(err);
               res.json({
                 success: true,
                 message: "Thanks for signing up!"

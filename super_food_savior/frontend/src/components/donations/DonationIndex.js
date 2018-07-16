@@ -15,7 +15,6 @@ export default class DonationIndex extends Component {
   componentDidMount() {
     axios.get("/donations").then(res => {
       this.setState({ donations: res.data.donations });
-      console.log(res.data);
     });
   }
 

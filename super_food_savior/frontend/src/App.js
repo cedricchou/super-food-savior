@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { Switch } from "react-router-dom";
-import DonationForm from "./components/DonationForm";
-import DonationIndex from "./components/DonationIndex";
-import DonationPage from "./components/DonationPage";
+import HomePage from "./components/HomePage";
+import NavigationBar from "./components/NavBar";
+import DonationForm from "./components/donations/DonationForm";
+import DonationIndex from "./components/donations/DonationIndex";
+import DonationPage from "./components/donations/DonationPage";
+import DonationSearch from "./components/donations/DonationSearch";
 import UserDonation from "./components/user/UserDonation";
 import UserMessage from "./components/user/UserMessage";
 import MessageAnswers from "./components/user/MessageAnswers";
 import DonationMessage from "./components/user/DonationMessage";
-import DonationSearch from "./components/DonationSearch";
-import UserForm from "./components/UserForm";
-import NavigationBar from "./components/NavBar";
 import SideNavBar from "./components/sidebar/SideNavBar";
 import BackDrop from "./components/sidebar/BackDrop";
-import UserSignIn from "./components/UserSignIn";
-import HomePage from "./components/HomePage";
+import UserForm from "./components/authentication/UserForm";
+import UserSignIn from "./components/authentication/UserSignIn";
 import axios from "axios";
 import "./index.css";
 
@@ -114,7 +114,7 @@ class App extends Component {
             <Route exact path="/users/:id/messages" component={UserMessage} />
             <Route
               exact
-              path="/users/:id/nessages/:id"
+              path="/users/:id/messages/:id"
               component={MessageAnswers}
             />
             <Route exact path="/users/:id/donations" component={UserDonation} />

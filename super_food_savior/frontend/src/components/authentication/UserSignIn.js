@@ -24,7 +24,7 @@ export default class UserSignIn extends Component {
 
     axios
       .post("/login", this.state)
-      .then(res => {
+      .then((res, req) => {
         if (res.status === 200) {
           const user = res.data.user[0];
           const storeLocalStorage = user => {

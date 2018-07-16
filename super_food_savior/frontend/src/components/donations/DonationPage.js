@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import GoogleMapComponent from "./googlemap/GoogleMapComponent";
-import GoogleMapDirections from "./googlemap/GoogleMapDirections";
+import GoogleMapComponent from "../googlemap/GoogleMapComponent";
+import GoogleMapDirections from "../googlemap/GoogleMapDirections";
 import MessageForm from "./MessageForm";
 import DonationDelete from "./DonationDelete";
 import axios from "axios";
