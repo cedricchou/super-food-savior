@@ -20,8 +20,8 @@ export default class UserDonation extends Component {
 
   renderUserDonation(donation) {
     const imageDetail = {
-      minHeight: "400px",
-      maxHeight: "400px",
+      minHeight: "350px",
+      maxHeight: "350px",
       minWidth: "100%"
     };
 

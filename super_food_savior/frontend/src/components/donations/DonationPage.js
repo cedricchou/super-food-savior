@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import GoogleMapComponent from "../googlemap/GoogleMapComponent";
 import GoogleMapDirections from "../googlemap/GoogleMapDirections";
+import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 import MessageForm from "./MessageForm";
 import DonationDelete from "./DonationDelete";
 import axios from "axios";
@@ -30,17 +31,19 @@ export default class DonationPage extends Component {
   }
 
   renderDonation(donation) {
+    const imageDetail = {
+      maxHeight: "200px",
+      maxWidth: "200px"
+    };
     if (donation) {
       return (
-        <div>
-          <div className="col-md-4">
-            <ul>
-              <li>{donation.title}</li>
-              <li>{donation.description}</li>
-            </ul>
+        <div className="row">
+          <div className="col-md-6">
+            <h3 id="show-title">{donation.title}</h3>
+            <p>{donation.description}</p>
           </div>
-          <div className="col-md-4 float-right">
-            <img src={donation.pictureUrl} />
+          <div className="col-md-6 donationPicture">
+            <img src={donation.pictureUrl} style={imageDetail} />
           </div>
         </div>
       );

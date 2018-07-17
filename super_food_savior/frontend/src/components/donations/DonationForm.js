@@ -22,13 +22,12 @@ export default class DonationForm extends Component {
     axios
       .post("/donations", toSend)
       .then(function(res) {
-        console.log(res);
-        if (res && res.data && res.data.success) {
+        if (res.data.success) {
           alert("Thanks for posting your donation!");
         }
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch(err => {
+        console.log(err);
       });
   };
 

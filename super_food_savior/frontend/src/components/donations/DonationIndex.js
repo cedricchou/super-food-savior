@@ -31,8 +31,8 @@ export default class DonationIndex extends Component {
 
   renderDonations(donations) {
     const imageDetail = {
-      minHeight: "400px",
-      maxHeight: "400px",
+      minHeight: "350px",
+      maxHeight: "350px",
       minWidth: "100%"
     };
 
