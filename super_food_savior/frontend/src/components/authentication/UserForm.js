@@ -32,8 +32,8 @@ export default class UserForm extends Component {
           alert("email already used");
         }
       })
-      .catch(function(error) {
-        console.log(error);
+      .catch(err => {
+        console.log(err);
       });
   };
 

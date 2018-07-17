@@ -46,7 +46,9 @@ export default class UserSignIn extends Component {
         }
       })
       .catch(err => {
-        console.log(err);
+        this.setState({
+          redirectTo: "/login"
+        });
       });
   };
 

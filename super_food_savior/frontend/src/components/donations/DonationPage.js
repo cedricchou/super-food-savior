@@ -99,17 +99,19 @@ export default class DonationPage extends Component {
 
   render() {
     const cardStyle = {
-      background: "lightgrey"
+      background: "linear-gradient(to bottom, #3e236d 30%, #3f51b5 70%)"
     };
 
     return (
       <div className="DonationPage row">
         <div className="col-md-6" style={cardStyle}>
-          {this.renderDonation(this.state.donation)}
-          {this.showFunction(
-            this.state.current_user_data,
-            this.state.user_data
-          )}
+          <div className="row">
+            {this.renderDonation(this.state.donation)}
+            {this.showFunction(
+              this.state.current_user_data,
+              this.state.user_data
+            )}
+          </div>
         </div>
         <div className="col-md-6">
           {this.mapDisplay(this.state.current_user_data, this.state.user_data)}
