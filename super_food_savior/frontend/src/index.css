@@ -11,12 +11,21 @@ body {
   font-family: sans-serif;
 }
 
+.row {
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .card:hover {
   opacity: 0.9;
 }
 
 .MessageAnswers {
   color: black;
+}
+
+.MessageForm {
+  padding-top: 20px;
 }
 
 .App {
@@ -29,6 +38,10 @@ body {
 .card-body {
   background-color: navy;
   box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.8);
+}
+
+.card-text {
+  color: white;
 }
 
 .DonationForm {
@@ -56,10 +69,19 @@ body {
   color: green;
 }
 
+.DonationIndex a {
+  text-decoration: none !important;
+}
+
 .DonationIndex {
   padding-top: 40px;
   padding-left: 70px;
   padding-right: 70px;
+}
+
+.card {
+  display: flex;
+  justify-content: center;
 }
 
 .DonationPage {
@@ -112,6 +134,6 @@ body {
   top: 15px;
 }
 
-.col-md-6.donationPicture {
-  height: 100px;
+.ToggleDashbord:hover {
+  cursor: context-menu;
 }

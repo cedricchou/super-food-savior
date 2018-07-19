@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
+import { Card, CardText, CardBody, CardTitle } from "reactstrap";
 import axios from "axios";
 
 export default class DonationIndex extends Component {
@@ -42,14 +42,15 @@ export default class DonationIndex extends Component {
         .reverse()
         .map((donation, index) => (
           <div key={index} className="col-md-4 mb-4">
-            <Card className="h-100">
-              <img src={donation.pictureUrl} style={imageDetail} />
-              <CardBody>
-                <CardTitle>{donation.title}</CardTitle>
-                <CardText>{donation.description}</CardText>
-                <Link to={`/donations/${donation.id}`}>See Donation</Link>
-              </CardBody>
-            </Card>
+            <Link to={`/donations/${donation.id}`}>
+              <Card className="h-100">
+                <img src={donation.pictureUrl} alt="" style={imageDetail} />
+                <CardBody>
+                  <CardTitle>{donation.title}</CardTitle>
+                  <CardText>{donation.description}</CardText>
+                </CardBody>
+              </Card>
+            </Link>
           </div>
         ));
     }

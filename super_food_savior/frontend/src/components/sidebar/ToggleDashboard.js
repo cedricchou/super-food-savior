@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { Button } from "reactstrap";
+import React from "react";
 
 const ToggleDashboard = props => (
   <div>

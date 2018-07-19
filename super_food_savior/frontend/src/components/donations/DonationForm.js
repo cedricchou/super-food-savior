@@ -18,7 +18,6 @@ export default class DonationForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const toSend = this.state;
-    console.log(toSend);
     axios
       .post("/donations", toSend)
       .then(function(res) {
@@ -49,7 +48,7 @@ export default class DonationForm extends Component {
         />
         <Label>Description:</Label>
         <Input
-          type="text"
+          type="textarea"
           name="description"
           value={this.state.description}
           onChange={this.handleChange}

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import GoogleMapComponent from "../googlemap/GoogleMapComponent";
 import GoogleMapDirections from "../googlemap/GoogleMapDirections";
-import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 import MessageForm from "./MessageForm";
 import DonationDelete from "./DonationDelete";
 import axios from "axios";
@@ -33,7 +32,9 @@ export default class DonationPage extends Component {
   renderDonation(donation) {
     const imageDetail = {
       maxHeight: "200px",
-      maxWidth: "200px"
+      maxWidth: "200px",
+      margin: "auto",
+      display: "flex"
     };
     if (donation) {
       return (
@@ -42,8 +43,13 @@ export default class DonationPage extends Component {
             <h3 id="show-title">{donation.title}</h3>
             <p>{donation.description}</p>
           </div>
-          <div className="col-md-6 donationPicture">
-            <img src={donation.pictureUrl} style={imageDetail} />
+          <div className="col-md-6">
+            <img
+              src={donation.pictureUrl}
+              alt=""
+              style={imageDetail}
+              align="right"
+            />
           </div>
         </div>
       );
@@ -99,19 +105,18 @@ export default class DonationPage extends Component {
 
   render() {
     const cardStyle = {
-      background: "linear-gradient(to bottom, #3e236d 30%, #3f51b5 70%)"
+      background: "linear-gradient(to bottom, #3e236d 30%, #3f51b5 70%)",
+      padding: "20px"
     };
 
     return (
       <div className="DonationPage row">
         <div className="col-md-6" style={cardStyle}>
-          <div className="row">
-            {this.renderDonation(this.state.donation)}
-            {this.showFunction(
-              this.state.current_user_data,
-              this.state.user_data
-            )}
-          </div>
+          {this.renderDonation(this.state.donation)}
+          {this.showFunction(
+            this.state.current_user_data,
+            this.state.user_data
+          )}
         </div>
         <div className="col-md-6">
           {this.mapDisplay(this.state.current_user_data, this.state.user_data)}

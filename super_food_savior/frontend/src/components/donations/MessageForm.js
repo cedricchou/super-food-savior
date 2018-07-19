@@ -43,11 +43,12 @@ export default class MessageForm extends Component {
     return (
       <Form className="MessageForm" onSubmit={this.handleSubmit}>
         <Input
-          type="text"
+          type="textarea"
           name="content"
           value={this.state.content}
           onChange={this.handleChange}
         />
+        <br />
         <Button type="submit">Send Message</Button>
       </Form>
     );
