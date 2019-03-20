@@ -20,17 +20,7 @@ This app was built using:
 
 The app is currently being updated to have ReactJS as frontend.
 
-To run the app, type in the terminal:
-
-- createdb super_food_savior_dev
-
-- knex migrate:latest
-
-- npm start
-
-In your preferred browser, type: localhost:3333
-
-Alternatively, you can go to the following URL:
+You can go to the following URL:
 
 https://super-food-savior.herokuapp.com/
 
