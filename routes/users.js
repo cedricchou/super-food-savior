@@ -108,7 +108,9 @@ router.get("/:id/messages/:id", myfuncs.checkAuth, function(req, res) {
           res.json({ answers, message, userId });
         })
         .catch(res => {
-          message: "Could not access data";
+          res.json({
+            message: "Could not access data"
+          })
         });
     });
 });

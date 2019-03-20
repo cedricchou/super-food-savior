@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Switch } from "react-router-dom";
 import axios from "axios";
 import HomePage from "./components/HomePage";
 import NavigationBar from "./components/NavBar";
@@ -17,7 +16,7 @@ import UserForm from "./components/authentication/UserForm";
 import UserSignIn from "./components/authentication/UserSignIn";
 import "./index.css";
 
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   constructor() {
@@ -85,7 +84,6 @@ class App extends Component {
   };
 
   render() {
-    console.log(localStorage);
     let sideNav = "";
     let backdrop = "";
     if (this.state.sideNavOpener) {
@@ -113,19 +111,16 @@ class App extends Component {
             <Route exact path="/users/new" component={UserForm} />
             <Route exact path="/users/:id/messages" component={UserMessage} />
             <Route
-              exact
-              path="/users/:id/messages/:id"
+              exact path="/users/:id/messages/:id"
               component={MessageAnswers}
             />
             <Route exact path="/users/:id/donations" component={UserDonation} />
             <Route
-              exact
-              path="/users/:id/donations/:id"
+              exact path="/users/:id/donations/:id"
               component={DonationMessage}
             />
             <Route
-              exact
-              path="/login"
+              exact path="/login"
               render={() => <UserSignIn updateUser={this.updateUser} />}
             />
           </Switch>

@@ -53,6 +53,7 @@ export default class UserSignIn extends Component {
   };
 
   render() {
+    console.log("testing")
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
