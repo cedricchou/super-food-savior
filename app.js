@@ -84,7 +84,6 @@ passport.use(
           const hash = user.password;
           bcrypt.compare(password, hash, function(err, res) {
             if (res === true) {
-              console.log(user);
               return done(null, user);
             } else {
               return done(null, false);

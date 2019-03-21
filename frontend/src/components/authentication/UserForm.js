@@ -22,7 +22,6 @@ export default class UserForm extends Component {
     axios
       .post("/users", this.state)
       .then(function(res) {
-        console.log(res);
         if (!res.data.errmsg) {
           alert("Thanks for signing up!!");
           this.setState({
