@@ -10,7 +10,6 @@ const GMAP = require("../frontend/app_keys/app_keys");
 
 router.get("/", myfuncs.checkAuth, function(req, res) {
   const research = req.query.research;
-  console.log(req.query.research);
   if (research === undefined) {
     knex
       .select()
@@ -46,17 +45,17 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
 router.post("/", (req, res) => {
   // let donationPic = req.files.picture;
   // let donationPicName = donationPic.name;
-  console.log(req.body.donationPic);
+  // console.log(req.body.donationPic);
   let donationPicName = req.body.donationPic;
   let creationDate = Date.now().toLocaleString();
   let createdAt = creationDate.replace(/\s*,/g, "_");
   const cleanName = donationPicName.replace(/\s/g, "_");
-  // donationPic.mv("./public/upload/" + createdAt + cleanName);
+  donationPicName.mv("./public/upload/" + createdAt + cleanName);
 
   const toInsert = {
     title: req.body.title,
     description: req.body.description,
-    pictureUrl: "/upload/" + cleanName,
+    pictureUrl: "/upload/" + createdAt + cleanName,
     user_id: res.locals.user.id
   };
 
