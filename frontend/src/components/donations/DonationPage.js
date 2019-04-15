@@ -4,6 +4,7 @@ import GoogleMapDirections from "../googlemap/GoogleMapDirections";
 import MessageForm from "./MessageForm";
 import DonationDelete from "./DonationDelete";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 export default class DonationPage extends Component {
   constructor(props) {
@@ -107,7 +108,9 @@ export default class DonationPage extends Component {
       background: "linear-gradient(to bottom, #3e236d 30%, #3f51b5 70%)",
       padding: "20px"
     };
-
+    if(!localStorage.session) {
+      return <Redirect to="/login" />
+    }
     return (
       <div className="DonationPage row">
         <div className="col-md-6" style={cardStyle}>

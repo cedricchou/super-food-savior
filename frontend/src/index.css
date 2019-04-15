@@ -29,10 +29,10 @@ body {
 }
 
 .App {
-  min-height: 1500px;
   color: white;
   z-index: -1;
   background-image: url("./marble.jpg");
+  height: 100%;
 }
 
 .card-body {

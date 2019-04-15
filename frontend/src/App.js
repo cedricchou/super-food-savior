@@ -28,47 +28,45 @@ class App extends Component {
       sideNavOpener: false,
       results: null
     };
-
-    this.getUser = this.getUser.bind(this);
-    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
-  componentDidMount() {
-    this.getUser();
-  }
+  // componentDidMount() {
+  //   this.getUser();
+  // }
 
-  filteredDonations = (query = "car") => {
-    axios
-      .get("/donations")
-      .then(res => {
-        this.setState({
-          results: res.data.donations
-        });
-      })
-      .catch(error => {
-        console.log("Error fetching and parsing data", error);
-      });
-  };
+  // filteredDonations = (query = "car") => {
+  //   axios
+  //     .get("/donations")
+  //     .then(res => {
+  //       this.setState({
+  //         results: res.data.donations
+  //       });
+  //     })
+  //     .catch(error => {
+  //       console.log("Error fetching and parsing data", error);
+  //     });
+  // };
 
-  getUser() {
-    axios.get("/").then(res => {
-      if (res.data.user) {
-        const user = res.data.user[0];
-        localStorage.getItem("session");
-        this.setState({
-          loggedIn: true,
-          email: user.email,
-          user: user
-        });
-      }
-    });
-  }
+  // getUser = () => {
+  //   axios.get("/").then(res => {
+  //     if (res.data.user) {
+  //       console.log(res.data)
+  //       const user = res.data.user[0];
+  //       localStorage.getItem("session");
+  //       this.setState({
+  //         loggedIn: true,
+  //         email: user.email,
+  //         user: user
+  //       });
+  //     }
+  //   });
+  // }
 
-  updateUser = user => {
-    this.setState(user);
-  };
+  // updateUser = user => {
+  //   this.setState(user);
+  // };
 
-  clearUser() {
+  clearUser = () => {
     localStorage.removeItem("session");
     localStorage.removeItem("session_id");
   }
@@ -94,8 +92,8 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavigationBar
-            user={this.state.user}
-            updateUser={this.updateUser}
+            // user={this.state.user}
+            // updateUser={this.updateUser}
             loggedIn={this.state.loggedIn}
             onSignOut={this.clearUser}
             handleToggler={this.handleToggler}
@@ -106,7 +104,10 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact path="/donations" component={DonationIndex} />
-            <Route exact path="/donations/new" component={DonationForm} />
+            <Route 
+              exact path="/donations/new" 
+              component={DonationForm} 
+            />
             <Route exact path="/donations/:id" component={DonationPage} />
             <Route exact path="/users/new" component={UserForm} />
             <Route exact path="/users/:id/messages" component={UserMessage} />
@@ -121,7 +122,8 @@ class App extends Component {
             />
             <Route
               exact path="/login"
-              render={() => <UserSignIn updateUser={this.updateUser} />}
+              component={UserSignIn}
+              // render={() => <UserSignIn updateUser={this.updateUser} />}
             />
           </Switch>
         </div>

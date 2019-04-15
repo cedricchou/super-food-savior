@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, CardBody, CardText } from "reactstrap";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 export default class MessageAnswers extends Component {
   constructor(props) {
@@ -30,7 +31,10 @@ export default class MessageAnswers extends Component {
   }
 
   render() {
-    if (this.state.loading) {
+    if(!localStorage.session) {
+      return <Redirect to="/login" />
+    }
+    else if (this.state.loading) {
       return (
         <div className="MessageAnswers">
           <h4>Loading...</h4>

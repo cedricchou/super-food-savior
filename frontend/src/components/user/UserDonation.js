@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Card, CardBody, CardTitle, CardText, CardImg } from "reactstrap";
 import axios from "axios";
 
@@ -49,10 +49,14 @@ export default class UserDonation extends Component {
   }
 
   render() {
-    return (
-      <div className="UserDonation row">
-        {this.renderUserDonation(this.state.donation)}
-      </div>
-    );
+    if(!localStorage.session) {
+      return <Redirect to="/login" />
+    } else {
+      return (
+        <div className="UserDonation row">
+          {this.renderUserDonation(this.state.donation)}
+        </div>
+      );
+    }
   }
 }

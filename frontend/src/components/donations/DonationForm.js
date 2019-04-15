@@ -1,13 +1,18 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { Form, Input, Label, Button } from "reactstrap";
 
 export default class DonationForm extends Component {
-  state = {
-    title: "",
-    description: "",
-    donationPic: ""
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      description: "",
+      donationPic: "",
+      donationPostSuccessRedirect: null
+    };
+  }
 
   handleChange = event => {
     const newData = {};
@@ -17,12 +22,19 @@ export default class DonationForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const toSend = this.state;
+    const toSend = {
+      title: this.state.title,
+      description: this.state.description,
+      donationPic: this.state.donationPic
+    }
     axios
       .post("/donations", toSend)
-      .then(function(res) {
+      .then(res => {
         if (res.data.success) {
-          alert("Thanks for posting your donation!");
+        alert("Thanks for posting a donation!")
+          this.setState({
+            donationPostSuccessRedirect: '/donations'
+          })
         }
       })
       .catch(err => {
@@ -37,32 +49,39 @@ export default class DonationForm extends Component {
   };
 
   render() {
-    return (
-      <Form onSubmit={this.handleSubmit} className="DonationForm">
-        <Label>Title:</Label>
-        <Input
-          type="text"
-          name="title"
-          value={this.state.title}
-          onChange={this.handleChange}
-        />
-        <Label>Description:</Label>
-        <Input
-          type="textarea"
-          name="description"
-          value={this.state.description}
-          onChange={this.handleChange}
-        />
-        <Label>Add a Picture:</Label>
-        <Input
-          type="file"
-          name="donationPic"
-          value={this.state.fileSelectedHandler}
-          onChange={this.fileSelectedHandler}
-        />
-        <br />
-        <Button type="submit">Post Donation</Button>
-      </Form>
-    );
+    if(!localStorage.session) {
+      return <Redirect to="/login" />
+    }
+    if(this.state.donationPostSuccessRedirect) {
+      return <Redirect to={this.state.donationPostSuccessRedirect} />
+    } else {
+      return (
+        <Form onSubmit={this.handleSubmit} className="DonationForm">
+          <Label>Title:</Label>
+          <Input
+            type="text"
+            name="title"
+            value={this.state.title}
+            onChange={this.handleChange}
+          />
+          <Label>Description:</Label>
+          <Input
+            type="textarea"
+            name="description"
+            value={this.state.description}
+            onChange={this.handleChange}
+          />
+          <Label>Add a Picture:</Label>
+          <Input
+            type="file"
+            name="donationPic"
+            value={this.state.fileSelectedHandler}
+            onChange={this.fileSelectedHandler}
+          />
+          <br />
+          <Button type="submit">Post Donation</Button>
+        </Form>
+      );
+    }
   }
 }

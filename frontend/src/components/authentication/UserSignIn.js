@@ -33,11 +33,11 @@ export default class UserSignIn extends Component {
               localStorage.setItem("session_id", user.id);
             }
           };
-          this.props.updateUser({
-            loggedIn: true,
-            email: user.email,
-            user: user
-          });
+          // this.props.updateUser({
+          //   loggedIn: true,
+          //   email: user.email,
+          //   user: user
+          // });
           storeLocalStorage(user);
           this.setState({
             redirectTo: "/donations"
@@ -45,15 +45,13 @@ export default class UserSignIn extends Component {
         }
       })
       .catch(err => {
-        this.setState({
-          redirectTo: "/login"
-        });
+        alert("Your password or email is incorrect")
       });
   };
 
   render() {
     if (this.state.redirectTo) {
-      return <Redirect to={{ pathname: this.state.redirectTo }} />;
+      return <Redirect to={this.state.redirectTo} />;
     } else {
       return (
         <Form className="UserSignIn" onSubmit={this.handleSubmit}>

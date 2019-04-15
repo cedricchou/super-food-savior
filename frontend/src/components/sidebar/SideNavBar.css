@@ -5,11 +5,13 @@
   height: 100%;
   top: 0;
   left: 0;
-  background: white;
+  background: linear-gradient(to bottom, #3e236d 30%, #3f51b5 70%);
+  overflow-x: hidden;
   z-index: 200;
 }
 
 .sidenav ul {
+  margin-top: 40px;
   list-style: none;
   display: flex;
   flex-direction: column;
