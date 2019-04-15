@@ -35,7 +35,7 @@ export default class UserSignUp extends Component {
           alert("Thanks for signing up!!");         
             localStorage.setItem("session", this.state.first_name);
           this.setState({
-            signUpRedirect: "/donations"
+            signUpRedirect: "/login"
           });
         } else {
           alert("email already used");

@@ -14,7 +14,6 @@ export default class DonationPage extends Component {
       current_user_data: null,
       user_data: null
     };
-    this.mapDisplay = this.mapDisplay.bind(this);
   }
 
   componentDidMount() {
@@ -29,7 +28,7 @@ export default class DonationPage extends Component {
     });
   }
 
-  renderDonation(donation) {
+  renderDonation = donation => {
     const imageDetail = {
       maxHeight: "200px",
       maxWidth: "200px",
@@ -56,7 +55,7 @@ export default class DonationPage extends Component {
     }
   }
 
-  showFunction(userA, userB) {
+  showFunction = (userA, userB) => {
     if (userA) {
       if (userA.id === userB.id) {
         return (
@@ -77,7 +76,7 @@ export default class DonationPage extends Component {
     }
   }
 
-  mapDisplay(userA, userB) {
+  mapDisplay = (userA, userB) => {
     if (userA) {
       if (userA.id === userB.id) {
         return (

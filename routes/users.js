@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const User = require("../models/user");
 const knex = require("../db/index");
 const passport = require("passport");
 const myfuncs = require("./helpers");
