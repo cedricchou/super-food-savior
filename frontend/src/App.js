@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios";
 import HomePage from "./components/HomePage";
 import NavigationBar from "./components/NavBar";
 import DonationForm from "./components/donations/DonationForm";
 import DonationIndex from "./components/donations/DonationIndex";
 import DonationPage from "./components/donations/DonationPage";
-// import DonationSearch from "./components/donations/DonationSearch";
 import UserDonation from "./components/user/UserDonation";
 import UserMessage from "./components/user/UserMessage";
 import MessageAnswers from "./components/user/MessageAnswers";
@@ -29,42 +27,6 @@ class App extends Component {
       results: null
     };
   }
-
-  // componentDidMount() {
-  //   this.getUser();
-  // }
-
-  // filteredDonations = (query = "car") => {
-  //   axios
-  //     .get("/donations")
-  //     .then(res => {
-  //       this.setState({
-  //         results: res.data.donations
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.log("Error fetching and parsing data", error);
-  //     });
-  // };
-
-  // getUser = () => {
-  //   axios.get("/").then(res => {
-  //     if (res.data.user) {
-  //       console.log(res.data)
-  //       const user = res.data.user[0];
-  //       localStorage.getItem("session");
-  //       this.setState({
-  //         loggedIn: true,
-  //         email: user.email,
-  //         user: user
-  //       });
-  //     }
-  //   });
-  // }
-
-  // updateUser = user => {
-  //   this.setState(user);
-  // };
 
   clearUser = () => {
     localStorage.removeItem("session");
@@ -92,9 +54,6 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavigationBar
-            // user={this.state.user}
-            // updateUser={this.updateUser}
-            loggedIn={this.state.loggedIn}
             onSignOut={this.clearUser}
             handleToggler={this.handleToggler}
           />
@@ -123,7 +82,6 @@ class App extends Component {
             <Route
               exact path="/login"
               component={UserSignIn}
-              // render={() => <UserSignIn updateUser={this.updateUser} />}
             />
           </Switch>
         </div>

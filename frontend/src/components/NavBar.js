@@ -1,15 +1,10 @@
 import React, {Component} from "react";
 import { Navbar, Nav, NavLink, NavItem } from "reactstrap";
-import { Redirect } from "react-router-dom";
-// import DonationSearch from "./donations/DonationSearch";
 import SignInOutStatus from "./authentication/SignInOutStatus";
 import SignUpOutStatus from "./authentication/SignUpOutStatus";
 import ToggleDashboard from "./sidebar/ToggleDashboard";
 
 export default class NavigationBar extends Component {
-   constructor(props) {
-     super(props);
-   }
 
    handleSignout = event => {
     event.preventDefault();
@@ -41,9 +36,6 @@ export default class NavigationBar extends Component {
                   Sign Out
                 </NavLink>
               </NavItem>
-              {/* <NavItem>
-                <DonationSearch />
-              </NavItem> */}
             </Nav>
           </Navbar>
         </div>
