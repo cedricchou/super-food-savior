@@ -29,15 +29,14 @@ export default class DonationForm extends Component {
     }
 
     let formData = new FormData();
-    formData.append('title', toSend.title);
-    formData.append('description', toSend.description)
+    formData.set('title', toSend.title);
+    formData.set('description', toSend.description)
     formData.append('donationPic', toSend.donationPic)
 
     axios
       .post("/donations", formData)
       .then(res => {
         if (res.data.success) {
-          console.log(res)
         alert("Thanks for posting a donation!")
           this.setState({
             donationPostSuccessRedirect: '/donations'
