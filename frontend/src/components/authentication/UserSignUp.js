@@ -32,29 +32,26 @@ export default class UserSignUp extends Component {
       .post("/users", toSend)
       .then(res => {
         return axios.get('/users').then(res => {
-          console.log(res)
-          const user = res.data.lastUser;
-          const storeLocalStorage = user => {
-            if (user) {
-              localStorage.setItem("session", user.first_name);
-              localStorage.setItem("session_id", user.id);
-            }
-          };
-          storeLocalStorage(user);
-          this.setState({
-            signUpRedirect: "/donations"
-          });
-        })
-        
-        // if (!res.data.errmsg) {
-        //   alert("Thanks for signing up!!");         
-        //     localStorage.setItem("session", this.state.first_name);
-        //   this.setState({
-        //     signUpRedirect: "/login"
-        //   });
-        // } else {
-        //   alert("email already used");
-        // }
+          if (!res.data.errmsg && res.status === 200) {
+            const allUsers = res.data.allUsers;
+            let user = allUsers.filter(user => user.email === toSend.email);
+            user = user[0]
+            // const user = res.data.lastUser
+            const storeLocalStorage = user => {
+              if (user) {
+                localStorage.setItem("session", user.first_name);
+                localStorage.setItem("session_id", user.id);
+              }
+            };
+            storeLocalStorage(user);
+            alert("Thanks for signing up!!");
+            this.setState({
+              signUpRedirect: "/donations"
+            });
+          } else {
+            alert("email already used");
+          }
+        })        
       })
       .catch(err => {
         console.log(err);

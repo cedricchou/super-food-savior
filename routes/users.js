@@ -12,15 +12,12 @@ const saltRounds = 10;
 /* GET users listing. */
 
 router.get("/", function(req, res) {
-  const user_id = 1
   knex
     .select()
     .from("users")
-    .where({ id: user_id })
-    .first()
-    .then(lastUser => {
-      console.log(lastUser)
-      res.json({ lastUser });
+    .then(allUsers => {
+      const lastUser = allUsers[allUsers.length-1];
+      res.json({ lastUser, allUsers });
     })
     .catch(res => {
       res.json({
