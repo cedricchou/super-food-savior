@@ -22,15 +22,22 @@ export default class DonationForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const toSend = {
-      title: this.state.title,
-      description: this.state.description,
-      donationPic: this.state.donationPic
-    }
+    // const toSend = {
+    //   title: this.state.title,
+    //   description: this.state.description,
+    //   donationPic: this.state.donationPic
+    // }
+
+    let formData = new FormData();
+    formData.append('title', toSend.title);
+    formData.append('description', toSend.description)
+    formData.append('donationPic', toSend.donationPic)
+
     axios
-      .post("/donations", toSend)
+      .post("/donations", formData)
       .then(res => {
         if (res.data.success) {
+          console.log(res)
         alert("Thanks for posting a donation!")
           this.setState({
             donationPostSuccessRedirect: '/donations'
@@ -42,9 +49,15 @@ export default class DonationForm extends Component {
       });
   };
 
+  // fileSelectedHandler = event => {
+  //   this.setState({
+  //     donationPic: event.target.files[0].name
+  //   });
+  // };
+
   fileSelectedHandler = event => {
     this.setState({
-      donationPic: event.target.files[0].name
+      donationPic: event.target.files[0]
     });
   };
 
@@ -75,7 +88,8 @@ export default class DonationForm extends Component {
           <Input
             type="file"
             name="donationPic"
-            value={this.state.fileSelectedHandler}
+            encType="multipart/form-data"
+            // value={this.state.fileSelectedHandler}
             onChange={this.fileSelectedHandler}
           />
           <br />

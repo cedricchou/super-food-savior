@@ -68,6 +68,7 @@ build/Release
 /node_modules
 jspm_packages/
 /frontend/node_modules
+/public/upload
 
 # Typescript v1 declaration files
 typings/
