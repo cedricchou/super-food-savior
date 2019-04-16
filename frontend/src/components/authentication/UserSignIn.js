@@ -33,11 +33,6 @@ export default class UserSignIn extends Component {
               localStorage.setItem("session_id", user.id);
             }
           };
-          // this.props.updateUser({
-          //   loggedIn: true,
-          //   email: user.email,
-          //   user: user
-          // });
           storeLocalStorage(user);
           this.setState({
             redirectTo: "/donations"
