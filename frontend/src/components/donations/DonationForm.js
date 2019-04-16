@@ -29,8 +29,8 @@ export default class DonationForm extends Component {
     }
 
     let formData = new FormData();
-    formData.append('title', toSend.title);
-    formData.append('description', toSend.description)
+    formData.set('title', toSend.title);
+    formData.set('description', toSend.description)
     formData.append('donationPic', toSend.donationPic)
 
     axios
