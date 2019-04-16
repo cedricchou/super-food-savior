@@ -12,7 +12,21 @@ const saltRounds = 10;
 /* GET users listing. */
 
 router.get("/", function(req, res) {
-  res.send("I am the user page");
+  const user_id = 1
+  knex
+    .select()
+    .from("users")
+    .where({ id: user_id })
+    .first()
+    .then(lastUser => {
+      console.log(lastUser)
+      res.json({ lastUser });
+    })
+    .catch(res => {
+      res.json({
+        message: "Could not fetch data"
+      });
+    });
 });
 
 // Create a new User

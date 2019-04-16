@@ -10,7 +10,7 @@ import MessageAnswers from "./components/user/MessageAnswers";
 import DonationMessage from "./components/user/DonationMessage";
 import SideNavBar from "./components/sidebar/SideNavBar";
 import BackDrop from "./components/sidebar/BackDrop";
-import UserForm from "./components/authentication/UserForm";
+import UserSignUp from "./components/authentication/UserSignUp";
 import UserSignIn from "./components/authentication/UserSignIn";
 import "./index.css";
 
@@ -68,7 +68,7 @@ class App extends Component {
               component={DonationForm} 
             />
             <Route exact path="/donations/:id" component={DonationPage} />
-            <Route exact path="/users/new" component={UserForm} />
+            <Route exact path="/users/new" component={UserSignUp} />
             <Route exact path="/users/:id/messages" component={UserMessage} />
             <Route
               exact path="/users/:id/messages/:id"
