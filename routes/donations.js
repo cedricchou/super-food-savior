@@ -42,11 +42,13 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
 // Create new donation
 
 router.post("/",  (req, res) => {
+
   let donationPic = req.files.donationPic
   let donationPicName = req.files.donationPic.name;
   let creationDate = Date.now().toLocaleString();
   let createdAt = creationDate.replace(/\s*,/g, "_");
   donationPic.mv("./public/upload/" + createdAt + donationPicName);
+
 
   const toInsert = {
     title: req.body.title,
@@ -55,6 +57,7 @@ router.post("/",  (req, res) => {
     user_id: res.locals.user.id
   };
 
+  console.log(toInsert)
   knex
     .insert(toInsert)
     .into("donations")

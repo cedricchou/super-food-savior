@@ -37,6 +37,7 @@ export default class DonationForm extends Component {
       .post("/donations", formData)
       .then(res => {
         if (res.data.success) {
+          console.log(res)
         alert("Thanks for posting a donation!")
           this.setState({
             donationPostSuccessRedirect: '/donations'
