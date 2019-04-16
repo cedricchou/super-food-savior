@@ -22,11 +22,11 @@ export default class DonationForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    // const toSend = {
-    //   title: this.state.title,
-    //   description: this.state.description,
-    //   donationPic: this.state.donationPic
-    // }
+    const toSend = {
+      title: this.state.title,
+      description: this.state.description,
+      donationPic: this.state.donationPic
+    }
 
     let formData = new FormData();
     formData.append('title', toSend.title);
