@@ -41,7 +41,7 @@ router.get("/", myfuncs.checkAuth, function(req, res) {
 
 // Create new donation
 
-router.post("/",  (req, res) => {
+router.post("/", (req, res) => {
   let donationPic = req.files.donationPic
   let donationPicName = req.files.donationPic.name;
   let creationDate = Date.now().toLocaleString();

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 import { Form, Input, Button } from "reactstrap";
 
@@ -8,7 +9,8 @@ export default class MessageForm extends Component {
     this.state = {
       content: "",
       donation_id: null,
-      user_id: null
+      user_id: null,
+      messageSuccessRedirect: null
     };
   }
 
@@ -24,14 +26,22 @@ export default class MessageForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const toSend = this.state;
+    const {content, donation_id, user_id} = this.state
+    const toSend = {
+      content,
+      donation_id,
+      user_id
+    };
     const donationId = this.props.donation.id;
 
     axios
       .post(`/donations/${donationId}/messages`, toSend)
       .then(res => {
         if (res && res.data) {
-          console.log(res);
+          alert("message sent");
+          this.setState({
+            messageSuccessRedirect: '/donations'
+          })
         }
       })
       .catch(err => {
@@ -40,17 +50,22 @@ export default class MessageForm extends Component {
   };
 
   render() {
-    return (
-      <Form className="MessageForm" onSubmit={this.handleSubmit}>
-        <Input
-          type="textarea"
-          name="content"
-          value={this.state.content}
-          onChange={this.handleChange}
-        />
-        <br />
-        <Button type="submit">Send Message</Button>
-      </Form>
-    );
+    if(this.state.messageSuccessRedirect) {
+      return <Redirect to={this.state.messageSuccessRedirect} />
+    } else {
+      return (
+        <Form className="MessageForm" onSubmit={this.handleSubmit}>
+          <Input
+            type="textarea"
+            name="content"
+            value={this.state.content}
+            onChange={this.handleChange}
+          />
+          <br />
+          <Button type="submit">Send Message</Button>
+        </Form>
+      );
+    }
+    
   }
 }

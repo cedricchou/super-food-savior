@@ -18,17 +18,6 @@ export default class DonationIndex extends Component {
     });
   }
 
-  // filteredDonations = event => {
-  //   const items = ["apple, banana, carrots"];
-  //
-  //   let searchText = event.target.value;
-  //   const filteredItems = items.filter(item => {
-  //     console.log(searchText);
-  //     return item.search(searchText) > -1;
-  //   });
-  //   this.setState({ filtered: filteredItems });
-  // };
-
   renderDonations(donations) {
     const imageDetail = {
       minHeight: "350px",

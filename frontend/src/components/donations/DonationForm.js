@@ -48,12 +48,6 @@ export default class DonationForm extends Component {
       });
   };
 
-  // fileSelectedHandler = event => {
-  //   this.setState({
-  //     donationPic: event.target.files[0].name
-  //   });
-  // };
-
   fileSelectedHandler = event => {
     this.setState({
       donationPic: event.target.files[0]
@@ -88,7 +82,6 @@ export default class DonationForm extends Component {
             type="file"
             name="donationPic"
             encType="multipart/form-data"
-            // value={this.state.fileSelectedHandler}
             onChange={this.fileSelectedHandler}
           />
           <br />
