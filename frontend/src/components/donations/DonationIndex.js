@@ -32,7 +32,6 @@ export default class DonationIndex extends Component {
     axios.get('/donations').then(res => {
       if(res.data.donations) {
         const searchArray = res.data.donations;
-        // const result = searchArray.filter(donation => donation.title === research)
         let result = [];
         searchArray.map(donation => {
           const {title, description} = donation;
@@ -108,9 +107,6 @@ export default class DonationIndex extends Component {
             name="research"
             onChange={this.handleChange}
           />
-          <Button type="submit" className="SearchButton" style={{backgroundColor: "#007bff"}}>
-            Search
-          </Button>
         </Form>
         <div className="DonationIndex row">  
           {this.renderDonations(this.state.donations)}
