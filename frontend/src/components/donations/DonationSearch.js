@@ -10,7 +10,7 @@ export default class DonationSearch extends Component {
     };
   }
 
-  handleChange = name => event => {
+  handleChange = event => {
     const searchFunction = {};
     searchFunction[event.target.name] = event.target.value;
     this.setState(searchFunction);
@@ -18,6 +18,16 @@ export default class DonationSearch extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const {research} = this.state;
+
+    axios.get('/donations').then(res => {
+      if(res.data.donations) {
+        const searchArray = res.data.donations;
+        const result = searchArray.filter(donation => donation.title === research)
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   };
 
   render() {
@@ -30,7 +40,7 @@ export default class DonationSearch extends Component {
           onChange={this.handleChange}
         />
         <Button type="submit" className="SearchButton btn btn-success">
-          Search{" "}
+          Search
         </Button>
       </Form>
     );

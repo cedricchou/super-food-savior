@@ -8,6 +8,7 @@ const GMAP = require("../frontend/app_keys/app_keys");
 // Get donations information from database
 
 router.get("/", myfuncs.checkAuth, function(req, res) {
+  console.log(req)
   const research = req.query.research;
   if (research === undefined) {
     knex
