@@ -22,7 +22,8 @@ The app is currently being updated to have ReactJS as frontend.
 
 You can go to the following URL:
 
-https://super-food-savior.herokuapp.com/
+# TO DO: need to redeploy
+https://super-food-savior.herokuapp.com/ 
 
 You can sign up or just login using the following email and password:
 
