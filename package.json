@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@google/maps": "^0.4.6",
-    "bcrypt": "^3.0.5",
+    "bcrypt": "^3.0.6",
     "body-parser": "~1.18.2",
     "bookshelf": "^0.13.3",
     "connect-pg-simple": "^4.2.1",
